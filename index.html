@@ -1,1 +1,164 @@
-hello world
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fahad Malik — Android Developer</title>
+
+<style>
+:root {
+  --bg: #0f1115;
+  --text: #e6e6e6;
+  --muted: #9ca3af;
+  --accent: #3b82f6;
+  --card: #181c22;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  padding: 40px 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+h2 {
+  margin: 60px 0 20px;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+p {
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+.section {
+  margin-bottom: 40px;
+}
+
+.card {
+  background: var(--card);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  transition: 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+.skills span {
+  display: inline-block;
+  background: #22262d;
+  padding: 6px 12px;
+  margin: 6px 6px 0 0;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+footer {
+  margin-top: 80px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+</style>
+</head>
+
+<body>
+
+<h1>Fahad Habib Malik</h1>
+<p>Android Developer • Computer Science Undergraduate</p>
+<p>
+  <a href="mailto:fahadmalik5509@gmail.com">Email</a> —
+  <a href="https://github.com/fahadmalik5509" target="_blank">GitHub</a>
+</p>
+
+<section class="section">
+  <h2>About</h2>
+  <p>
+    Android developer focused on building scalable, logic-driven mobile applications 
+    using Java and modern Android architecture patterns. 
+    Interested in cloud computing and network security. 
+    Strong emphasis on clean architecture, modularity, and performance.
+  </p>
+</section>
+
+<section class="section">
+  <h2>Projects</h2>
+
+  <div class="card">
+    <h3>PlayBox — Multi-Game Android App</h3>
+    <p>
+      Built a modular Android application featuring Tic-Tac-Toe, Wordle, 
+      Color Puzzle, and Dots & Boxes. Implemented core game logic, 
+      win/draw detection, and state management using OOP principles.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3>GPA Manager — University GPA Calculator</h3>
+    <p>
+      Android application built with Java and Room Database supporting GPA 
+      schemas of major Pakistani universities. Designed for scalability and 
+      long-term academic tracking with persistent storage.
+    </p>
+  </div>
+
+</section>
+
+<section class="section">
+  <h2>Skills</h2>
+  <div class="skills">
+    <span>Java</span>
+    <span>Android Studio</span>
+    <span>Room Database</span>
+    <span>SQLite</span>
+    <span>REST APIs</span>
+    <span>JavaScript</span>
+    <span>C/C++</span>
+    <span>Assembly</span>
+    <span>UI/UX</span>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Education</h2>
+  <p>
+    B.S. Computer Science — University of Southern Punjab (2022–2026)  
+    GPA: 3.4 / 4.0
+  </p>
+</section>
+
+<footer>
+  © 2026 Fahad Malik — Built with HTML & CSS
+</footer>
+
+</body>
+</html>
