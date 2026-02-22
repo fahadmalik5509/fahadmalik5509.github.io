@@ -109,9 +109,14 @@
     font-size: 0.9rem;
     color: var(--fg);
     font-weight: 400;
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 3px;
     margin-bottom: 1px;
+    text-decoration: none;
   }
+
+  a.item-name:hover { color: var(--fg); }
 
   .item-desc {
     font-family: 'Geist Mono', monospace;
@@ -126,7 +131,28 @@
     color: var(--subtle);
     white-space: nowrap;
     text-align: right;
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
+
+  .item-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.15s;
+  }
+
+  .item-link:hover { color: var(--fg); }
+
+  .item-link svg {
+    opacity: 0.5;
+    transition: opacity 0.15s;
+  }
+
+  .item-link:hover svg { opacity: 1; }
 
   /* Skills */
   .skills {
@@ -226,7 +252,7 @@
   <h1>Fahad Habib Malik</h1>
   <div class="tagline"><span class="dot"></span>Android Developer · CS Undergraduate · Multan, Pakistan</div>
   <nav>
-    <a href="mailto:fahadmalik5509@gmail.com">Email</a>
+    <a href="/cdn-cgi/l/email-protection#89efe8e1e8ede4e8e5e0e2bcbcb9b0c9eee4e8e0e5a7eae6e4">Email</a>
     <a href="https://github.com/fahadmalik5509" target="_blank">GitHub</a>
     <a href="tel:+923707200063">0370-7200063</a>
   </nav>
@@ -243,7 +269,7 @@
 
   <div class="item">
     <div class="item-left">
-      <span class="item-name">PlayBox</span>
+      <a class="item-name" href="https://github.com/fahadmalik5509/PlayBox" target="_blank" rel="noopener">PlayBox<svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4.5M9.5 2.5V7.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/></svg></a>
       <span class="item-desc">Multi-game Android app — Tic-Tac-Toe, Wordle, Color Puzzle, Dots & Boxes</span>
     </div>
     <div class="item-meta">Android · Java</div>
@@ -251,8 +277,8 @@
 
   <div class="item">
     <div class="item-left">
-      <span class="item-name">GPA Manager</span>
-      <span class="item-desc">GPA tracker with presets for all major Pakistani universities</span>
+      <a class="item-name" href="https://github.com/fahadmalik5509/GPA-Manager" target="_blank" rel="noopener">GPA Manager<svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4.5M9.5 2.5V7.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/></svg></a>
+      <span class="item-desc">GPA tracker with presets for all major Pakistani universities · Room Database</span>
     </div>
     <div class="item-meta">Android · Java</div>
   </div>
@@ -264,7 +290,7 @@
   <div class="item">
     <div class="item-left">
       <span class="item-name">University of Southern Punjab</span>
-      <span class="item-desc">B.Sc. Computer Science</span>
+      <span class="item-desc">B.Sc. Computer Science · GPA 3.4 / 4.0</span>
     </div>
     <div class="item-meta">2022 – 2026</div>
   </div>
@@ -320,10 +346,4 @@
 <footer>
   <span class="footer-copy">Fahad Habib Malik © 2025</span>
   <div class="footer-links">
-    <a href="mailto:fahadmalik5509@gmail.com">fahadmalik5509@gmail.com</a>
-    <a href="https://github.com/fahadmalik5509" target="_blank">github</a>
-  </div>
-</footer>
-
-</body>
-</html>
+    <a href="/cdn-cgi/l/email-protection#690f0801080d04080500025c5c5950290e04080005470a0604"><span class="__cf_email__" data-cfemail="11777
