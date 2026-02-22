@@ -68,7 +68,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding: 0 6vw 8vh;
+    padding: 8vh 6vw 8vh;
     position: relative;
     overflow: hidden;
   }
@@ -245,6 +245,31 @@
     text-transform: uppercase;
   }
   .detail-row .val { font-size: 14px; }
+
+
+  /* HERO ABOUT */
+  .hero-about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6vw;
+    margin-top: 4rem;
+    padding-top: 4rem;
+    border-top: 1px solid var(--border);
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 1.4s;
+  }
+  .hero-about-text {
+    font-size: clamp(15px, 1.8vw, 20px);
+    line-height: 1.7;
+    font-weight: 200;
+    color: var(--text);
+  }
+  .hero-about-text strong { color: var(--accent); font-weight: 400; }
+  .hero-about-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
 
   /* PROJECTS */
   .projects-grid {
@@ -449,6 +474,7 @@
     .projects-grid { grid-template-columns: 1fr; }
     .hero-links    { flex-wrap: wrap; }
     footer         { flex-direction: column; gap: 1.5rem; text-align: center; }
+    .hero-about    { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -487,17 +513,12 @@
     <a href="https://github.com/fahadmalik5509" target="_blank">GitHub</a>
     <a href="tel:+923707200063">Call</a>
   </div>
-</section>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-label">About</div>
-  <div class="inner reveal">
-    <div class="about-text">
-      Android developer building <strong>user-friendly mobile apps</strong> with Android Studio and Java. I care about clean UI, solid architecture, and things that work reliably.<br><br>
-      Interested in <strong>cloud computing</strong> and <strong>network security</strong>. Currently finishing my degree at the University of Southern Punjab.
+  <div class="hero-about">
+    <div class="hero-about-text">
+      Android developer building <strong>user-friendly mobile apps</strong> with Android Studio and Java. I care about clean UI, solid architecture, and things that work reliably. Interested in <strong>cloud computing</strong> and <strong>network security</strong>. Currently finishing my degree at the University of Southern Punjab.
     </div>
-    <div class="about-details">
+    <div class="hero-about-details">
       <div class="detail-row">
         <span class="lbl">Status</span>
         <span class="val">Available for opportunities</span>
