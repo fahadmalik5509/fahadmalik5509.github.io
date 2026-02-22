@@ -11,12 +11,10 @@
 
   :root {
     --bg: #1a1a1a;
-    --fg: #111;
+    --fg: #e8e8e3;
     --muted: #888;
-    --subtle: #bbb;
-    --border: #e8e8e6;
-    --accent: #111;
-    --link: #555;
+    --subtle: #555;
+    --border: #2e2e2e;
   }
 
   html { font-size: 15px; }
@@ -27,13 +25,12 @@
     font-family: 'Newsreader', Georgia, serif;
     font-weight: 300;
     line-height: 1.6;
-    max-width: 560px;
+    max-width: 680px;
     margin: 0 auto;
-    padding: 80px 24px 120px;
+    padding: 80px 32px 120px;
     -webkit-font-smoothing: antialiased;
   }
 
-  /* Fade in */
   body { animation: fadein 0.5s ease both; }
   @keyframes fadein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 
@@ -44,7 +41,6 @@
     font-family: 'Newsreader', Georgia, serif;
     font-size: 1.1rem;
     font-weight: 400;
-    letter-spacing: 0;
     margin-bottom: 6px;
     color: var(--fg);
   }
@@ -57,7 +53,6 @@
     letter-spacing: 0.02em;
   }
 
-  /* Nav */
   nav {
     display: flex;
     gap: 20px;
@@ -89,7 +84,7 @@
 
   p {
     font-size: 0.975rem;
-    color: #333;
+    color: #aaa;
     line-height: 1.75;
     margin-bottom: 14px;
   }
@@ -133,7 +128,7 @@
     text-align: right;
   }
 
-  /* Skills grid */
+  /* Skills */
   .skills {
     display: flex;
     flex-wrap: wrap;
@@ -152,7 +147,7 @@
     transition: border-color 0.15s, color 0.15s;
   }
 
-  .skill:hover { border-color: #ccc; color: var(--fg); }
+  .skill:hover { border-color: #444; color: var(--fg); }
 
   /* Certs */
   .cert-item {
@@ -160,6 +155,7 @@
     border-bottom: 1px solid var(--border);
   }
   .cert-item:first-of-type { border-top: 1px solid var(--border); }
+
   .cert-name {
     font-size: 0.9rem;
     color: var(--fg);
@@ -194,11 +190,17 @@
 
   .footer-links { display: flex; gap: 18px; }
 
+  .footer-copy {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--subtle);
+  }
+
   .dot {
     display: inline-block;
     width: 5px;
     height: 5px;
-    background: #c8e6c9;
+    background: #4caf70;
     border-radius: 50%;
     margin-right: 6px;
     vertical-align: middle;
@@ -209,10 +211,10 @@
 
   @keyframes pulse {
     0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
+    50% { opacity: 0.25; }
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 600px) {
     body { padding: 48px 20px 80px; }
     footer { flex-direction: column; gap: 12px; align-items: flex-start; }
   }
@@ -250,7 +252,7 @@
   <div class="item">
     <div class="item-left">
       <span class="item-name">GPA Manager</span>
-      <span class="item-desc">GPA tracker with presets for all major Pakistani universities · Room Database</span>
+      <span class="item-desc">GPA tracker with presets for all major Pakistani universities</span>
     </div>
     <div class="item-meta">Android · Java</div>
   </div>
@@ -262,7 +264,7 @@
   <div class="item">
     <div class="item-left">
       <span class="item-name">University of Southern Punjab</span>
-      <span class="item-desc">B.Sc. Computer Science · GPA 3.4 / 4.0</span>
+      <span class="item-desc">B.Sc. Computer Science</span>
     </div>
     <div class="item-meta">2022 – 2026</div>
   </div>
@@ -316,7 +318,7 @@
 </section>
 
 <footer>
-  <span style="font-family:'Geist Mono',monospace;font-size:0.68rem;color:var(--subtle);">Fahad Habib Malik © 2025</span>
+  <span class="footer-copy">Fahad Habib Malik © 2025</span>
   <div class="footer-links">
     <a href="mailto:fahadmalik5509@gmail.com">fahadmalik5509@gmail.com</a>
     <a href="https://github.com/fahadmalik5509" target="_blank">github</a>
