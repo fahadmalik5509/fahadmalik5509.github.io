@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LUME Jewelry — Wear the Light</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --night:#09090F;
+  --surface:#0E0E1A;
+  --gold:#C9A55A;
+  --gold-light:#E2C47A;
+  --gold-glow:rgba(201,165,90,0.12);
+  --gold-faint:rgba(201,165,90,0.04);
+  --terracotta:#B85A2D;
+  --ivory:#F0EBE1;
+  --ivory-60:rgba(240,235,225,0.6);
+  --ivory-30:rgba(240,235,225,0.3);
+  --ivory-10:rgba(240,235,225,0.08);
+}
+html{scroll-behavior:smooth;}
+body{background:var(--night);color:var(--ivory);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  padding:1.4rem 4rem;
+  display:flex;align-items:center;justify-content:space-between;
+  background:linear-gradient(to bottom,rgba(9,9,15,0.96) 0%,transparent 100%);
+}
+.nav-logo{display:flex;align-items:center;gap:0.8rem;text-decoration:none;}
+.nav-logo img{width:42px;height:42px;object-fit:contain;}
+.nav-logo-text{
+  font-family:'Cormorant Garamond',serif;font-size:1.7rem;
+  font-weight:300;letter-spacing:0.45em;color:var(--ivory);
+}
+.nav-links{display:flex;gap:2.8rem;list-style:none;}
+.nav-links a{
+  font-size:0.68rem;letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--ivory-60);text-decoration:none;transition:color 0.3s;
+}
+.nav-links a:hover{color:var(--gold);}
+.nav-cart{
+  font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--ivory-60);cursor:pointer;transition:color 0.3s;border:none;background:none;
+}
+.nav-cart:hover{color:var(--gold);}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;padding:0 4rem;position:relative;overflow:hidden;
+}
+.urdu-bg-hero{
+  position:absolute;font-family:'Noto Nastaliq Urdu',serif;
+  font-size:24vw;color:var(--gold-faint);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  white-space:nowrap;pointer-events:none;z-index:0;line-height:1;
+  user-select:none;
+}
+/* Truck-art corner ornament */
+.hero::before{
+  content:'';position:absolute;top:2.5rem;left:2.5rem;right:2.5rem;bottom:2.5rem;
+  border:1px solid rgba(201,165,90,0.07);pointer-events:none;z-index:0;
+}
+.hero-left{position:relative;z-index:2;padding-top:5rem;}
+.hero-tag{
+  font-size:0.62rem;letter-spacing:0.38em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:2rem;
+  display:flex;align-items:center;gap:1rem;
+}
+.hero-tag::before{content:'';display:block;width:36px;height:1px;background:var(--gold);}
+.hero-h1{
+  font-family:'Cormorant Garamond',serif;font-size:7.5rem;
+  font-weight:300;line-height:0.88;letter-spacing:-0.01em;margin-bottom:1.2rem;
+}
+.hero-h1 em{font-style:italic;color:var(--gold);}
+.hero-urdu{
+  font-family:'Noto Nastaliq Urdu',serif;font-size:1.7rem;
+  color:rgba(201,165,90,0.55);margin-bottom:2rem;direction:rtl;line-height:1.6;
+}
+.hero-desc{
+  font-size:0.88rem;line-height:1.95;color:var(--ivory-60);
+  max-width:370px;margin-bottom:3rem;
+}
+.btn-gold{
+  display:inline-block;padding:0.9rem 2.4rem;
+  border:1px solid var(--gold);color:var(--gold);
+  font-size:0.65rem;letter-spacing:0.32em;text-transform:uppercase;
+  text-decoration:none;cursor:pointer;background:transparent;
+  font-family:'DM Sans',sans-serif;position:relative;overflow:hidden;
+  transition:color 0.4s;
+}
+.btn-gold::before{
+  content:'';position:absolute;inset:0;background:var(--gold);
+  transform:translateX(-100%);transition:transform 0.4s;z-index:-1;
+}
+.btn-gold:hover{color:var(--night);}
+.btn-gold:hover::before{transform:translateX(0);}
+.hero-right{
+  position:relative;z-index:2;
+  display:flex;justify-content:center;align-items:center;padding-top:5rem;
+}
+
+/* ── MUGHAL ARCH ── */
+.arch-wrap{position:relative;}
+.arch-clip{
+  clip-path:polygon(
+    0% 100%, 0% 37%, 1% 31%, 3% 25%, 6% 20%,
+    10% 15%, 15% 11%, 21% 7%, 28% 5%, 35% 3%,
+    42% 1%, 50% 0%, 58% 1%, 65% 3%, 72% 5%,
+    79% 7%, 85% 11%, 90% 15%, 94% 20%,
+    97% 25%, 99% 31%, 100% 37%, 100% 100%
+  );
+  overflow:hidden;
+}
+.arch-clip img{
+  width:100%;height:100%;object-fit:cover;object-position:center top;
+  display:block;transition:transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.arch-wrap:hover .arch-clip img{transform:scale(1.06);}
+.arch-border-svg{
+  position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;
+}
+.arch-caption{
+  text-align:center;margin-top:1.4rem;
+  font-family:'Cormorant Garamond',serif;font-size:0.8rem;
+  letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);
+}
+
+/* ── TICKER ── */
+.ticker{background:var(--gold);padding:0.7rem 0;overflow:hidden;white-space:nowrap;}
+.ticker-track{display:inline-flex;animation:tick 28s linear infinite;gap:0;}
+.tick-item{
+  font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--night);font-weight:500;padding:0 2.5rem;
+}
+@keyframes tick{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+/* ── SECTIONS ── */
+.sec{padding:6rem 4rem;}
+.sec-hd{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4rem;}
+.eyebrow{
+  font-size:0.62rem;letter-spacing:0.38em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:0.8rem;
+  display:flex;align-items:center;gap:0.7rem;
+}
+.eyebrow::before{content:'✦';font-size:0.45rem;}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:3.4rem;font-weight:300;line-height:1.05;}
+.sec-title em{font-style:italic;color:var(--gold);}
+.sec-urdu{font-family:'Noto Nastaliq Urdu',serif;font-size:1.1rem;color:rgba(201,165,90,0.35);direction:rtl;margin-top:0.3rem;}
+.see-all{
+  font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--ivory-60);text-decoration:none;
+  border-bottom:1px solid var(--ivory-30);padding-bottom:0.2rem;
+  transition:color 0.3s,border-color 0.3s;white-space:nowrap;
+}
+.see-all:hover{color:var(--gold);border-color:var(--gold);}
+
+/* ── PRODUCT GRID ── */
+.product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;}
+.p-card{cursor:pointer;}
+.p-arch{
+  width:100%;aspect-ratio:3/4;
+  clip-path:polygon(
+    0% 100%, 0% 37%, 1% 31%, 3% 25%, 6% 20%,
+    10% 15%, 15% 11%, 21% 7%, 28% 5%, 35% 3%,
+    42% 1%, 50% 0%, 58% 1%, 65% 3%, 72% 5%,
+    79% 7%, 85% 11%, 90% 15%, 94% 20%,
+    97% 25%, 99% 31%, 100% 37%, 100% 100%
+  );
+  overflow:hidden;margin-bottom:1.5rem;position:relative;
+}
+.p-arch img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.p-card:hover .p-arch img{transform:scale(1.07);}
+.p-arch-veil{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(9,9,15,0.55) 0%,transparent 55%);
+}
+.p-meta{padding:0 0.4rem;display:flex;justify-content:space-between;align-items:flex-end;}
+.p-name{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:400;margin-bottom:0.2rem;}
+.p-sub{font-size:0.65rem;letter-spacing:0.14em;color:var(--ivory-60);text-transform:uppercase;}
+.p-price{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--gold);}
+
+/* ── DIVIDER ── */
+.ornament-row{display:flex;align-items:center;padding:0 4rem;gap:1.2rem;}
+.orn-line{flex:1;height:1px;background:rgba(201,165,90,0.12);}
+.orn-mid{font-family:'Noto Nastaliq Urdu',serif;font-size:0.9rem;color:rgba(201,165,90,0.35);letter-spacing:0.5rem;}
+
+/* ── ABOUT ── */
+.about-sec{
+  display:grid;grid-template-columns:1fr 1fr;gap:5rem;
+  padding:6rem 4rem;background:var(--surface);position:relative;overflow:hidden;
+}
+.about-bg-urdu{
+  position:absolute;font-family:'Noto Nastaliq Urdu',serif;
+  font-size:20vw;color:var(--gold-faint);
+  bottom:-3rem;right:-1rem;pointer-events:none;line-height:1;direction:rtl;user-select:none;
+}
+.about-left{display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1;}
+.about-quote{
+  font-family:'Cormorant Garamond',serif;font-size:2.7rem;
+  font-weight:300;font-style:italic;line-height:1.3;margin-bottom:2rem;
+}
+.about-quote span{color:var(--gold);}
+.about-p{font-size:0.88rem;line-height:1.95;color:var(--ivory-60);margin-bottom:1.4rem;max-width:430px;}
+.about-right{position:relative;z-index:1;display:flex;justify-content:center;}
+
+/* ── SCROLLING STRIP ── */
+.strip-sec{padding:5rem 0;overflow:hidden;}
+.strip-inner{padding:0 4rem;margin-bottom:3rem;}
+.scroll-track{
+  display:flex;gap:1.8rem;
+  animation:scrollL 35s linear infinite;
+  width:max-content;
+}
+.scroll-track:hover{animation-play-state:paused;}
+@keyframes scrollL{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+.s-card{flex:0 0 250px;cursor:pointer;}
+.s-arch{
+  width:250px;height:330px;overflow:hidden;margin-bottom:1rem;
+  clip-path:polygon(
+    0% 100%, 0% 37%, 1% 31%, 3% 25%, 6% 20%,
+    10% 15%, 15% 11%, 21% 7%, 28% 5%, 35% 3%,
+    42% 1%, 50% 0%, 58% 1%, 65% 3%, 72% 5%,
+    79% 7%, 85% 11%, 90% 15%, 94% 20%,
+    97% 25%, 99% 31%, 100% 37%, 100% 100%
+  );
+}
+.s-arch img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease;}
+.s-card:hover .s-arch img{transform:scale(1.05);}
+.s-name{font-family:'Cormorant Garamond',serif;font-size:1.05rem;text-align:center;color:var(--ivory);}
+
+/* ── TESTIMONIALS ── */
+.testi-sec{padding:6rem 4rem;background:var(--surface);}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:4rem;}
+.t-card{border:1px solid rgba(201,165,90,0.1);padding:2.5rem;position:relative;}
+.t-card::before{
+  content:'\201C';font-family:'Cormorant Garamond',serif;font-size:7rem;
+  color:rgba(201,165,90,0.08);position:absolute;top:0.4rem;left:1.2rem;line-height:1;
+}
+.t-stars{color:var(--gold);font-size:0.65rem;letter-spacing:0.18em;margin-bottom:1rem;}
+.t-text{
+  font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;
+  line-height:1.75;color:var(--ivory-60);margin-bottom:1.5rem;
+}
+.t-author{font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);}
+
+/* ── NEWSLETTER ── */
+.nl-sec{
+  padding:7rem 4rem;text-align:center;position:relative;overflow:hidden;
+}
+/* rotated diamond corners — truck-art geometry */
+.nl-sec::before,.nl-sec::after{
+  content:'';position:absolute;width:220px;height:220px;
+  border:1px solid rgba(201,165,90,0.09);transform:rotate(45deg);
+}
+.nl-sec::before{top:-90px;left:-90px;}
+.nl-sec::after{bottom:-90px;right:-90px;}
+.nl-urdu{
+  font-family:'Noto Nastaliq Urdu',serif;font-size:0.95rem;
+  color:rgba(201,165,90,0.38);direction:rtl;margin-bottom:0.5rem;
+}
+.nl-title{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;margin-bottom:1rem;}
+.nl-title em{font-style:italic;color:var(--gold);}
+.nl-desc{font-size:0.85rem;color:var(--ivory-60);margin:0 auto 2.5rem;max-width:400px;line-height:1.85;}
+.nl-form{
+  display:flex;max-width:460px;margin:0 auto;
+  border:1px solid rgba(201,165,90,0.28);
+}
+.nl-input{
+  flex:1;background:transparent;border:none;
+  padding:1rem 1.4rem;color:var(--ivory);
+  font-family:'DM Sans',sans-serif;font-size:0.85rem;outline:none;
+}
+.nl-input::placeholder{color:var(--ivory-30);letter-spacing:0.08em;}
+.nl-btn{
+  background:var(--gold);border:none;padding:1rem 1.8rem;
+  color:var(--night);font-size:0.62rem;letter-spacing:0.3em;
+  text-transform:uppercase;cursor:pointer;
+  font-family:'DM Sans',sans-serif;font-weight:500;transition:background 0.3s;
+}
+.nl-btn:hover{background:var(--gold-light);}
+
+/* ── FOOTER ── */
+footer{background:#060609;padding:4rem 4rem 2rem;border-top:1px solid rgba(201,165,90,0.08);}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem;margin-bottom:3.5rem;}
+.f-brand-logo{height:72px;object-fit:contain;margin-bottom:1.2rem;opacity:0.88;}
+.f-brand-name{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;letter-spacing:0.4em;color:var(--ivory);margin-bottom:1.2rem;}
+.f-brand-p{font-size:0.78rem;line-height:1.85;color:var(--ivory-60);max-width:270px;}
+.f-col h4{font-size:0.6rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);margin-bottom:1.4rem;}
+.f-col ul{list-style:none;}
+.f-col ul li{margin-bottom:0.7rem;}
+.f-col ul li a{font-size:0.78rem;color:var(--ivory-60);text-decoration:none;transition:color 0.3s;}
+.f-col ul li a:hover{color:var(--gold);}
+.footer-bot{
+  border-top:1px solid rgba(201,165,90,0.07);padding-top:1.8rem;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.footer-bot p{font-size:0.68rem;color:var(--ivory-30);letter-spacing:0.1em;}
+.footer-made{font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(201,165,90,0.38)!important;}
+
+/* ── ANIMATIONS ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.75s ease,transform 0.75s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-delay-1{transition-delay:0.1s;}
+.reveal-delay-2{transition-delay:0.2s;}
+.reveal-delay-3{transition-delay:0.35s;}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <a class="nav-logo" href="#">
+    <img src="logo-emblem.png" alt="LUME" onerror="this.style.display='none'">
+    <span class="nav-logo-text">LUME</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#">Collections</a></li>
+    <li><a href="#">Lookbook</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <button class="nav-cart">Cart (0)</button>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="urdu-bg-hero" aria-hidden="true">روشنی</div>
+
+  <div class="hero-left">
+    <div class="hero-tag">New — The Roshni Collection</div>
+    <h1 class="hero-h1">Wear<br>the <em>Light</em></h1>
+    <div class="hero-urdu" aria-label="Zewar Roshni — Jewelry of Light">زیور روشنی</div>
+    <p class="hero-desc">
+      LUME is where Mughal grandeur meets the modern Pakistani woman. Each piece carries centuries of craft — reimagined for the ones who glow.
+    </p>
+    <a class="btn-gold" href="#">Explore Collection</a>
+  </div>
+
+  <div class="hero-right">
+    <div class="arch-wrap" style="width:360px;">
+      <div class="arch-clip" style="width:360px;height:490px;">
+        <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800&q=85" alt="LUME model wearing gold jewelry">
+      </div>
+      <!-- SVG arch border overlay -->
+      <svg class="arch-border-svg" viewBox="0 0 360 490" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 490 L5 181 Q5 95 180 18 Q355 95 355 181 L355 490" stroke="#C9A55A" stroke-width="1" fill="none" opacity="0.45"/>
+        <path d="M13 490 L13 185 Q13 105 180 30 Q347 105 347 185 L347 490" stroke="#C9A55A" stroke-width="0.4" fill="none" opacity="0.2"/>
+        <!-- Peak diamond ornament -->
+        <rect x="172" y="10" width="16" height="16" transform="rotate(45 180 18)" fill="none" stroke="#C9A55A" stroke-width="0.8" opacity="0.6"/>
+        <circle cx="180" cy="18" r="2.5" fill="#C9A55A" opacity="0.7"/>
+        <!-- Base corner dots -->
+        <circle cx="5" cy="490" r="3" fill="#C9A55A" opacity="0.35"/>
+        <circle cx="355" cy="490" r="3" fill="#C9A55A" opacity="0.35"/>
+        <!-- Floral side accents - truck art inspired -->
+        <circle cx="20" cy="280" r="4" fill="none" stroke="#C9A55A" stroke-width="0.5" opacity="0.2"/>
+        <circle cx="20" cy="280" r="1.5" fill="#C9A55A" opacity="0.2"/>
+        <circle cx="340" cy="280" r="4" fill="none" stroke="#C9A55A" stroke-width="0.5" opacity="0.2"/>
+        <circle cx="340" cy="280" r="1.5" fill="#C9A55A" opacity="0.2"/>
+      </svg>
+      <div class="arch-caption">· The Roshni Edit ·</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TICKER ═══ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="tick-item">✦ New Arrivals</span><span class="tick-item">✦ Handcrafted in Pakistan</span><span class="tick-item">✦ The Roshni Collection</span><span class="tick-item">✦ Limited Pieces</span><span class="tick-item">✦ Gold Vermeil</span><span class="tick-item">✦ LUME Jewelry</span><span class="tick-item">✦ Lahore Studio</span><span class="tick-item">✦ Free Shipping</span>
+    <span class="tick-item">✦ New Arrivals</span><span class="tick-item">✦ Handcrafted in Pakistan</span><span class="tick-item">✦ The Roshni Collection</span><span class="tick-item">✦ Limited Pieces</span><span class="tick-item">✦ Gold Vermeil</span><span class="tick-item">✦ LUME Jewelry</span><span class="tick-item">✦ Lahore Studio</span><span class="tick-item">✦ Free Shipping</span>
+  </div>
+</div>
+
+<!-- ═══ FEATURED COLLECTION ═══ -->
+<section class="sec">
+  <div class="sec-hd reveal">
+    <div>
+      <div class="eyebrow">Featured Pieces</div>
+      <h2 class="sec-title">The <em>Darbar</em><br>Collection</h2>
+      <div class="sec-urdu" aria-label="Majmuah Darbar">مجموعہ دربار</div>
+    </div>
+    <a href="#" class="see-all">View All Pieces →</a>
+  </div>
+
+  <div class="product-grid">
+    <div class="p-card reveal">
+      <div class="p-arch">
+        <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80" alt="Noor Pendant necklace">
+        <div class="p-arch-veil"></div>
+      </div>
+      <div class="p-meta">
+        <div>
+          <div class="p-name">Noor Pendant</div>
+          <div class="p-sub">Gold Vermeil · 22k</div>
+        </div>
+        <div class="p-price">PKR 8,500</div>
+      </div>
+    </div>
+
+    <div class="p-card reveal reveal-delay-1" style="margin-top:3.5rem;">
+      <div class="p-arch">
+        <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&q=80" alt="Sitara Ring">
+        <div class="p-arch-veil"></div>
+      </div>
+      <div class="p-meta">
+        <div>
+          <div class="p-name">Sitara Ring</div>
+          <div class="p-sub">Sterling Silver</div>
+        </div>
+        <div class="p-price">PKR 4,200</div>
+      </div>
+    </div>
+
+    <div class="p-card reveal reveal-delay-2">
+      <div class="p-arch">
+        <img src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=600&q=80" alt="Chand Drop Earrings">
+        <div class="p-arch-veil"></div>
+      </div>
+      <div class="p-meta">
+        <div>
+          <div class="p-name">Chand Drops</div>
+          <div class="p-sub">Gold Vermeil · 18k</div>
+        </div>
+        <div class="p-price">PKR 6,800</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ORNAMENT DIVIDER ═══ -->
+<div class="ornament-row" aria-hidden="true">
+  <div class="orn-line"></div>
+  <div class="orn-mid">✦ &nbsp; روشنی &nbsp; ✦</div>
+  <div class="orn-line"></div>
+</div>
+
+<!-- ═══ ABOUT ═══ -->
+<section class="about-sec">
+  <div class="about-bg-urdu" aria-hidden="true">نور</div>
+
+  <div class="about-left reveal">
+    <div class="eyebrow">Our Story</div>
+    <blockquote class="about-quote">
+      "Born in the golden hour between <span>dusk</span> and desire."
+    </blockquote>
+    <p class="about-p">
+      LUME was born from the belief that Pakistani women deserve jewelry that reflects their depth — not just their celebrations. Rooted in Mughal craft traditions and reimagined with a Gen Z eye, every piece is a bridge between then and now.
+    </p>
+    <p class="about-p">
+      We work with artisans in Lahore's old city quarters, where families have passed down goldsmithing for generations. Their hands. Our vision.
+    </p>
+    <a class="btn-gold" href="#" style="margin-top:0.5rem;">Our Craft →</a>
+  </div>
+
+  <div class="about-right reveal reveal-delay-1">
+    <div class="arch-wrap" style="width:320px;">
+      <div class="arch-clip" style="width:320px;height:430px;">
+        <img src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=700&q=80" alt="LUME artisan at work">
+      </div>
+      <svg class="arch-border-svg" viewBox="0 0 320 430" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 430 L5 163 Q5 80 160 16 Q315 80 315 163 L315 430" stroke="#C9A55A" stroke-width="1" fill="none" opacity="0.4"/>
+        <rect x="152" y="9" width="16" height="16" transform="rotate(45 160 17)" fill="none" stroke="#C9A55A" stroke-width="0.8" opacity="0.55"/>
+        <circle cx="160" cy="17" r="2.5" fill="#C9A55A" opacity="0.65"/>
+        <circle cx="5" cy="430" r="3" fill="#C9A55A" opacity="0.3"/>
+        <circle cx="315" cy="430" r="3" fill="#C9A55A" opacity="0.3"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SCROLLING BROWSE STRIP ═══ -->
+<section class="strip-sec">
+  <div class="strip-inner reveal">
+    <div class="eyebrow">All Pieces</div>
+    <h2 class="sec-title">Browse the <em>Edit</em></h2>
+  </div>
+  <div class="scroll-track">
+    <div class="s-card"><div class="s-arch"><img src="https://images.unsplash.com/photo-1573408301185-9519f94d5a9e?w=400&q=80" alt="Zarin Choker"></div><div class="s-name">Zarin Choker</div></div>
+    <div class="s-card"><div class="s-arch"><img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&q=80" alt="Mehrab Set"></div><div class="s-name">Mehrab Set</div></div>
+    <div class="s-card"><div class="s-arch"><img src="https://images.unsplash.com/photo-1635767798638-3665a0a107fc?w=400&q=80" alt="Raat Drops"></div><div class="s-name">Raat Drops</div></div>
+    <div class="s-card"><div class="s-arch"><img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400&q=80" alt="Noor Pendant"></div><div class="s-name">Noor Pendant</div></div>
+    <div class="s-card"><div class="s-arch"><img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&q=80" alt="Sitara Ring"></div><div class="s-name">Sitara Ring</div></div>
+    <div class="s-card"><div class="s-arch"><img src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=400&q=80" alt="Chand Drops"></div><div class="s-name">Chand Drops</div></div>
+    <!-- Duplicated for seamless loop -->
+    <div class="s-card"><div class="s-arch"><img src="https://images.unsplash.com/photo-1573408301185-9519f94d5a9e?w=400&q=80" alt="Zarin Choker"></div><div class="s-name">Zarin Choker</div></div>
+    <div class="s-card"><div class="s-arch"><img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&q=80" alt="Mehrab Set"></div><div class="s-name">Mehrab Set</div></div>
+    <div class="s-card"><div class="s-arch"><img src="https://images.unsplash.com/photo-1635767798638-3665a0a107fc?w=400&q=80" alt="Raat Drops"></div><div class="s-name">Raat Drops</div></div>
+    <div class="s-card"><div class="s-arch"><img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400&q=80" alt="Noor Pendant"></div><div class="s-name">Noor Pendant</div></div>
+    <div class="s-card"><div class="s-arch"><img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&q=80" alt="Sitara Ring"></div><div class="s-name">Sitara Ring</div></div>
+    <div class="s-card"><div class="s-arch"><img src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=400&q=80" alt="Chand Drops"></div><div class="s-name">Chand Drops</div></div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section class="testi-sec">
+  <div class="sec-hd reveal">
+    <div>
+      <div class="eyebrow">Customer Love</div>
+      <h2 class="sec-title">They <em>Glow</em></h2>
+    </div>
+  </div>
+  <div class="testi-grid">
+    <div class="t-card reveal">
+      <div class="t-stars">★ ★ ★ ★ ★</div>
+      <p class="t-text">"Wore the Chand drops to a wedding and couldn't stop getting compliments. Feels like heirloom quality but it's my everyday piece."</p>
+      <div class="t-author">— Ayesha R., Lahore</div>
+    </div>
+    <div class="t-card reveal reveal-delay-1">
+      <div class="t-stars">★ ★ ★ ★ ★</div>
+      <p class="t-text">"Finally a Pakistani brand that doesn't try to look Western. The packaging alone made me emotional. The necklace is everything."</p>
+      <div class="t-author">— Zara M., Karachi</div>
+    </div>
+    <div class="t-card reveal reveal-delay-2">
+      <div class="t-stars">★ ★ ★ ★ ★</div>
+      <p class="t-text">"The Sitara ring is minimal but it has this depth — you can tell it was made by real hands. Ordered two more pieces the same week."</p>
+      <div class="t-author">— Nida K., Islamabad</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ NEWSLETTER ═══ -->
+<section class="nl-sec">
+  <div class="nl-urdu" aria-label="Khabarnama — Newsletter">خبرنامہ</div>
+  <h2 class="nl-title">Stay in the <em>Light</em></h2>
+  <p class="nl-desc">New drops, limited pieces, behind-the-scenes from our Lahore studio. No spam — only glow.</p>
+  <div class="nl-form">
+    <input class="nl-input" type="email" placeholder="your@email.com" aria-label="Email address">
+    <button class="nl-btn">Subscribe</button>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-top">
+    <div class="f-brand">
+      <img class="f-brand-logo" src="logo-full.png" alt="LUME Jewelry" onerror="this.style.display='none';document.getElementById('fb-text').style.display='block'">
+      <div id="fb-text" class="f-brand-name" style="display:none;">LUME</div>
+      <p class="f-brand-p">Handcrafted jewelry rooted in Pakistani heritage. Every piece carries the story of light — made in Lahore, worn everywhere.</p>
+    </div>
+    <div class="f-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#">New Arrivals</a></li>
+        <li><a href="#">Necklaces</a></li>
+        <li><a href="#">Rings</a></li>
+        <li><a href="#">Earrings</a></li>
+        <li><a href="#">Gift Sets</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h4>About</h4>
+      <ul>
+        <li><a href="#">Our Story</a></li>
+        <li><a href="#">Artisans</a></li>
+        <li><a href="#">Lookbook</a></li>
+        <li><a href="#">Press</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h4>Help</h4>
+      <ul>
+        <li><a href="#">Sizing Guide</a></li>
+        <li><a href="#">Care & Wear</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">WhatsApp Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <p>© 2025 LUME Jewelry. All rights reserved.</p>
+    <p class="footer-made">Made with love in Lahore ✦</p>
+    <p>Instagram · TikTok · Pinterest</p>
+  </div>
+</footer>
+
+<script>
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
