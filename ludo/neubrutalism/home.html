@@ -6,89 +6,97 @@
 <title>Ludo · Home</title>
 <link rel="stylesheet" href="styles.css">
 <style>
-  .home-top{display:flex;align-items:center;gap:12px;padding:16px 18px 6px}
-  .home-top .who{flex:1;min-width:0}
-  .home-top .who b{font-family:'Fraunces',serif;font-weight:800;color:var(--patch);font-size:18px;display:block;line-height:1}
-  .home-top .who .lv{display:flex;align-items:center;gap:6px;margin-top:5px}
-  .home-top .who .bar{flex:1;height:7px;background:rgba(0,0,0,.25);border-radius:999px;overflow:hidden;max-width:120px}
-  .home-top .who .bar i{display:block;height:100%;width:62%;background:var(--turmeric);border-radius:999px}
-  .home-top .who small{font-size:11px;color:rgba(255,255,255,.7);font-weight:700}
-  .hero-card{position:relative;overflow:hidden;display:flex;align-items:center;gap:14px}
-  .hero-card .mini{width:96px;height:96px;flex:none}
-  .hero-card .mini img{width:100%;animation:floaty 5s ease-in-out infinite}
-  .hero-card .txt{flex:1}
-  .modes{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  .mode{position:relative;background:var(--patch);border-radius:var(--r-lg);padding:16px;text-decoration:none;color:var(--ink);
-    box-shadow:var(--e1);overflow:hidden;display:flex;flex-direction:column;gap:6px;min-height:118px}
-  .mode::after{content:"";position:absolute;inset:8px;border:1.5px solid var(--cloth);border-radius:14px;opacity:.3;pointer-events:none}
-  .mode .ic{font-size:30px}
-  .mode b{font-family:'Fraunces',serif;font-weight:800;font-size:17px}
-  .mode span{font-size:12px;color:var(--ink-muted);font-weight:600}
-  .mode .tape{position:absolute;top:10px;right:-26px;transform:rotate(38deg);background:var(--madder);color:#fff;
-    font-size:9px;font-weight:800;letter-spacing:1px;padding:3px 28px}
-  .mode.wide{grid-column:1/-1;flex-direction:row;align-items:center;min-height:auto}
-  .mode.wide .ic{font-size:26px}
-  .daily{display:flex;align-items:center;gap:12px}
-  .daily .die{--dsz:46px}
+  .topbar{display:flex;align-items:center;gap:10px;padding:16px 16px 12px}
+  .topbar .me{display:flex;align-items:center;gap:10px;flex:1;min-width:0;text-decoration:none;color:var(--ink)}
+  .topbar .me .nm b{font-family:'Archivo Black';font-size:16px;text-transform:uppercase;display:block;line-height:1}
+  .topbar .me .nm span{font-family:'Space Mono';font-size:11px;font-weight:700;color:#7a715b}
+  .heromode{position:relative;margin:4px 16px 0;background:var(--violet);border:var(--bd2) solid var(--ink);box-shadow:var(--sh);
+    padding:20px;overflow:hidden}
+  .heromode .blk{position:absolute;border:3px solid var(--ink)}
+  .heromode .kicker{position:relative;z-index:2}
+  .heromode h2{color:var(--paper);text-shadow:4px 4px 0 var(--ink);position:relative;z-index:2;margin-top:10px}
+  .heromode p{color:#fff;font-weight:700;position:relative;z-index:2;margin-top:6px}
+  .heromode .go{position:relative;z-index:2;margin-top:16px}
+  .modegrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:14px 16px 4px}
+  .modecard{text-decoration:none;color:var(--ink);background:var(--white);border:var(--bd2) solid var(--ink);box-shadow:var(--sh-s);
+    padding:14px;display:flex;flex-direction:column;gap:6px;transition:transform .08s steps(2),box-shadow .08s steps(2)}
+  .modecard:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink)}
+  .modecard .em{font-size:30px}
+  .modecard b{font-family:'Archivo Black';text-transform:uppercase;font-size:15px}
+  .modecard span{font-size:12px;font-weight:700;color:#7a715b}
+  .modecard.c1{background:var(--yellow)} .modecard.c2{background:var(--lime)}
+  .modecard.c3{background:var(--pink);color:#fff} .modecard.c3 span{color:#fff8}
+  .modecard.c4{background:var(--cyan)}
+  .strip{padding:14px 16px 6px}
+  .friendrow{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px}
+  .fav{flex:none;display:flex;flex-direction:column;align-items:center;gap:6px;width:64px}
+  .fav .nm{font-size:11px;font-weight:800;text-transform:uppercase}
 </style>
 </head>
 <body>
 <div class="app">
-  <div class="home-top">
-    <a class="bare" href="profile.html"><div class="avatar s2" style="--sz:54px"><div class="ring"><div class="face">🦊</div></div><div class="status"></div></div></a>
-    <div class="who">
-      <b>You</b>
-      <div class="lv"><small>Lv 24</small><div class="bar"><i></i></div></div>
-    </div>
-    <div class="pill coin"><span class="ic">🪙</span> 12,450</div>
-    <a class="bare" href="settings.html"><button class="iconbtn">⚙</button></a>
+  <div class="topbar">
+    <a class="me" href="profile.html">
+      <div class="ava wobblehover" style="--sz:48px;--ring:var(--yellow)"><div class="face">🦊</div><div class="st"></div></div>
+      <div class="nm"><b>FoxTrot</b><span>LVL 12 · ⭐ Gold</span></div>
+    </a>
+    <a class="bare" href="customize.html"><div class="pill"><span class="ic" style="background:#FFD23F">🪙</span> 12,450</div></a>
+    <a class="bare" href="settings.html"><button class="ibtn">⚙</button></a>
   </div>
 
-  <div class="content" style="padding-top:4px">
-    <a class="bare reveal" href="matchmaking.html"><div class="patch hero-card">
-      <div class="mini"><img src="board.svg" alt=""></div>
-      <div class="txt">
-        <div class="subtitle">Ready to play?</div>
-        <div class="title ink" style="font-size:24px">Quick Match</div>
-        <p class="body" style="margin:4px 0 10px">Find an opponent and roll.</p>
-        <span class="btn btn-primary"><span class="ic">🎲</span> Play Online</span>
+  <div class="marquee"><div>
+    <span>★ DAILY BONUS READY</span><span>★ 1,204 PLAYERS ONLINE</span><span>★ WIN STREAK ×3</span><span>★ NEW SKIN: NEON DISC</span>
+    <span>★ DAILY BONUS READY</span><span>★ 1,204 PLAYERS ONLINE</span><span>★ WIN STREAK ×3</span><span>★ NEW SKIN: NEON DISC</span>
+  </div></div>
+
+  <div class="scroll">
+    <div class="heromode stamp" style="margin-top:14px">
+      <span class="blk float" style="right:-12px;top:-12px;width:64px;height:64px;background:var(--yellow);transform:rotate(12deg)"></span>
+      <span class="blk float" style="right:60px;bottom:-18px;width:40px;height:40px;background:var(--pink);animation-delay:.5s"></span>
+      <span class="kicker" style="background:var(--yellow);color:var(--ink)">Quick play</span>
+      <h2 class="d2">FIND A<br>MATCH</h2>
+      <p>4-player online · avg wait 12s</p>
+      <a class="bare go" href="matchmaking.html"><button class="btn btn--yellow lg">⚡ Play Now</button></a>
+    </div>
+
+    <div class="modegrid">
+      <a class="modecard c1 pop" style="--d:.05s" href="private-room.html"><div class="em">🚪</div><b>Private</b><span>Room with friends</span></a>
+      <a class="modecard c2 pop" style="--d:.1s" href="team-lobby.html"><div class="em">🤝</div><b>Team Up</b><span>2 v 2 squad</span></a>
+      <a class="modecard c4 pop" style="--d:.15s" href="local-setup.html"><div class="em">📱</div><b>Pass & Play</b><span>Offline vs bots</span></a>
+      <a class="modecard c3 pop" style="--d:.2s" href="join.html"><div class="em">🔢</div><b>Join Code</b><span>Enter a room</span></a>
+    </div>
+
+    <div class="strip">
+      <div class="row between" style="margin-bottom:10px">
+        <span class="kicker">Friends online</span>
+        <a class="bare cap" href="friends.html" style="color:var(--violet)">SEE ALL →</a>
       </div>
-    </div></a>
-
-    <div class="cap light" style="margin:2px 2px -4px">Game modes</div>
-    <div class="modes">
-      <a class="mode reveal" style="--d:.05s" href="matchmaking.html?type=1v1">
-        <span class="ic">⚔️</span><b>1 v 1</b><span>Duel · winner takes the pot</span>
-        <span class="tape">HOT</span>
-      </a>
-      <a class="mode reveal" style="--d:.1s" href="matchmaking.html?type=4p">
-        <span class="ic">🎯</span><b>4-Player</b><span>Free-for-all race home</span>
-      </a>
-      <a class="mode reveal" style="--d:.15s" href="team-lobby.html">
-        <span class="ic">🤝</span><b>Team Up</b><span>2 v 2 · diagonal partners</span>
-      </a>
-      <a class="mode reveal" style="--d:.2s" href="private-room.html">
-        <span class="ic">🔒</span><b>Private</b><span>Play with a room code</span>
-      </a>
-      <a class="mode wide reveal" style="--d:.25s" href="local-setup.html">
-        <span class="ic">📵</span><div style="flex:1"><b>Pass &amp; Play</b> <span style="display:block">Offline, on one device vs bots</span></div>
-        <span style="font-size:22px">▸</span>
-      </a>
+      <div class="friendrow">
+        <a class="bare fav" href="friends.html"><div class="ava" style="--sz:52px;--ring:var(--lime)"><div class="face">🐼</div><div class="st"></div></div><span class="nm">Mika</span></a>
+        <a class="bare fav" href="friends.html"><div class="ava" style="--sz:52px;--ring:var(--pink)"><div class="face">🐯</div><div class="st"></div></div><span class="nm">Aarav</span></a>
+        <a class="bare fav" href="friends.html"><div class="ava" style="--sz:52px;--ring:var(--cyan)"><div class="face">🐸</div><div class="st off"></div></div><span class="nm">Leo</span></a>
+        <a class="bare fav" href="friends.html"><div class="ava" style="--sz:52px;--ring:var(--yellow)"><div class="face">🐨</div><div class="st"></div></div><span class="nm">Zoya</span></a>
+        <a class="bare fav" href="friends.html"><div class="ava" style="--sz:52px;background:var(--white)"><div class="face">＋</div></div><span class="nm">Add</span></a>
+      </div>
     </div>
 
-    <div class="patch daily reveal" style="--d:.3s">
-      <div class="die lit"><i class="tl"></i><i class="tr"></i><i class="ml"></i><i class="mr"></i><i class="bl"></i><i class="br"></i></div>
-      <div style="flex:1"><div class="h">Daily Roll</div><div class="body" style="font-size:13px">Claim today's reward — +500 🪙</div></div>
-      <button class="btn btn-accent">Claim</button>
+    <div class="strip">
+      <span class="kicker" style="margin-bottom:10px;display:inline-block">Daily</span>
+      <div class="card flat row gap-12">
+        <div class="ava" style="--sz:48px;--ring:var(--violet)"><div class="face">🎁</div></div>
+        <div class="grow"><div class="h">DAILY REWARD</div><div class="body" style="margin-top:2px">Day 4 streak · claim +250 🪙</div></div>
+        <button class="btn btn--lime sm">Claim</button>
+      </div>
     </div>
+    <div style="height:14px"></div>
   </div>
 
-  <nav class="bottomnav">
+  <div class="nav">
     <a class="on" href="home.html"><span class="ic">🏠</span>Home</a>
-    <a href="friends.html"><span class="ic">👥</span>Friends</a>
-    <a href="customize.html"><span class="ic">🎨</span>Customize</a>
-    <a href="profile.html"><span class="ic">🪪</span>Profile</a>
-  </nav>
+    <a href="friends.html"><span class="ic">👾</span>Friends</a>
+    <a href="customize.html"><span class="ic">🎨</span>Shop</a>
+    <a href="profile.html"><span class="ic">🦊</span>You</a>
+  </div>
 </div>
 </body>
 </html>

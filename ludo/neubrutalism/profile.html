@@ -6,66 +6,78 @@
 <title>Ludo · Profile</title>
 <link rel="stylesheet" href="styles.css">
 <style>
-  .phead{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px}
-  .phead .name{font-family:'Fraunces',serif;font-weight:800;font-size:28px;color:var(--patch)}
-  .xpbar{width:100%;max-width:260px}
-  .stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  .stat{background:var(--patch);border-radius:var(--r-md);padding:14px;position:relative;box-shadow:var(--e1);text-align:center}
-  .stat::after{content:"";position:absolute;inset:6px;border:1.5px solid var(--cloth);border-radius:11px;opacity:.28;pointer-events:none}
-  .stat b{font-family:'Fraunces',serif;font-weight:800;font-size:26px;display:block;color:var(--ink)}
-  .stat span{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--ink-faint);font-weight:700}
-  .equip{display:flex;gap:10px;justify-content:space-between}
-  .equip .e{flex:1;text-align:center}
-  .equip .e .box{width:100%;aspect-ratio:1;border-radius:var(--r-md);background:var(--patch-2);border:2px solid var(--cloth);
-    display:grid;place-items:center;font-size:26px;margin-bottom:5px}
-  .equip .e small{font-size:10px;color:var(--ink-muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+  .phead{position:relative;padding:22px 16px 18px;background:var(--yellow);border-bottom:var(--bd2) solid var(--ink);overflow:hidden}
+  .phead .blk{position:absolute;border:3px solid var(--ink)}
+  .phead .row1{display:flex;align-items:center;gap:14px;position:relative;z-index:2}
+  .phead .nm h1{font-family:'Archivo Black';font-size:26px;text-transform:uppercase;line-height:.9}
+  .phead .nm .tag{font-family:'Space Mono';font-weight:700;font-size:12px;margin-top:6px}
+  .lvlbar{margin-top:14px;position:relative;z-index:2}
+  .lvlbar .lab{display:flex;justify-content:space-between;font-family:'Space Mono';font-weight:700;font-size:11px;text-transform:uppercase;margin-bottom:5px}
+  .statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:16px}
+  .stat{background:var(--white);border:var(--bd2) solid var(--ink);box-shadow:var(--sh-s);padding:12px;text-align:center}
+  .stat .v{font-family:'Archivo Black';font-size:24px}
+  .stat .k{font-family:'Space Mono';font-weight:700;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#7a715b;margin-top:2px}
+  .ach{display:flex;gap:10px;overflow-x:auto;padding:0 16px 4px}
+  .medal{flex:none;width:74px;text-align:center}
+  .medal .disc{width:60px;height:60px;margin:0 auto;border:var(--bd) solid var(--ink);box-shadow:var(--sh-s);display:grid;place-items:center;font-size:28px}
+  .medal .l{font-size:10px;font-weight:800;text-transform:uppercase;margin-top:5px}
+  .medal.lock .disc{background:var(--paper-2);filter:grayscale(1);opacity:.7}
 </style>
 </head>
 <body>
 <div class="app">
-  <div class="appbar">
-    <a class="bare" href="home.html"><button class="iconbtn">←</button></a>
-    <div class="title">Profile</div><div class="spacer"></div>
-    <button class="iconbtn">🔗</button>
+  <div class="bar-top" style="padding-bottom:0">
+    <a class="bare" href="home.html"><button class="ibtn">←</button></a>
+    <div class="ti">Profile</div>
+    <a class="bare" href="settings.html"><button class="ibtn" style="margin-left:auto">⚙</button></a>
   </div>
 
-  <div class="content">
-    <div class="phead reveal">
-      <div class="avatar s2" style="--sz:108px"><div class="ring"><div class="face">🦊</div></div>
-        <a class="bare" href="customize.html"><div class="status" style="background:var(--turmeric);width:30px;height:30px;display:grid;place-items:center;font-size:14px">✎</div></a></div>
-      <div class="name">You</div>
-      <div class="row gap-s"><span class="chip">Lv 24</span><span class="chip">🏅 Gold III</span></div>
-      <div class="xpbar"><div class="progress" style="height:12px"><div class="fill" style="width:62%"></div></div></div>
-      <div class="cap light">3,400 / 5,000 XP to Lv 25</div>
-    </div>
-
-    <div class="stats reveal" style="--d:.1s">
-      <div class="stat"><b>248</b><span>Games</span></div>
-      <div class="stat"><b>61%</b><span>Win rate</span></div>
-      <div class="stat"><b>2,100</b><span>Rating</span></div>
-      <div class="stat"><b>7</b><span>Win streak</span></div>
-    </div>
-
-    <div class="cap light" style="margin:2px 2px -6px">Equipped</div>
-    <div class="patch reveal" style="--d:.15s">
-      <div class="equip">
-        <div class="e"><div class="box">🦊</div><small>Avatar</small></div>
-        <div class="e"><div class="box" style="font-size:18px">🧵</div><small>Board</small></div>
-        <div class="e"><div class="box">🎲</div><small>Dice</small></div>
-        <div class="e"><div class="box">🟡</div><small>Token</small></div>
+  <div class="scroll">
+    <div class="phead">
+      <span class="blk float" style="right:-10px;top:-10px;width:54px;height:54px;background:var(--pink);transform:rotate(12deg)"></span>
+      <span class="blk float" style="right:50px;bottom:-16px;width:34px;height:34px;background:var(--violet);animation-delay:.5s"></span>
+      <div class="row1">
+        <div class="ava wobblehover" style="--sz:74px;--ring:var(--white)"><div class="crown">👑</div><div class="face">🦊</div></div>
+        <div class="nm grow">
+          <h1>FoxTrot</h1>
+          <div class="tag">⭐ GOLD TIER · LVL 12</div>
+        </div>
+        <a class="bare" href="customize.html"><button class="ibtn">✏</button></a>
       </div>
-      <a class="bare" href="customize.html"><button class="btn btn-accent block" style="margin-top:14px"><span class="ic">🎨</span> Customize</button></a>
+      <div class="lvlbar">
+        <div class="lab"><span>Level 12</span><span>2,340 / 3,000 XP</span></div>
+        <div class="bar"><i style="width:78%"></i></div>
+      </div>
     </div>
 
-    <a class="bare" href="settings.html"><button class="btn btn-ghost block reveal" style="--d:.2s">Settings</button></a>
+    <div class="statgrid">
+      <div class="stat pop" style="--d:.05s"><div class="v">148</div><div class="k">Games</div></div>
+      <div class="stat pop" style="--d:.1s"><div class="v">92</div><div class="k">Wins</div></div>
+      <div class="stat pop" style="--d:.15s"><div class="v">62%</div><div class="k">Win rate</div></div>
+    </div>
+    <div class="statgrid" style="padding-top:0">
+      <div class="stat pop" style="--d:.2s;background:var(--lime)"><div class="v">×7</div><div class="k">Best streak</div></div>
+      <div class="stat pop" style="--d:.25s;background:var(--cyan)"><div class="v">311</div><div class="k">Captures</div></div>
+      <div class="stat pop" style="--d:.3s;background:var(--yellow)"><div class="v">12.4k</div><div class="k">Coins</div></div>
+    </div>
+
+    <div class="pad" style="padding-bottom:8px"><span class="kicker">Achievements</span></div>
+    <div class="ach">
+      <div class="medal"><div class="disc" style="background:var(--yellow)">🥇</div><div class="l">First Win</div></div>
+      <div class="medal"><div class="disc" style="background:var(--pink)">🔥</div><div class="l">Streak 5</div></div>
+      <div class="medal"><div class="disc" style="background:var(--cyan)">🎯</div><div class="l">100 Caps</div></div>
+      <div class="medal lock"><div class="disc">🏆</div><div class="l">Champion</div></div>
+      <div class="medal lock"><div class="disc">💎</div><div class="l">Big Spender</div></div>
+    </div>
+    <div style="height:16px"></div>
   </div>
 
-  <nav class="bottomnav">
+  <div class="nav">
     <a href="home.html"><span class="ic">🏠</span>Home</a>
-    <a href="friends.html"><span class="ic">👥</span>Friends</a>
-    <a href="customize.html"><span class="ic">🎨</span>Customize</a>
-    <a class="on" href="profile.html"><span class="ic">🪪</span>Profile</a>
-  </nav>
+    <a href="friends.html"><span class="ic">👾</span>Friends</a>
+    <a href="customize.html"><span class="ic">🎨</span>Shop</a>
+    <a class="on" href="profile.html"><span class="ic">🦊</span>You</a>
+  </div>
 </div>
 </body>
 </html>

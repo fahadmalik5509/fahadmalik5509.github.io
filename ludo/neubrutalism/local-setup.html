@@ -3,61 +3,78 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ludo · Pass &amp; Play</title>
+<title>Ludo · Pass & Play</title>
 <link rel="stylesheet" href="styles.css">
 <style>
-  .seatrow{display:flex;align-items:center;gap:12px}
-  .seatrow .swatch{width:14px;height:40px;border-radius:6px}
-  .seatrow .grow b{font-family:'Fraunces',serif;font-weight:800;font-size:16px;display:block}
-  .seatrow .grow span{font-size:12px;color:var(--ink-muted);font-weight:700}
-  .miniseg{display:flex;background:var(--cloth-d);border-radius:999px;padding:3px}
-  .miniseg button{border:none;background:transparent;color:rgba(255,255,255,.7);font-weight:800;font-size:12px;padding:6px 12px;border-radius:999px;cursor:pointer;font-family:'Karla',sans-serif}
-  .miniseg button.on{background:var(--turmeric);color:var(--ink)}
+  .setup{flex:1;display:flex;flex-direction:column;padding:16px 16px 22px;gap:16px}
+  .pcount{display:flex;flex-direction:column;gap:10px}
+  .players{display:flex;flex-direction:column;gap:10px}
+  .prow{display:flex;align-items:center;gap:12px;border:var(--bd2) solid var(--ink);box-shadow:var(--sh-s);padding:11px;background:var(--white)}
+  .prow .seatchip{width:40px;height:40px;flex:none;display:grid;place-items:center;border:var(--bd) solid var(--ink);
+    font-family:'Archivo Black';color:#fff;font-size:16px}
+  .prow .nm{flex:1}
+  .prow .nm b{font-family:'Archivo Black';text-transform:uppercase;font-size:15px;display:block;line-height:1}
+  .prow .nm span{font-size:11px;font-weight:700;color:#7a715b}
+  .prow.off{opacity:.5}
+  .typeseg{display:flex;border:var(--bd) solid var(--ink);box-shadow:var(--sh-s)}
+  .typeseg button{border:none;background:var(--white);font-family:'Archivo Black';font-size:11px;text-transform:uppercase;
+    padding:7px 11px;cursor:pointer;border-left:var(--bd) solid var(--ink)}
+  .typeseg button:first-child{border-left:none}
+  .typeseg button.on{background:var(--ink);color:var(--paper)}
 </style>
 </head>
 <body>
 <div class="app">
-  <div class="appbar">
-    <a class="bare" href="home.html"><button class="iconbtn">←</button></a>
-    <div class="title">Pass &amp; Play</div><div class="spacer"></div>
-    <span class="chip">📵 offline</span>
+  <div class="bar-top">
+    <a class="bare" href="home.html"><button class="ibtn">←</button></a>
+    <div class="ti">Pass & Play</div>
   </div>
 
-  <div class="content">
-    <div class="patch reveal">
-      <div class="h" style="margin-bottom:10px">How many players?</div>
-      <div class="seg"><button>2</button><button>3</button><button class="on">4</button></div>
+  <div class="setup">
+    <div class="card flat row between stamp">
+      <div><div class="cap">Players</div><div class="d3" style="margin-top:2px">How many?</div></div>
+      <div class="seg" style="width:170px" id="count"><button>2</button><button>3</button><button class="on">4</button></div>
     </div>
 
-    <div class="cap light" style="margin:2px 2px -4px">Seats</div>
-    <div class="patch col reveal" style="--d:.1s">
-      <div class="seatrow"><span class="swatch" style="background:var(--seat2)"></span>
-        <div class="avatar s2" style="--sz:40px"><div class="ring"><div class="face">🦊</div></div></div>
-        <div class="grow"><b>You</b><span>yellow · this device</span></div></div>
-      <hr class="stitch dark">
-      <div class="seatrow"><span class="swatch" style="background:var(--seat0)"></span>
-        <div class="avatar s0" style="--sz:40px"><div class="ring"><div class="face">🤖</div></div></div>
-        <div class="grow"><b>Bot</b><span>red</span></div>
-        <div class="miniseg"><button>Easy</button><button class="on">Med</button><button>Hard</button></div></div>
-      <hr class="stitch dark">
-      <div class="seatrow"><span class="swatch" style="background:var(--seat1)"></span>
-        <div class="avatar s1" style="--sz:40px"><div class="ring"><div class="face">🤖</div></div></div>
-        <div class="grow"><b>Bot</b><span>blue</span></div>
-        <div class="miniseg"><button class="on">Easy</button><button>Med</button><button>Hard</button></div></div>
-      <hr class="stitch dark">
-      <div class="seatrow"><span class="swatch" style="background:var(--seat3)"></span>
-        <div class="avatar s3" style="--sz:40px"><div class="ring"><div class="face">🙂</div></div></div>
-        <div class="grow"><b>Player 4</b><span>green · pass device</span></div>
-        <div class="miniseg"><button class="on">Human</button><button>Bot</button></div></div>
+    <div>
+      <span class="kicker" style="margin-bottom:10px;display:inline-block">Seats</span>
+      <div class="players" id="players"></div>
     </div>
 
-    <div class="patch reveal" style="--d:.2s">
-      <div class="row between"><div><div class="h">Quick mode</div><div class="body" style="font-size:13px">Start tokens already out</div></div>
-        <label class="toggle"><input type="checkbox"><span class="track"></span><span class="knob"></span></label></div>
+    <div class="card flat row between">
+      <div><div class="cap">Game mode</div><div class="t" style="margin-top:2px">🎲 Classic rules</div></div>
+      <button class="btn sm">Change</button>
     </div>
 
-    <a class="bare" href="game.html"><button class="btn btn-primary lg block reveal" style="--d:.3s"><span class="ic">🎲</span> Start Game</button></a>
+    <a class="bare mt-auto" href="game.html"><button class="btn btn--lime lg block">▶ Start Game</button></a>
   </div>
 </div>
+<script>
+  const SEATS=[
+    {c:'--seat0',face:'🦊',def:'You',human:true},
+    {c:'--seat1',face:'🤖',def:'Bot Blue',human:false},
+    {c:'--seat2',face:'🤖',def:'Bot Yellow',human:false},
+    {c:'--seat3',face:'🤖',def:'Bot Green',human:false},
+  ];
+  let n=4;
+  function render(){
+    document.getElementById('players').innerHTML=SEATS.map((s,i)=>{
+      const off=i>=n?' off':'';
+      const color=getComputedStyle(document.documentElement).getPropertyValue(s.c);
+      return `<div class="prow${off} pop" style="--d:${i*0.05}s">
+        <div class="seatchip" style="background:${color}">${i+1}</div>
+        <div class="ava" style="--sz:42px;--ring:${color}"><div class="face">${s.face}</div></div>
+        <div class="nm"><b>${s.def}</b><span>${s.human?'Human · this device':'CPU opponent'}</span></div>
+        ${i<n?(s.human?'<span class="badge">HOST</span>':`<div class="typeseg"><button class="on">BOT</button><button>HUMAN</button></div>`):'<span class="cap">empty</span>'}
+      </div>`;
+    }).join('');
+  }
+  document.getElementById('count').addEventListener('click',e=>{
+    const b=e.target.closest('button'); if(!b)return;
+    [...e.currentTarget.children].forEach(x=>x.classList.remove('on')); b.classList.add('on');
+    n=+b.textContent; render();
+  });
+  render();
+</script>
 </body>
 </html>

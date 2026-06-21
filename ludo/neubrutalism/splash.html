@@ -6,71 +6,84 @@
 <title>Ludo · Splash</title>
 <link rel="stylesheet" href="styles.css">
 <style>
-  .splash{justify-content:center;align-items:center;gap:0;text-align:center;position:relative}
-  .crest{width:96px;height:96px;border-radius:50%;background:var(--turmeric);display:grid;place-items:center;
-    box-shadow:0 10px 0 var(--turmeric-d);position:relative;margin-bottom:26px}
-  .crest::after{content:"";position:absolute;inset:7px;border:2.5px solid var(--cloth);border-radius:50%}
-  .crest span{font-size:46px}
-  .brand{font-family:'Fraunces',serif;font-weight:800;font-size:52px;line-height:.95;color:var(--patch);
-    text-shadow:0 3px 0 rgba(0,0,0,.25)}
-  .brand em{font-style:italic;color:var(--turmeric);display:block;font-size:38px}
-  .tag{margin-top:14px;font-family:'Fraunces',serif;font-style:italic;font-size:16px;color:rgba(255,255,255,.75)}
-  /* dice ladder loader */
-  .ladder{position:absolute;left:26px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px}
-  .ladder .die{--dsz:38px;border-radius:11px}
-  .ladder .die i{width:7px;height:7px}
-  .loadtxt{position:absolute;bottom:64px;left:0;right:0;font-size:12px;letter-spacing:3px;
-    text-transform:uppercase;color:rgba(255,255,255,.55);font-weight:700}
-  .variants{position:absolute;bottom:24px;left:0;right:0;display:flex;gap:8px;justify-content:center}
-  .variants a{font-size:11px;color:rgba(255,255,255,.5);text-decoration:none;border:1px solid rgba(255,255,255,.3);
-    padding:5px 11px;border-radius:999px;font-weight:700}
-  .variants a:hover{color:var(--turmeric);border-color:var(--turmeric)}
-  /* drifting cowries */
-  .drift{position:absolute;font-size:24px;opacity:.18;animation:floaty 6s ease-in-out infinite}
+  .splash{flex:1;display:flex;flex-direction:column;position:relative;overflow:hidden}
+  /* drifting confetti blocks behind */
+  .conf{position:absolute;border:3px solid var(--ink);z-index:0}
+  .top{padding:26px 18px 0;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2}
+  .core{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;position:relative;z-index:2;padding:0 18px}
+  /* dice ladder */
+  .ladder{display:flex;gap:10px}
+  .ladder .die{opacity:0;animation:popIn .4s cubic-bezier(.2,1.3,.4,1) both}
+  .ladder .die.glow{box-shadow:6px 6px 0 var(--violet),0 0 0 var(--ink)}
+  /* wordmark */
+  .word{text-align:center}
+  .word .l{display:inline-block;font-family:'Archivo Black';font-size:78px;line-height:.8;text-transform:uppercase;
+    -webkit-text-stroke:0;text-shadow:6px 6px 0 var(--ink);opacity:0}
+  .word .l:nth-child(1){color:var(--red)}.word .l:nth-child(2){color:var(--blue)}
+  .word .l:nth-child(3){color:var(--yellow)}.word .l:nth-child(4){color:var(--green)}
+  .tagchip{margin-top:14px;display:inline-block;background:var(--ink);color:var(--paper);font-family:'Space Mono';font-weight:700;
+    letter-spacing:3px;font-size:12px;padding:6px 14px;text-transform:uppercase}
+  /* loader */
+  .loadwrap{width:100%;max-width:300px}
+  .loadwrap .lab{display:flex;justify-content:space-between;font-family:'Space Mono';font-weight:700;font-size:11px;
+    letter-spacing:2px;text-transform:uppercase;color:#7a715b;margin-bottom:6px}
+  .press{font-family:'Archivo Black';text-transform:uppercase;letter-spacing:2px;font-size:14px;color:var(--ink);
+    background:var(--yellow);border:var(--bd) solid var(--ink);box-shadow:var(--sh-s);padding:8px 16px;opacity:0}
 </style>
 </head>
 <body>
-<a class="bare" href="login.html"><div class="app splash content">
-  <span class="drift" style="top:12%;right:14%">🐚</span>
-  <span class="drift" style="bottom:20%;right:22%;animation-delay:1.5s">🎲</span>
-  <span class="drift" style="top:24%;left:30%;animation-delay:2.5s">🐚</span>
+<div class="app">
+  <a class="bare" href="login.html"><div class="splash" id="splash">
+    <!-- confetti -->
+    <span class="conf float" style="left:8%;top:16%;width:34px;height:34px;background:var(--pink);transform:rotate(12deg)"></span>
+    <span class="conf float" style="right:12%;top:12%;width:24px;height:24px;background:var(--lime);animation-delay:.6s"></span>
+    <span class="conf float" style="left:14%;bottom:20%;width:28px;height:28px;background:var(--blue);animation-delay:1.1s;transform:rotate(-8deg)"></span>
+    <span class="conf float" style="right:9%;bottom:24%;width:40px;height:40px;background:var(--yellow);animation-delay:.3s;transform:rotate(18deg)"></span>
 
-  <!-- dice ladder loader -->
-  <div class="ladder" id="ladder">
-    <div class="die" data-f="1"><i class="c"></i></div>
-    <div class="die" data-f="2"><i class="tl"></i><i class="br"></i></div>
-    <div class="die" data-f="3"><i class="tl"></i><i class="c"></i><i class="br"></i></div>
-    <div class="die" data-f="4"><i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i></div>
-    <div class="die" data-f="5"><i class="tl"></i><i class="tr"></i><i class="c"></i><i class="bl"></i><i class="br"></i></div>
-    <div class="die" data-f="6"><i class="tl"></i><i class="tr"></i><i class="ml"></i><i class="mr"></i><i class="bl"></i><i class="br"></i></div>
-  </div>
+    <div class="top">
+      <span class="kicker">v 2.0</span>
+      <span class="chip mono">EST. 590 AD</span>
+    </div>
 
-  <div class="crest reveal-pop"><span>🎲</span></div>
-  <h1 class="brand reveal" style="--d:.15s">Ludo<em>Royale</em></h1>
-  <p class="tag reveal" style="--d:.45s">loud, bold, unmissable</p>
+    <div class="core">
+      <div class="ladder" id="ladder" style="--dsz:46px">
+        <div class="die"><i class="c"></i></div>
+        <div class="die"><i class="tl"></i><i class="br"></i></div>
+        <div class="die"><i class="tl"></i><i class="c"></i><i class="br"></i></div>
+        <div class="die die--yellow"><i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i></div>
+        <div class="die die--violet"><i class="tl"></i><i class="tr"></i><i class="c"></i><i class="bl"></i><i class="br"></i></div>
+        <div class="die die--mono"><i class="tl"></i><i class="tr"></i><i class="ml"></i><i class="mr"></i><i class="bl"></i><i class="br"></i></div>
+      </div>
 
-  <div class="loadtxt" id="loadtxt">rolling in…</div>
-  <div class="variants" onclick="event.preventDefault();event.stopPropagation();">
-    <a href="splash-2.html">cowrie toss ▸</a>
-    <a href="splash-3.html">board weave ▸</a>
-  </div>
-  <div class="tapnote">tap anywhere to continue</div>
-</div></a>
+      <div class="word">
+        <span class="l" id="l0">L</span><span class="l" id="l1">U</span><span class="l" id="l2">D</span><span class="l" id="l3">O</span>
+        <div><span class="tagchip stamp" style="--d:1.1s">ROLL · RACE · WRECK</span></div>
+      </div>
+    </div>
 
+    <div class="core" style="flex:none;padding-bottom:46px;gap:16px">
+      <div class="loadwrap">
+        <div class="lab"><span>Loading</span><span id="pct">0%</span></div>
+        <div class="bar"><i id="fill" style="width:0%"></i></div>
+      </div>
+      <div class="press blink" id="press">TAP TO START</div>
+    </div>
+  </div></a>
+</div>
 <script>
+  // light dice in sequence
   const dice=[...document.querySelectorAll('#ladder .die')];
-  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let i=0;
-  if(!reduce){
-    const tick=setInterval(()=>{
-      dice.forEach(d=>d.classList.remove('lit'));
-      for(let k=0;k<=i;k++) dice[k].classList.add('lit');
-      i++; if(i>=dice.length){ i=0; }
-    },180);
-    // auto-advance into the flow
-    setTimeout(()=>{ document.getElementById('loadtxt').textContent='ready'; }, 2200);
-    setTimeout(()=>{ location.href='login.html'; }, 3200);
-  } else { dice.forEach(d=>d.classList.add('lit')); }
+  dice.forEach((d,i)=>{ d.style.animationDelay=(i*0.12)+'s'; setTimeout(()=>d.classList.add('glow'),300+i*180); });
+  // stamp the letters
+  ['l0','l1','l2','l3'].forEach((id,i)=>{
+    const el=document.getElementById(id);
+    setTimeout(()=>{el.style.animation='stampIn .45s cubic-bezier(.2,.8,.3,1) both';el.style.opacity=1;},500+i*150);
+  });
+  // loader
+  let p=0; const fill=document.getElementById('fill'), pct=document.getElementById('pct'), press=document.getElementById('press');
+  const iv=setInterval(()=>{ p=Math.min(100,p+Math.ceil(Math.random()*9));
+    fill.style.width=p+'%'; pct.textContent=p+'%';
+    if(p>=100){clearInterval(iv); press.style.opacity=1;} },130);
 </script>
 </body>
 </html>

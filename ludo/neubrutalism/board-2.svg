@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="660" height="660" viewBox="0 0 660 660">
+  <!-- NEUBRUTALISM BOARD 2 · "MONO" — black yards, white track, seat colour used
+       only as a signal (home column / start / corner tab). High contrast. -->
+  <defs>
+    <g id="b2star"><path d="M0,-13 L3.6,-4 13,-4 5.4,2 8,11 0,5.4 -8,11 -5.4,2 -13,-4 -3.6,-4 Z" fill="#FFFDF7"/></g>
+    <g id="b2stark"><path d="M0,-13 L3.6,-4 13,-4 5.4,2 8,11 0,5.4 -8,11 -5.4,2 -13,-4 -3.6,-4 Z" fill="#15110D"/></g>
+  </defs>
+  <rect x="34" y="34" width="608" height="608" fill="#15110D"/>
+  <rect x="22" y="22" width="608" height="608" fill="#FFFDF7" stroke="#15110D" stroke-width="5"/>
+  <rect x="270" y="30" width="120" height="600" fill="#FFFDF7" stroke="#15110D" stroke-width="3"/>
+  <rect x="30" y="270" width="600" height="120" fill="#FFFDF7" stroke="#15110D" stroke-width="3"/>
+
+  <!-- yards: black with white token outlines + seat colour corner tab -->
+  <g stroke="#15110D" stroke-width="4">
+    <rect x="36" y="36" width="228" height="228" fill="#15110D"/>
+    <rect x="396" y="36" width="228" height="228" fill="#15110D"/>
+    <rect x="36" y="396" width="228" height="228" fill="#15110D"/>
+    <rect x="396" y="396" width="228" height="228" fill="#15110D"/>
+  </g>
+  <path d="M36,36 L116,36 L36,116 Z" fill="#34D17C"/>
+  <path d="M624,36 L544,36 L624,116 Z" fill="#FF5747"/>
+  <path d="M36,624 L116,624 L36,544 Z" fill="#FFD23F"/>
+  <path d="M624,624 L544,624 L624,544 Z" fill="#3D7BFF"/>
+  <g fill="none" stroke="#FFFDF7" stroke-width="3">
+    <circle cx="115" cy="115" r="18"/><circle cx="185" cy="115" r="18"/><circle cx="115" cy="185" r="18"/><circle cx="185" cy="185" r="18"/>
+    <circle cx="475" cy="115" r="18"/><circle cx="545" cy="115" r="18"/><circle cx="475" cy="185" r="18"/><circle cx="545" cy="185" r="18"/>
+    <circle cx="115" cy="475" r="18"/><circle cx="185" cy="475" r="18"/><circle cx="115" cy="545" r="18"/><circle cx="185" cy="545" r="18"/>
+    <circle cx="475" cy="475" r="18"/><circle cx="545" cy="475" r="18"/><circle cx="475" cy="545" r="18"/><circle cx="545" cy="545" r="18"/>
+  </g>
+
+  <!-- home columns (seat colour) -->
+  <g stroke="#15110D" stroke-width="2.5">
+    <rect x="70" y="310" width="40" height="40" fill="#34D17C"/><rect x="110" y="310" width="40" height="40" fill="#34D17C"/><rect x="150" y="310" width="40" height="40" fill="#34D17C"/><rect x="190" y="310" width="40" height="40" fill="#34D17C"/><rect x="230" y="310" width="40" height="40" fill="#34D17C"/>
+    <rect x="310" y="70" width="40" height="40" fill="#FF5747"/><rect x="310" y="110" width="40" height="40" fill="#FF5747"/><rect x="310" y="150" width="40" height="40" fill="#FF5747"/><rect x="310" y="190" width="40" height="40" fill="#FF5747"/><rect x="310" y="230" width="40" height="40" fill="#FF5747"/>
+    <rect x="390" y="310" width="40" height="40" fill="#3D7BFF"/><rect x="430" y="310" width="40" height="40" fill="#3D7BFF"/><rect x="470" y="310" width="40" height="40" fill="#3D7BFF"/><rect x="510" y="310" width="40" height="40" fill="#3D7BFF"/><rect x="550" y="310" width="40" height="40" fill="#3D7BFF"/>
+    <rect x="310" y="390" width="40" height="40" fill="#FFD23F"/><rect x="310" y="430" width="40" height="40" fill="#FFD23F"/><rect x="310" y="470" width="40" height="40" fill="#FFD23F"/><rect x="310" y="510" width="40" height="40" fill="#FFD23F"/><rect x="310" y="550" width="40" height="40" fill="#FFD23F"/>
+  </g>
+
+  <!-- track cells -->
+  <g fill="#FFFDF7" stroke="#15110D" stroke-width="2">
+    <rect x="270" y="510" width="40" height="40"/><rect x="270" y="470" width="40" height="40"/><rect x="270" y="430" width="40" height="40"/><rect x="270" y="390" width="40" height="40"/>
+    <rect x="230" y="350" width="40" height="40"/><rect x="190" y="350" width="40" height="40"/><rect x="150" y="350" width="40" height="40"/><rect x="70" y="350" width="40" height="40"/><rect x="30" y="350" width="40" height="40"/>
+    <rect x="30" y="270" width="40" height="40"/><rect x="110" y="270" width="40" height="40"/><rect x="150" y="270" width="40" height="40"/><rect x="190" y="270" width="40" height="40"/><rect x="230" y="270" width="40" height="40"/>
+    <rect x="270" y="230" width="40" height="40"/><rect x="270" y="190" width="40" height="40"/><rect x="270" y="150" width="40" height="40"/><rect x="270" y="70" width="40" height="40"/><rect x="270" y="30" width="40" height="40"/>
+    <rect x="350" y="30" width="40" height="40"/><rect x="350" y="110" width="40" height="40"/><rect x="350" y="150" width="40" height="40"/><rect x="350" y="190" width="40" height="40"/><rect x="350" y="230" width="40" height="40"/>
+    <rect x="390" y="270" width="40" height="40"/><rect x="430" y="270" width="40" height="40"/><rect x="470" y="270" width="40" height="40"/><rect x="550" y="270" width="40" height="40"/><rect x="590" y="270" width="40" height="40"/>
+    <rect x="590" y="350" width="40" height="40"/><rect x="510" y="350" width="40" height="40"/><rect x="470" y="350" width="40" height="40"/><rect x="430" y="350" width="40" height="40"/><rect x="390" y="350" width="40" height="40"/>
+    <rect x="350" y="390" width="40" height="40"/><rect x="350" y="430" width="40" height="40"/><rect x="350" y="470" width="40" height="40"/><rect x="350" y="550" width="40" height="40"/><rect x="350" y="590" width="40" height="40"/>
+    <rect x="270" y="590" width="40" height="40"/>
+  </g>
+  <g stroke="#15110D" stroke-width="3">
+    <rect x="270" y="550" width="40" height="40" fill="#FFD23F"/><rect x="70" y="270" width="40" height="40" fill="#34D17C"/>
+    <rect x="350" y="70" width="40" height="40" fill="#FF5747"/><rect x="550" y="350" width="40" height="40" fill="#3D7BFF"/>
+  </g>
+  <!-- safes inverted: black cell, white star -->
+  <g fill="#15110D" stroke="#15110D" stroke-width="3">
+    <rect x="110" y="350" width="40" height="40"/><rect x="270" y="110" width="40" height="40"/><rect x="510" y="270" width="40" height="40"/><rect x="350" y="510" width="40" height="40"/>
+  </g>
+  <use href="#b2star" x="130" y="370"/><use href="#b2star" x="290" y="130"/><use href="#b2star" x="530" y="290"/><use href="#b2star" x="370" y="530"/>
+
+  <!-- centre -->
+  <g stroke="#15110D" stroke-width="3" stroke-linejoin="round" fill="#FFFDF7">
+    <path d="M270,270 L390,270 L330,330 Z"/><path d="M270,270 L270,390 L330,330 Z"/>
+    <path d="M390,270 L390,390 L330,330 Z"/><path d="M270,390 L390,390 L330,330 Z"/>
+  </g>
+  <rect x="306" y="306" width="48" height="48" fill="#15110D"/>
+  <use href="#b2star" x="330" y="330"/>
+</svg>

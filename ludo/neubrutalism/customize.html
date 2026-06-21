@@ -6,62 +6,110 @@
 <title>Ludo · Customize</title>
 <link rel="stylesheet" href="styles.css">
 <style>
-  .preview{display:flex;align-items:center;justify-content:center;gap:18px;padding:18px}
-  .preview .die{--dsz:64px}
-  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-  .skin{position:relative;background:var(--patch-2);border-radius:var(--r-md);aspect-ratio:1;display:grid;place-items:center;
-    font-size:34px;cursor:pointer;border:2px solid transparent;box-shadow:var(--e1)}
-  .skin .nm{position:absolute;bottom:6px;left:0;right:0;text-align:center;font-size:10px;font-weight:800;color:var(--ink)}
-  .skin.on{border-color:var(--leaf);background:var(--patch-3)}
-  .skin.on::before{content:"✓";position:absolute;top:5px;right:7px;color:var(--leaf-d);font-weight:900}
-  .skin.lock{color:#b5a18d}
-  .skin .price{position:absolute;top:5px;right:6px;font-size:10px;font-weight:800;color:var(--indigo-d);background:#fff;border-radius:999px;padding:2px 7px}
-  .tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px}
-  .tabs button{flex:none;border:none;background:var(--cloth-d);color:rgba(255,255,255,.7);font-weight:800;font-size:13px;
-    padding:9px 15px;border-radius:999px;cursor:pointer;font-family:'Karla',sans-serif}
-  .tabs button.on{background:var(--turmeric);color:var(--ink)}
+  .catbar{display:flex;gap:8px;padding:12px 16px 6px;overflow-x:auto}
+  .cat{flex:none;font-family:'Archivo Black';font-size:12px;text-transform:uppercase;border:var(--bd) solid var(--ink);
+    background:var(--white);box-shadow:var(--sh-s);padding:9px 13px;cursor:pointer;display:flex;align-items:center;gap:6px}
+  .cat.on{background:var(--violet);color:#fff}
+  .preview{margin:6px 16px 0;background:var(--paper-2);border:var(--bd2) solid var(--ink);box-shadow:var(--sh-s);
+    padding:22px;display:grid;place-items:center;min-height:120px}
+  .grid-items{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:14px 16px}
+  .item{position:relative;background:var(--white);border:var(--bd) solid var(--ink);box-shadow:var(--sh-s);padding:14px 8px;
+    display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;transition:transform .08s steps(2),box-shadow .08s steps(2)}
+  .item:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+  .item.on{background:var(--yellow)}
+  .item .nm{font-family:'Archivo Black';font-size:11px;text-transform:uppercase}
+  .item .price{font-family:'Space Mono';font-weight:700;font-size:11px}
+  .item.locked .price{color:var(--violet-d)}
+  .item .tick{position:absolute;top:-8px;right:-8px;width:24px;height:24px;background:var(--lime);border:var(--bd) solid var(--ink);
+    display:grid;place-items:center;font-size:13px}
 </style>
 </head>
 <body>
 <div class="app">
-  <div class="appbar">
-    <a class="bare" href="profile.html"><button class="iconbtn">←</button></a>
-    <div class="title">Customize</div><div class="spacer"></div>
-    <div class="pill gem"><span class="ic">💎</span> 86</div>
+  <div class="bar-top">
+    <a class="bare" href="profile.html"><button class="ibtn">←</button></a>
+    <div class="ti">Customize</div>
+    <div class="pill" style="margin-left:auto"><span class="ic" style="background:#FFD23F">🪙</span> 12,450</div>
   </div>
 
-  <div class="content">
-    <div class="patch preview reveal">
-      <div class="avatar s2" style="--sz:72px"><div class="ring"><div class="face">🦊</div></div></div>
-      <div class="die lit"><i class="tl"></i><i class="tr"></i><i class="c"></i><i class="bl"></i><i class="br"></i></div>
-      <span style="width:40px;height:40px;border-radius:50%;background:var(--seat2);border:2px solid #3A2418;box-shadow:0 4px 6px rgba(0,0,0,.3)"></span>
-    </div>
-
-    <div class="tabs reveal" style="--d:.05s">
-      <button class="on">Avatar</button><button>Board</button><button>Dice</button><button>Token</button><button>Name</button>
-    </div>
-
-    <div class="grid reveal" style="--d:.1s">
-      <div class="skin on">🦊<span class="nm">Fox</span></div>
-      <div class="skin">🐼<span class="nm">Panda</span></div>
-      <div class="skin">🐯<span class="nm">Tiger</span></div>
-      <div class="skin">🦁<span class="nm">Lion</span></div>
-      <div class="skin">🐸<span class="nm">Frog</span></div>
-      <div class="skin lock">🦉<span class="price">💎 20</span><span class="nm">Owl</span></div>
-      <div class="skin lock">🐲<span class="price">💎 40</span><span class="nm">Dragon</span></div>
-      <div class="skin lock">🦚<span class="price">💎 60</span><span class="nm">Peacock</span></div>
-      <div class="skin lock">👑<span class="price">💎 99</span><span class="nm">Royal</span></div>
-    </div>
-
-    <a class="bare" href="profile.html"><button class="btn btn-success block reveal" style="--d:.2s"><span class="ic">✓</span> Equip Fox</button></a>
+  <div class="catbar" id="catbar">
+    <div class="cat on" data-c="dice">🎲 Dice</div>
+    <div class="cat" data-c="token">⬤ Tokens</div>
+    <div class="cat" data-c="avatar">🦊 Avatar</div>
+    <div class="cat" data-c="board">🗺 Board</div>
+    <div class="cat" data-c="color">🎨 Name</div>
   </div>
 
-  <nav class="bottomnav">
-    <a href="home.html"><span class="ic">🏠</span>Home</a>
-    <a href="friends.html"><span class="ic">👥</span>Friends</a>
-    <a class="on" href="customize.html"><span class="ic">🎨</span>Customize</a>
-    <a href="profile.html"><span class="ic">🪪</span>Profile</a>
-  </nav>
+  <div class="preview" id="preview"></div>
+
+  <div class="scroll">
+    <div class="grid-items" id="items"></div>
+  </div>
+
+  <div class="pad" style="border-top:var(--bd2) solid var(--ink)">
+    <button class="btn btn--violet lg block" id="equip">Equip</button>
+  </div>
 </div>
+<script>
+  const DICE=[
+    {nm:'Block',html:'<div class="die" style="--dsz:74px"><i class="tl"></i><i class="tr"></i><i class="c"></i><i class="bl"></i><i class="br"></i></div>',price:'OWNED',on:1},
+    {nm:'Yellow',html:'<div class="die die--yellow" style="--dsz:74px"><i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i></div>',price:'800'},
+    {nm:'Violet',html:'<div class="die die--violet" style="--dsz:74px"><i class="tl"></i><i class="c"></i><i class="br"></i></div>',price:'800'},
+    {nm:'Mono',html:'<div class="die die--mono" style="--dsz:74px"><i class="tl"></i><i class="tr"></i><i class="ml"></i><i class="mr"></i><i class="bl"></i><i class="br"></i></div>',price:'1200'},
+    {nm:'Outline',html:'<div class="die die--outline" style="--dsz:74px"><i class="tl"></i><i class="br"></i></div>',price:'1200'},
+    {nm:'Sticker',html:'<div class="die die--sticker" style="--dsz:74px"><i class="c"></i></div>',price:'2000'},
+  ];
+  const TOK=[
+    {nm:'Disc',html:'<div class="tok tok--disc" style="--tsz:56px;--tc:#FF5747"></div>',price:'OWNED',on:1},
+    {nm:'Peg',html:'<div class="tok tok--peg" style="--tsz:56px;--tc:#FF5747"></div>',price:'600'},
+    {nm:'Ring',html:'<div class="tok tok--ring" style="--tsz:56px;--tc:#FF5747"></div>',price:'600'},
+    {nm:'Star',html:'<div class="tok tok--star" style="--tsz:56px;--tc:#FF5747"></div>',price:'1000'},
+    {nm:'Chip',html:'<div class="tok tok--chip" style="--tsz:56px;--tc:#FF5747"></div>',price:'1000'},
+  ];
+  const AVA=[
+    {nm:'Fox',html:'<div class="ava" style="--sz:64px;--ring:#FFD23F"><div class="face">🦊</div></div>',price:'OWNED',on:1},
+    {nm:'Panda',html:'<div class="ava" style="--sz:64px;--ring:#8BE04A"><div class="face">🐼</div></div>',price:'400'},
+    {nm:'Tiger',html:'<div class="ava" style="--sz:64px;--ring:#FF5CA0"><div class="face">🐯</div></div>',price:'400'},
+    {nm:'Frog',html:'<div class="ava" style="--sz:64px;--ring:#33D6E0"><div class="face">🐸</div></div>',price:'400'},
+    {nm:'Koala',html:'<div class="ava" style="--sz:64px;--ring:#7C5CFF"><div class="face">🐨</div></div>',price:'800'},
+    {nm:'Robot',html:'<div class="ava" style="--sz:64px;--ring:#FF8A3D"><div class="face">🤖</div></div>',price:'1500'},
+  ];
+  const BOARD=[
+    {nm:'Blocks',html:'<img src="board-1.svg" style="width:120px;border:3px solid var(--ink)">',price:'OWNED',on:1},
+    {nm:'Mono',html:'<img src="board-2.svg" style="width:120px;border:3px solid var(--ink)">',price:'2500'},
+    {nm:'Pop',html:'<img src="board-3.svg" style="width:120px;border:3px solid var(--ink)">',price:'2500'},
+  ];
+  const COLOR=[
+    {nm:'Ink',html:'<span style="font-family:Archivo Black;font-size:30px;color:#15110D">FoxTrot</span>',price:'OWNED',on:1},
+    {nm:'Violet',html:'<span style="font-family:Archivo Black;font-size:30px;color:#7C5CFF">FoxTrot</span>',price:'500'},
+    {nm:'Pink',html:'<span style="font-family:Archivo Black;font-size:30px;color:#FF5CA0">FoxTrot</span>',price:'500'},
+    {nm:'Lime',html:'<span style="font-family:Archivo Black;font-size:30px;color:#34D17C">FoxTrot</span>',price:'500'},
+  ];
+  const SETS={dice:DICE,token:TOK,avatar:AVA,board:BOARD,color:COLOR};
+  const items=document.getElementById('items'), preview=document.getElementById('preview'), equip=document.getElementById('equip');
+  function load(cat){
+    const set=SETS[cat]; let sel=set.findIndex(x=>x.on); if(sel<0)sel=0;
+    preview.innerHTML=`<div class="pop">${set[sel].html}</div>`;
+    items.innerHTML=set.map((it,i)=>`<div class="item ${it.on?'on':''} ${it.price!=='OWNED'&&!it.on?'locked':''} pop" style="--d:${i*0.04}s" data-i="${i}">
+      ${it.on?'<span class="tick">✓</span>':''}
+      <div style="transform:scale(.62)">${it.html}</div>
+      <div class="nm">${it.nm}</div>
+      <div class="price">${it.price==='OWNED'?'EQUIPPED':'🪙 '+it.price}</div>
+    </div>`).join('');
+    items.querySelectorAll('.item').forEach(el=>el.onclick=()=>{
+      const i=+el.dataset.i; items.querySelectorAll('.item').forEach(x=>x.classList.remove('sel'));
+      el.style.boxShadow='6px 6px 0 var(--violet)';
+      preview.innerHTML=`<div class="pop">${set[i].html}</div>`;
+      equip.textContent=set[i].price==='OWNED'?'Equipped ✓':'Unlock · 🪙 '+set[i].price;
+      equip.className='btn lg block '+(set[i].price==='OWNED'?'btn--lime':'btn--violet');
+    });
+    equip.textContent='Equipped ✓'; equip.className='btn btn--lime lg block';
+  }
+  document.getElementById('catbar').addEventListener('click',e=>{
+    const c=e.target.closest('.cat'); if(!c)return;
+    document.querySelectorAll('.cat').forEach(x=>x.classList.remove('on')); c.classList.add('on'); load(c.dataset.c);
+  });
+  load('dice');
+</script>
 </body>
 </html>

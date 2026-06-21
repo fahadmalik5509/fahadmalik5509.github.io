@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ludo Neubrutalism · Components</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  body{display:block;background:var(--paper);background-image:linear-gradient(#F1E6C8 1.5px,transparent 1.5px),linear-gradient(90deg,#F1E6C8 1.5px,transparent 1.5px);background-size:28px 28px}
+  .guide{max-width:1000px;margin:0 auto;padding:36px 22px 90px}
+  .sec{margin-top:40px}
+  .sec>.lab{display:inline-block;font-family:'Space Mono';font-weight:700;font-size:12px;letter-spacing:3px;text-transform:uppercase;background:var(--ink);color:var(--paper);padding:5px 12px;margin-bottom:18px}
+  .grid{display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end}
+  .spec{display:flex;flex-direction:column;align-items:center;gap:8px}
+  .spec .nm{font-family:'Space Mono';font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#7a715b}
+  .boards{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:22px}
+  .boardcard{background:var(--white);border:var(--bd2) solid var(--ink);box-shadow:var(--sh);padding:14px}
+  .boardcard img{width:100%;display:block}
+  .boardcard .nm{font-family:'Archivo Black';text-transform:uppercase;margin-top:10px;font-size:15px}
+  .swrow{display:flex;gap:0;flex-wrap:wrap}
+  .sw{width:64px;height:64px;border:var(--bd) solid var(--ink);display:grid;place-items:end;padding:4px;font-family:'Space Mono';font-size:9px;font-weight:700}
+  a.top{font-family:'Space Mono';font-weight:700;text-decoration:none;color:var(--ink);border:var(--bd) solid var(--ink);background:var(--yellow);box-shadow:var(--sh-s);padding:8px 14px;display:inline-block}
+</style>
+</head>
+<body>
+<div class="guide">
+  <a class="top" href="index.html">← FLOW</a>
+  <div style="margin-top:18px"><span class="kicker">Design system</span></div>
+  <h1 class="d1 shadow-text" style="margin-top:12px">NEUBRUTALISM<br>COMPONENTS</h1>
+  <p class="body" style="max-width:560px;margin-top:14px">Thick ink borders, hard offset shadows, flat fills, heavy uppercase type. Everything below is a real, reusable piece used across the Ludo flow.</p>
+
+  <div class="sec"><span class="lab">Palette</span><div class="swrow">
+    <div class="sw" style="background:#FBF3DF">PAPER</div><div class="sw" style="background:#15110D;color:#FBF3DF">INK</div>
+    <div class="sw" style="background:#7C5CFF;color:#fff">VIOLET</div><div class="sw" style="background:#FFD23F">YELLOW</div>
+    <div class="sw" style="background:#FF5CA0;color:#fff">PINK</div><div class="sw" style="background:#8BE04A">LIME</div>
+    <div class="sw" style="background:#FF5747;color:#fff">RED·S1</div><div class="sw" style="background:#3D7BFF;color:#fff">BLUE·S2</div>
+    <div class="sw" style="background:#FFD23F">YEL·S3</div><div class="sw" style="background:#34D17C">GRN·S4</div>
+  </div></div>
+
+  <div class="sec"><span class="lab">Type</span>
+    <div class="d1">DISPLAY 01</div><div class="d2">DISPLAY 02</div><div class="d3">DISPLAY 03</div>
+    <div class="h" style="margin-top:8px">HEADING</div><div class="t">Title text</div>
+    <div class="body" style="max-width:520px">Body copy stays in Archivo, medium weight, comfortable line-height for actually reading rules and labels.</div>
+    <div class="cap" style="margin-top:6px">MONO CAPTION · DATA</div>
+  </div>
+
+  <div class="sec"><span class="lab">Buttons</span><div class="grid">
+    <button class="btn btn--violet">Play</button>
+    <button class="btn btn--yellow">Invite</button>
+    <button class="btn btn--lime">Ready</button>
+    <button class="btn btn--pink">Leave</button>
+    <button class="btn btn--blue">Join</button>
+    <button class="btn">Ghost</button>
+    <button class="btn" disabled>Waiting</button>
+    <button class="btn btn--ink sm">Small</button>
+    <button class="ibtn">⚙</button>
+  </div></div>
+
+  <div class="sec"><span class="lab">Dice — 6 designs</span><div class="grid" style="--dsz:60px">
+    <div class="spec"><div class="die"><i class="tl"></i><i class="tr"></i><i class="c"></i><i class="bl"></i><i class="br"></i></div><div class="nm">Block</div></div>
+    <div class="spec"><div class="die die--yellow"><i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i></div><div class="nm">Yellow</div></div>
+    <div class="spec"><div class="die die--violet"><i class="tl"></i><i class="c"></i><i class="br"></i></div><div class="nm">Violet</div></div>
+    <div class="spec"><div class="die die--mono"><i class="tl"></i><i class="tr"></i><i class="ml"></i><i class="mr"></i><i class="bl"></i><i class="br"></i></div><div class="nm">Mono</div></div>
+    <div class="spec"><div class="die die--outline"><i class="tl"></i><i class="br"></i></div><div class="nm">Outline</div></div>
+    <div class="spec"><div class="die die--sticker"><i class="c"></i></div><div class="nm">Sticker</div></div>
+  </div></div>
+
+  <div class="sec"><span class="lab">Tokens — 5 designs × 4 seats</span><div class="grid" style="--tsz:40px">
+    <div class="spec"><div class="tok tok--disc" style="--tc:#FF5747"></div><div class="nm">Disc</div></div>
+    <div class="spec"><div class="tok tok--peg" style="--tc:#3D7BFF"></div><div class="nm">Peg</div></div>
+    <div class="spec"><div class="tok tok--ring" style="--tc:#FFD23F"></div><div class="nm">Ring</div></div>
+    <div class="spec"><div class="tok tok--star" style="--tc:#34D17C"></div><div class="nm">Star</div></div>
+    <div class="spec"><div class="tok tok--chip" style="--tc:#FF5CA0"></div><div class="nm">Chip</div></div>
+    <div class="spec"><div class="row gap-6">
+      <div class="tok tok--disc" style="--tc:#FF5747"></div><div class="tok tok--disc" style="--tc:#3D7BFF"></div>
+      <div class="tok tok--disc" style="--tc:#FFD23F"></div><div class="tok tok--disc" style="--tc:#34D17C"></div>
+    </div><div class="nm">Seat set</div></div>
+  </div></div>
+
+  <div class="sec"><span class="lab">Boards — 3 designs</span><div class="boards">
+    <div class="boardcard"><img src="board-1.svg" alt=""><div class="nm">01 · Blocks</div></div>
+    <div class="boardcard"><img src="board-2.svg" alt=""><div class="nm">02 · Mono</div></div>
+    <div class="boardcard"><img src="board-3.svg" alt=""><div class="nm">03 · Pop</div></div>
+  </div></div>
+
+  <div class="sec"><span class="lab">Cards · chips · badges</span><div class="grid">
+    <div class="card" style="width:220px"><span class="tape">Mode</span><div class="d3">CLASSIC</div><p class="body" style="margin-top:6px">Race all four home.</p></div>
+    <div class="card card--paper" style="width:180px"><div class="h">PRIZE POT</div><div class="d2 mono" style="margin-top:6px">1,800</div></div>
+    <div class="col gap-10">
+      <div><span class="chip">🎲 Quick</span> <span class="chip"><span class="dotlive"></span> Online</span></div>
+      <div><span class="badge">NEW</span> <span class="badge badge--pink">PRO</span> <span class="badge badge--lime">WIN</span></div>
+      <div class="pill"><span class="ic" style="background:#FFD23F">🪙</span> 12,450</div>
+    </div>
+  </div></div>
+
+  <div class="sec"><span class="lab">Controls</span><div class="grid" style="gap:24px">
+    <label class="toggle"><input type="checkbox" checked><span class="tk"></span><span class="kn"></span></label>
+    <label class="toggle"><input type="checkbox"><span class="tk"></span><span class="kn"></span></label>
+    <div class="seg" style="width:200px"><button class="on">2</button><button>3</button><button>4</button></div>
+    <div style="width:200px"><input class="slider" type="range" value="60"></div>
+    <div class="bar" style="width:200px"><i style="width:64%"></i></div>
+    <div class="ava s2" style="--ring:#FFD23F"><div class="face">🦊</div><div class="st"></div></div>
+    <div class="cell on">L</div>
+    <input class="input" style="width:200px" placeholder="Username…">
+  </div></div>
+</div>
+</body>
+</html>
