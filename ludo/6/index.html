@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>22 · Cloth & Cowrie — Ludo Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,800&family=Karla:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* SUBJECT: before plastic, Pachisi was stitched cloth + cowrie-shell dice. SIGNATURE:
+   running-stitch (kantha) dashed seams + woven thread texture; pieces are felt patches.
+   RISK: every container is a fabric patch sewn down with a contrasting thread line. */
+:root{
+  --cloth:#7C2B3E; --cloth-d:#5e1f2e; --patch:#FBE7D2; --patch-2:#F4D9B8;
+  --madder:#C8442F; --turmeric:#E8A526; --indigo:#2E5375; --leaf:#5C8C4A;
+  --ink:#3A2418; --ink-muted:#7a5a44; --ink-faint:#a98b71; --thread:#FBE7D2;
+  --seat0:#C8442F; --seat1:#2E5375; --seat2:#E8A526; --seat3:#5C8C4A;
+  --r-sm:6px; --r-md:12px; --r-lg:16px; --r-pill:999px;
+  --weave:repeating-linear-gradient(45deg,rgba(0,0,0,.05) 0 1px,transparent 1px 4px),repeating-linear-gradient(-45deg,rgba(255,255,255,.06) 0 1px,transparent 1px 4px);
+  --stitch:var(--cloth);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Karla',system-ui,sans-serif;color:var(--ink);
+  background:var(--cloth);background-image:var(--weave);background-blend-mode:multiply;
+  padding:32px 16px 80px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:980px;margin:0 auto}
+.back{display:inline-block;margin-bottom:20px;color:var(--turmeric);font-weight:700;text-decoration:none}
+.ds-tag{display:inline-block;background:var(--patch);color:var(--cloth);padding:7px 16px;border-radius:var(--r-pill);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;box-shadow:0 0 0 2px var(--cloth),0 0 0 3px var(--patch),0 0 0 5px var(--cloth)}
+.ds-header h1{font-family:'Fraunces',serif;font-size:60px;font-weight:800;margin:16px 0 8px;line-height:1;color:var(--patch);text-shadow:2px 2px 0 rgba(0,0,0,.25)}
+.ds-header h1 em{font-style:italic;color:var(--turmeric)}
+.ds-philosophy{font-size:17px;color:rgba(251,231,210,.85);font-weight:400;max-width:620px;line-height:1.6}
+.ds-section{margin-top:46px}
+.ds-section-title{font-family:'Fraunces',serif;font-style:italic;font-size:17px;font-weight:500;color:var(--turmeric);margin-bottom:16px}
+.panel{background:var(--patch);background-image:var(--weave);border-radius:var(--r-lg);padding:26px;position:relative;
+  box-shadow:0 12px 26px rgba(0,0,0,.35)}
+.panel::before{content:"";position:absolute;inset:9px;border:2px dashed var(--stitch);border-radius:10px;opacity:.55;pointer-events:none}
+.panel>*{position:relative}
+.row{display:flex;flex-wrap:wrap;gap:18px;align-items:center}
+
+.swatches{display:flex;flex-wrap:wrap;gap:14px}
+.sw{width:94px;height:80px;border-radius:var(--r-md);display:flex;align-items:flex-end;padding:8px;color:#fff;font-weight:700;font-size:12px;box-shadow:inset 0 0 0 2px rgba(255,255,255,.5),0 4px 8px rgba(0,0,0,.25);outline:2px dashed rgba(255,255,255,.6);outline-offset:-7px}
+.s-primary{background:var(--madder)}.s-accent{background:var(--turmeric);color:var(--ink)}.s-success{background:var(--leaf)}
+.s-danger{background:var(--cloth)}.s-seat0{background:var(--seat0)}.s-seat1{background:var(--seat1)}
+.s-seat2{background:var(--seat2);color:var(--ink)}.s-seat3{background:var(--seat3)}
+
+.type-display{font-family:'Fraunces',serif;font-size:52px;font-weight:800;color:var(--madder);line-height:1}
+.type-title{font-family:'Fraunces',serif;font-style:italic;font-size:30px;font-weight:500;margin-top:12px;color:var(--indigo)}
+.type-heading{font-size:18px;font-weight:700;margin-top:10px}
+.type-body{font-size:16px;font-weight:400;color:var(--ink-muted);margin-top:8px;max-width:560px;line-height:1.6}
+.type-caption{font-size:12px;font-weight:700;letter-spacing:2px;color:var(--ink-faint);margin-top:12px;text-transform:uppercase}
+
+.btn{font-family:'Karla',sans-serif;font-weight:700;font-size:15px;cursor:pointer;padding:13px 24px;color:var(--patch);border:none;
+  border-radius:var(--r-md);position:relative;transition:transform .1s;box-shadow:0 4px 0 rgba(0,0,0,.25)}
+.btn::after{content:"";position:absolute;inset:4px;border:1.5px dashed rgba(255,255,255,.7);border-radius:8px;pointer-events:none}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.25)}
+.btn-primary{background:var(--madder)}.btn-secondary{background:var(--turmeric);color:var(--ink)}
+.btn-secondary::after{border-color:rgba(58,36,24,.5)}
+.btn-success{background:var(--leaf)}.btn-danger{background:var(--cloth)}
+.btn-ghost{background:var(--patch-2);color:var(--cloth)}.btn-ghost::after{border-color:var(--cloth)}
+.btn:disabled{background:#d8c4ac;color:#fff;cursor:not-allowed;transform:none}
+.btn-icon{width:54px;height:54px;border:none;border-radius:var(--r-md);cursor:pointer;font-size:22px;background:var(--patch-2);color:var(--cloth);position:relative;box-shadow:0 4px 0 rgba(0,0,0,.2)}
+.btn-icon::after{content:"";position:absolute;inset:5px;border:1.5px dashed var(--cloth);border-radius:8px;opacity:.6}
+
+.avatar{display:flex;flex-direction:column;align-items:center;gap:8px;width:96px}
+.avatar-ring{width:74px;height:74px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;background:var(--ring);box-shadow:0 5px 10px rgba(0,0,0,.3);outline:2px dashed var(--patch);outline-offset:-6px}
+.avatar-img{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;background:var(--patch)}
+.avatar-status{position:absolute;right:0;bottom:0;width:18px;height:18px;border-radius:50%;background:var(--leaf);border:3px solid var(--patch)}
+.avatar-status.off{background:#b6a18d}
+.avatar-name{font-weight:700;font-size:14px;color:var(--patch)}
+.avatar-name small{display:block;font-weight:400;color:rgba(251,231,210,.7);font-size:11px}
+
+.pill{display:inline-flex;align-items:center;gap:9px;background:var(--patch-2);border-radius:var(--r-pill);padding:6px 16px 6px 6px;font-weight:700;font-size:15px;position:relative;box-shadow:0 3px 7px rgba(0,0,0,.2)}
+.pill::after{content:"";position:absolute;inset:3px;border:1.5px dashed var(--cloth);border-radius:var(--r-pill);opacity:.4}
+.pill .ico{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px}
+.pill.coin .ico{background:var(--turmeric)}.pill.gem .ico{background:var(--indigo);color:#fff}.pill .ico{background:var(--madder);color:#fff}
+.pill .add{margin-left:4px;width:26px;height:26px;border-radius:50%;background:var(--leaf);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800}
+
+/* dice: cowrie shells (ivory ovals, slit) — keep pip layout for fairness */
+.die{width:64px;height:64px;border-radius:14px;background:linear-gradient(160deg,#fff8ea,#ecdcc0);position:relative;box-shadow:0 6px 12px rgba(0,0,0,.3),inset 0 1px 2px #fff;border:2px solid var(--patch-2)}
+.die .p{position:absolute;width:11px;height:11px;border-radius:50%;background:var(--madder);transform:translate(-50%,-50%)}
+.die .tl{left:28%;top:28%}.die .tr{left:72%;top:28%}.die .ml{left:28%;top:50%}.die .c{left:50%;top:50%}.die .mr{left:72%;top:50%}.die .bl{left:28%;top:72%}.die .br{left:72%;top:72%}
+.die.rolled{box-shadow:0 6px 12px rgba(0,0,0,.3),0 0 22px rgba(232,165,38,.7)}
+.die.rolled .p{background:var(--turmeric)}
+
+.toggle{position:relative;display:inline-block;width:66px;height:34px}
+.toggle input{display:none}
+.toggle .track{position:absolute;inset:0;border-radius:var(--r-pill);background:var(--cloth);transition:.2s}
+.toggle .knob{position:absolute;top:3px;left:3px;width:28px;height:28px;border-radius:50%;background:var(--patch);transition:.2s;box-shadow:0 2px 4px rgba(0,0,0,.4)}
+.toggle input:checked + .track{background:var(--leaf)}
+.toggle input:checked + .track + .knob{transform:translateX(32px)}
+.slider{-webkit-appearance:none;width:240px;height:14px;border-radius:var(--r-pill);background:var(--cloth);outline:none}
+.slider::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:var(--turmeric);cursor:pointer;box-shadow:0 2px 5px rgba(0,0,0,.4)}
+
+.progress{height:18px;background:var(--cloth);border-radius:var(--r-pill);overflow:hidden;padding:3px}
+.progress-fill{height:100%;width:66%;border-radius:var(--r-pill);background:repeating-linear-gradient(90deg,var(--turmeric) 0 10px,var(--madder) 10px 12px)}
+.xp-row{display:flex;justify-content:space-between;font-weight:700;font-size:13px;color:var(--ink-muted);margin-bottom:8px}
+
+.badge{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:12px;padding:6px 14px;border-radius:var(--r-pill);color:#fff;letter-spacing:.5px}
+.badge.new{background:var(--madder)}.badge.pro{background:var(--turmeric);color:var(--ink)}.badge.win{background:var(--leaf)}
+.chip{display:inline-flex;align-items:center;gap:8px;background:var(--patch-2);padding:8px 15px;border-radius:var(--r-pill);font-weight:600;font-size:13px;color:var(--cloth)}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--leaf)}
+.notif{position:relative;display:inline-flex}
+.notif .count{position:absolute;top:-8px;right:-8px;background:var(--madder);color:#fff;font-size:11px;font-weight:800;min-width:22px;height:22px;border-radius:var(--r-pill);display:flex;align-items:center;justify-content:center;border:2px solid var(--patch)}
+
+.card{background:var(--patch-2);background-image:var(--weave);border-radius:var(--r-lg);padding:16px;display:flex;align-items:center;gap:14px;max-width:430px;position:relative;box-shadow:0 8px 18px rgba(0,0,0,.28)}
+.card::after{content:"";position:absolute;inset:7px;border:1.5px dashed var(--cloth);border-radius:11px;opacity:.4;pointer-events:none}
+.card .meta{flex:1}
+.card .meta b{font-family:'Fraunces',serif;font-size:18px;font-weight:800}
+.card .meta span{display:block;font-size:13px;color:var(--ink-muted)}
+.card .stat{text-align:center;font-family:'Fraunces',serif;font-weight:800;color:var(--madder)}
+.card .stat small{display:block;color:var(--ink-faint);font-size:10px;letter-spacing:1px;font-family:'Karla',sans-serif}
+
+.orb{width:58px;height:58px;border-radius:50%;cursor:pointer;font-size:22px;color:var(--patch);border:none;display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 4px 0 rgba(0,0,0,.25);transition:transform .1s}
+.orb::after{content:"";position:absolute;inset:5px;border:1.5px dashed rgba(255,255,255,.7);border-radius:50%}
+.orb:active{transform:translateY(3px)}
+.orb.p{background:var(--madder)}.orb.a{background:var(--indigo)}.orb.s{background:var(--leaf)}.orb.d{background:var(--cloth)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← All designs</a>
+  <header class="ds-header">
+    <span class="ds-tag">Design 22 · Folk Textile</span>
+    <h1>Cloth &amp; <em>Cowrie</em></h1>
+    <p class="ds-philosophy">The original board was sewn, not printed — embroidered cross-cloth played with cowrie-shell dice. Every surface is a fabric patch stitched down with a running thread (<em>kantha</em>), in madder, turmeric and indigo. Handmade, tactile, communal.</p>
+  </header>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Palette</h2>
+    <div class="swatches">
+      <div class="sw s-primary"><span>Madder</span></div>
+      <div class="sw s-accent"><span>Turmeric</span></div>
+      <div class="sw s-success"><span>Leaf</span></div>
+      <div class="sw s-danger"><span>Cloth</span></div>
+      <div class="sw s-seat0"><span>Seat 1</span></div>
+      <div class="sw s-seat1"><span>Seat 2</span></div>
+      <div class="sw s-seat2"><span>Seat 3</span></div>
+      <div class="sw s-seat3"><span>Seat 4</span></div>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Typography · Fraunces + Karla</h2>
+    <div class="panel">
+      <p class="type-display">Ludo Royale</p>
+      <p class="type-title">Match Found</p>
+      <p class="type-heading">Private Room · 4 Players</p>
+      <p class="type-body">Roll the cowries, race your four pieces around the cross, and send rivals back to the yard. First to bring the whole army home wins.</p>
+      <p class="type-caption">Tap anywhere to continue</p>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Buttons</h2>
+    <div class="panel row">
+      <button class="btn btn-primary">Play Now</button>
+      <button class="btn btn-secondary">Invite Friends</button>
+      <button class="btn btn-success">Ready</button>
+      <button class="btn btn-danger">Leave</button>
+      <button class="btn btn-ghost">Settings</button>
+      <button class="btn btn-primary" disabled>Waiting…</button>
+      <button class="btn-icon">⚙</button>
+      <button class="btn-icon">🔔</button>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Player Avatars</h2>
+    <div class="panel row">
+      <div class="avatar"><div class="avatar-ring" style="--ring:#C8442F"><div class="avatar-img">🦊</div><div class="avatar-status"></div></div><div class="avatar-name">You<small>P1 · Red</small></div></div>
+      <div class="avatar"><div class="avatar-ring" style="--ring:#2E5375"><div class="avatar-img">🐼</div><div class="avatar-status"></div></div><div class="avatar-name">Mika<small>P2 · Blue</small></div></div>
+      <div class="avatar"><div class="avatar-ring" style="--ring:#E8A526"><div class="avatar-img">🐯</div><div class="avatar-status off"></div></div><div class="avatar-name">Bot<small>P3 · Yellow</small></div></div>
+      <div class="avatar"><div class="avatar-ring" style="--ring:#5C8C4A"><div class="avatar-img">🐸</div><div class="avatar-status"></div></div><div class="avatar-name">Leo<small>P4 · Green</small></div></div>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">HUD · Resources</h2>
+    <div class="panel row">
+      <div class="pill coin"><span class="ico">🪙</span> 12,450 <span class="add">+</span></div>
+      <div class="pill gem"><span class="ico">💎</span> 86 <span class="add">+</span></div>
+      <div class="pill"><span class="ico">✦</span> Lvl 24</div>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Dice · cowrie bone</h2>
+    <div class="panel row">
+      <div class="die"><b class="p c"></b></div>
+      <div class="die"><b class="p tl"></b><b class="p br"></b></div>
+      <div class="die"><b class="p tl"></b><b class="p c"></b><b class="p br"></b></div>
+      <div class="die"><b class="p tl"></b><b class="p tr"></b><b class="p bl"></b><b class="p br"></b></div>
+      <div class="die"><b class="p tl"></b><b class="p tr"></b><b class="p c"></b><b class="p bl"></b><b class="p br"></b></div>
+      <div class="die rolled"><b class="p tl"></b><b class="p tr"></b><b class="p ml"></b><b class="p mr"></b><b class="p bl"></b><b class="p br"></b></div>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Toggles & Sliders</h2>
+    <div class="panel row" style="gap:32px">
+      <label class="toggle"><input type="checkbox" checked><span class="track"></span><span class="knob"></span></label>
+      <label class="toggle"><input type="checkbox"><span class="track"></span><span class="knob"></span></label>
+      <input class="slider" type="range" min="0" max="100" value="60">
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Progress</h2>
+    <div class="panel">
+      <div class="xp-row"><span>Level 24</span><span>3,400 / 5,000 XP</span></div>
+      <div class="progress"><div class="progress-fill"></div></div>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Badges & Chips</h2>
+    <div class="panel row">
+      <span class="badge new">NEW</span>
+      <span class="badge pro">★ PRO</span>
+      <span class="badge win">🏆 WINNER</span>
+      <span class="chip"><span class="dot"></span> Online</span>
+      <span class="chip">🎲 Quick Match</span>
+      <span class="notif"><button class="btn-icon">✉</button><span class="count">3</span></span>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Cards & Panels</h2>
+    <div class="panel" style="display:flex;flex-direction:column;gap:16px">
+      <div class="card">
+        <div class="avatar-ring" style="--ring:#2E5375;width:56px;height:56px"><div class="avatar-img" style="font-size:22px">🐼</div></div>
+        <div class="meta"><b>Mika_99</b><span>Level 31 · 248 wins</span></div>
+        <div class="stat">2,100<small>RATING</small></div>
+      </div>
+      <div class="card">
+        <div class="avatar-ring" style="--ring:#E8A526;width:56px;height:56px"><div class="avatar-img" style="font-size:22px">🎲</div></div>
+        <div class="meta"><b>Classic 4P</b><span>Entry 500 · Prize 1,800</span></div>
+        <button class="btn btn-primary" style="padding:10px 18px;font-size:14px">Join</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Icon Orbs</h2>
+    <div class="panel row">
+      <button class="orb p">🎮</button>
+      <button class="orb a">🛒</button>
+      <button class="orb s">👥</button>
+      <button class="orb d">✕</button>
+    </div>
+  </section>
+</div>
+</body>
+</html>

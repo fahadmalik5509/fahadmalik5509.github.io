@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>14 · Papercraft — Ludo Design System</title>
+<style>
+:root{
+  --primary:#EF6F53; --accent:#F2C14E; --success:#6FB58A; --danger:#E0556B; --ink-blue:#4A6FA5;
+  --seat0:#E0574B; --seat1:#4A77B5; --seat2:#EAB94A; --seat3:#5FA877;
+  --ink:#3a3530; --ink-muted:#766f66; --ink-faint:#a89f93;
+  --bg:#F3ECE0; --paper:#FBF6EC; --paper-2:#FFFDF8;
+  --r-sm:4px; --r-md:8px; --r-lg:12px; --r-pill:999px;
+  --cut:0 2px 0 rgba(0,0,0,.06),0 6px 10px rgba(80,60,40,.16);
+  --cut-lg:0 3px 0 rgba(0,0,0,.05),0 12px 22px rgba(80,60,40,.18);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito','Quicksand','Segoe UI',system-ui,sans-serif;color:var(--ink);
+  background:var(--bg);
+  background-image:radial-gradient(rgba(0,0,0,.025) 1px,transparent 1px);background-size:4px 4px;
+  padding:32px 16px 80px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:980px;margin:0 auto}
+.back{display:inline-block;margin-bottom:20px;color:var(--primary);font-weight:800;text-decoration:none}
+.ds-tag{display:inline-block;background:var(--primary);color:#fff;padding:7px 18px;font-size:13px;font-weight:800;letter-spacing:.5px;box-shadow:var(--cut);transform:rotate(-1.5deg);clip-path:polygon(2% 0,100% 3%,98% 100%,0 96%)}
+.ds-header h1{font-size:50px;font-weight:900;margin:18px 0 8px;color:var(--ink);letter-spacing:-1px}
+.ds-philosophy{font-size:17px;color:var(--ink-muted);font-weight:600;max-width:640px;line-height:1.5}
+.ds-section{margin-top:46px}
+.ds-section-title{font-size:13px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--ink-faint);margin-bottom:18px}
+.panel{background:var(--paper);border-radius:var(--r-lg);padding:28px;box-shadow:var(--cut-lg);position:relative}
+.panel::before{content:"";position:absolute;left:14px;right:14px;top:0;height:10px;background:var(--paper-2);border-radius:0 0 8px 8px;box-shadow:0 2px 4px rgba(0,0,0,.08);transform:translateY(-6px)}
+.row{display:flex;flex-wrap:wrap;gap:18px;align-items:center}
+
+.swatches{display:flex;flex-wrap:wrap;gap:16px}
+.sw{width:92px;height:80px;display:flex;align-items:flex-end;padding:8px;color:#fff;font-weight:800;font-size:12px;box-shadow:var(--cut);clip-path:polygon(3% 1%,100% 0,97% 99%,0 100%)}
+.sw:nth-child(even){transform:rotate(1.5deg)}.sw:nth-child(odd){transform:rotate(-1.5deg)}
+.s-primary{background:var(--primary)}.s-accent{background:var(--accent);color:var(--ink)}.s-success{background:var(--success)}
+.s-danger{background:var(--danger)}.s-seat0{background:var(--seat0)}.s-seat1{background:var(--seat1)}
+.s-seat2{background:var(--seat2);color:var(--ink)}.s-seat3{background:var(--seat3)}
+
+.type-display{font-size:46px;font-weight:900;letter-spacing:-1px;color:var(--primary)}
+.type-title{font-size:28px;font-weight:800;margin-top:10px;color:var(--ink-blue)}
+.type-heading{font-size:20px;font-weight:800;margin-top:8px}
+.type-body{font-size:15px;font-weight:600;color:var(--ink-muted);margin-top:8px;max-width:560px;line-height:1.55}
+.type-caption{font-size:12px;font-weight:800;letter-spacing:2px;color:var(--ink-faint);margin-top:10px}
+
+.btn{font-family:inherit;font-weight:800;font-size:16px;cursor:pointer;padding:14px 26px;color:#fff;border:none;
+  box-shadow:var(--cut);transition:transform .1s;clip-path:polygon(2% 4%,100% 0,98% 96%,0 100%)}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.06),0 3px 5px rgba(80,60,40,.16)}
+.btn-primary{background:var(--primary)}.btn-secondary{background:var(--accent);color:var(--ink)}
+.btn-success{background:var(--success)}.btn-danger{background:var(--danger)}
+.btn-ghost{background:var(--paper-2);color:var(--ink)}
+.btn:disabled{background:#cfc6b6;color:#fff;cursor:not-allowed;transform:none}
+.btn-icon{width:54px;height:54px;border:none;cursor:pointer;font-size:22px;background:var(--paper-2);color:var(--primary);box-shadow:var(--cut);clip-path:polygon(4% 2%,98% 0,100% 97%,2% 100%)}
+
+.avatar{display:flex;flex-direction:column;align-items:center;gap:8px;width:96px}
+.avatar-ring{width:74px;height:74px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;background:var(--ring);box-shadow:var(--cut)}
+.avatar-ring::after{content:"";position:absolute;inset:5px;border-radius:50%;border:2px dashed rgba(255,255,255,.6)}
+.avatar-img{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;background:var(--paper-2);z-index:1}
+.avatar-status{position:absolute;right:0;bottom:0;width:18px;height:18px;border-radius:50%;background:var(--success);border:2px solid var(--paper);z-index:2}
+.avatar-status.off{background:#b3a99a}
+.avatar-name{font-weight:800;font-size:14px}
+.avatar-name small{display:block;font-weight:700;color:var(--ink-faint);font-size:11px}
+
+.pill{display:inline-flex;align-items:center;gap:9px;background:var(--paper-2);padding:7px 18px 7px 7px;font-weight:800;font-size:15px;box-shadow:var(--cut);clip-path:polygon(3% 6%,100% 0,97% 94%,0 100%)}
+.pill .ico{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px}
+.pill.coin .ico{background:var(--accent)}.pill.gem .ico{background:#6FC2C2}.pill .ico{background:var(--primary)}
+.pill .add{margin-left:4px;width:26px;height:26px;border-radius:50%;background:var(--success);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900}
+
+.die{width:64px;height:64px;background:var(--paper-2);position:relative;box-shadow:var(--cut);clip-path:polygon(4% 2%,98% 0,100% 96%,2% 100%)}
+.die::after{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(0,0,0,.07)}
+.die .p{position:absolute;width:11px;height:11px;border-radius:50%;background:var(--primary);transform:translate(-50%,-50%)}
+.die .tl{left:28%;top:28%}.die .tr{left:72%;top:28%}.die .ml{left:28%;top:50%}.die .c{left:50%;top:50%}.die .mr{left:72%;top:50%}.die .bl{left:28%;top:72%}.die .br{left:72%;top:72%}
+.die.rolled{background:#FFF3D6}
+.die.rolled .p{background:var(--accent)}
+
+.toggle{position:relative;display:inline-block;width:66px;height:34px}
+.toggle input{display:none}
+.toggle .track{position:absolute;inset:0;border-radius:var(--r-pill);background:#e3dac9;transition:.2s;box-shadow:inset 0 2px 4px rgba(0,0,0,.12)}
+.toggle .knob{position:absolute;top:3px;left:3px;width:26px;height:26px;border-radius:50%;background:var(--paper-2);transition:.2s;box-shadow:var(--cut)}
+.toggle input:checked + .track{background:var(--success)}
+.toggle input:checked + .track + .knob{transform:translateX(31px)}
+.slider{-webkit-appearance:none;width:240px;height:12px;border-radius:var(--r-pill);background:#e3dac9;box-shadow:inset 0 2px 4px rgba(0,0,0,.12);outline:none}
+.slider::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:var(--primary);cursor:pointer;box-shadow:var(--cut)}
+
+.progress{height:20px;background:#e3dac9;border-radius:var(--r-pill);overflow:hidden;padding:3px;box-shadow:inset 0 2px 4px rgba(0,0,0,.12)}
+.progress-fill{height:100%;width:66%;border-radius:var(--r-pill);background:var(--primary)}
+.xp-row{display:flex;justify-content:space-between;font-weight:800;font-size:13px;color:var(--ink-muted);margin-bottom:8px}
+
+.badge{display:inline-flex;align-items:center;gap:6px;font-weight:800;font-size:12px;padding:6px 14px;color:#fff;box-shadow:var(--cut);clip-path:polygon(4% 8%,100% 0,96% 92%,0 100%)}
+.badge.new{background:var(--danger)}.badge.pro{background:var(--accent);color:var(--ink)}.badge.win{background:var(--success)}
+.chip{display:inline-flex;align-items:center;gap:8px;background:var(--paper-2);padding:8px 16px;font-weight:700;font-size:13px;box-shadow:var(--cut);clip-path:polygon(2% 6%,100% 0,98% 94%,0 100%)}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--success)}
+.notif{position:relative;display:inline-flex}
+.notif .count{position:absolute;top:-8px;right:-8px;background:var(--danger);color:#fff;font-size:11px;font-weight:900;min-width:23px;height:23px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid var(--paper)}
+
+.card{background:var(--paper-2);padding:16px;display:flex;align-items:center;gap:14px;box-shadow:var(--cut-lg);max-width:430px;clip-path:polygon(1% 3%,100% 0,99% 97%,0 100%)}
+.card .meta{flex:1}
+.card .meta b{font-size:17px;font-weight:800}
+.card .meta span{display:block;font-size:13px;color:var(--ink-muted);font-weight:700}
+.card .stat{text-align:center;font-weight:900;color:var(--primary)}
+.card .stat small{display:block;color:var(--ink-faint);font-size:11px;font-weight:800}
+
+.orb{width:58px;height:58px;border-radius:50%;cursor:pointer;font-size:22px;color:#fff;border:none;display:flex;align-items:center;justify-content:center;box-shadow:var(--cut);transition:transform .1s}
+.orb:active{transform:translateY(3px)}
+.orb.p{background:var(--primary)}.orb.a{background:var(--ink-blue)}.orb.s{background:var(--success)}.orb.d{background:var(--danger)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← All designs</a>
+  <header class="ds-header">
+    <span class="ds-tag">DESIGN 14</span>
+    <h1>Papercraft</h1>
+    <p class="ds-philosophy">Layered cut-and-fold paper. Matte construction-paper tones, hand-trimmed edges, dashed creases, and soft fold shadows that stack like a pop-up book. Crafty, warm, and handmade.</p>
+  </header>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Palette</h2>
+    <div class="swatches">
+      <div class="sw s-primary"><span>Primary</span></div>
+      <div class="sw s-accent"><span>Accent</span></div>
+      <div class="sw s-success"><span>Success</span></div>
+      <div class="sw s-danger"><span>Danger</span></div>
+      <div class="sw s-seat0"><span>Seat 1</span></div>
+      <div class="sw s-seat1"><span>Seat 2</span></div>
+      <div class="sw s-seat2"><span>Seat 3</span></div>
+      <div class="sw s-seat3"><span>Seat 4</span></div>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Typography</h2>
+    <div class="panel">
+      <p class="type-display">Ludo Royale</p>
+      <p class="type-title">Match Found!</p>
+      <p class="type-heading">Private Room · 4 Players</p>
+      <p class="type-body">Roll the dice, race your tokens home, and knock your rivals back to the yard. First to bring all four pieces home wins the crown.</p>
+      <p class="type-caption">TAP ANYWHERE TO CONTINUE</p>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Buttons</h2>
+    <div class="panel row">
+      <button class="btn btn-primary">Play Now</button>
+      <button class="btn btn-secondary">Invite Friends</button>
+      <button class="btn btn-success">Ready</button>
+      <button class="btn btn-danger">Leave</button>
+      <button class="btn btn-ghost">Settings</button>
+      <button class="btn btn-primary" disabled>Waiting…</button>
+      <button class="btn-icon">⚙</button>
+      <button class="btn-icon">🔔</button>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Player Avatars</h2>
+    <div class="panel row">
+      <div class="avatar"><div class="avatar-ring" style="--ring:#E0574B"><div class="avatar-img">🦊</div><div class="avatar-status"></div></div><div class="avatar-name">You<small>P1 · Red</small></div></div>
+      <div class="avatar"><div class="avatar-ring" style="--ring:#4A77B5"><div class="avatar-img">🐼</div><div class="avatar-status"></div></div><div class="avatar-name">Mika<small>P2 · Blue</small></div></div>
+      <div class="avatar"><div class="avatar-ring" style="--ring:#EAB94A"><div class="avatar-img">🐯</div><div class="avatar-status off"></div></div><div class="avatar-name">Bot<small>P3 · Yellow</small></div></div>
+      <div class="avatar"><div class="avatar-ring" style="--ring:#5FA877"><div class="avatar-img">🐸</div><div class="avatar-status"></div></div><div class="avatar-name">Leo<small>P4 · Green</small></div></div>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">HUD · Resources</h2>
+    <div class="panel row">
+      <div class="pill coin"><span class="ico">🪙</span> 12,450 <span class="add">+</span></div>
+      <div class="pill gem"><span class="ico">💎</span> 86 <span class="add">+</span></div>
+      <div class="pill"><span class="ico">⚡</span> Lvl 24</div>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Dice</h2>
+    <div class="panel row">
+      <div class="die"><b class="p c"></b></div>
+      <div class="die"><b class="p tl"></b><b class="p br"></b></div>
+      <div class="die"><b class="p tl"></b><b class="p c"></b><b class="p br"></b></div>
+      <div class="die"><b class="p tl"></b><b class="p tr"></b><b class="p bl"></b><b class="p br"></b></div>
+      <div class="die"><b class="p tl"></b><b class="p tr"></b><b class="p c"></b><b class="p bl"></b><b class="p br"></b></div>
+      <div class="die rolled"><b class="p tl"></b><b class="p tr"></b><b class="p ml"></b><b class="p mr"></b><b class="p bl"></b><b class="p br"></b></div>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Toggles & Sliders</h2>
+    <div class="panel row" style="gap:32px">
+      <label class="toggle"><input type="checkbox" checked><span class="track"></span><span class="knob"></span></label>
+      <label class="toggle"><input type="checkbox"><span class="track"></span><span class="knob"></span></label>
+      <input class="slider" type="range" min="0" max="100" value="60">
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Progress</h2>
+    <div class="panel">
+      <div class="xp-row"><span>Level 24</span><span>3,400 / 5,000 XP</span></div>
+      <div class="progress"><div class="progress-fill"></div></div>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Badges & Chips</h2>
+    <div class="panel row">
+      <span class="badge new">NEW</span>
+      <span class="badge pro">★ PRO</span>
+      <span class="badge win">🏆 WINNER</span>
+      <span class="chip"><span class="dot"></span> Online</span>
+      <span class="chip">🎲 Quick Match</span>
+      <span class="notif"><button class="btn-icon">✉</button><span class="count">3</span></span>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Cards & Panels</h2>
+    <div class="panel" style="display:flex;flex-direction:column;gap:18px">
+      <div class="card">
+        <div class="avatar-ring" style="--ring:#4A77B5;width:56px;height:56px"><div class="avatar-img" style="font-size:20px;width:42px;height:42px">🐼</div></div>
+        <div class="meta"><b>Mika_99</b><span>Level 31 · 248 wins</span></div>
+        <div class="stat">2,100<small>RATING</small></div>
+      </div>
+      <div class="card">
+        <div class="avatar-ring" style="--ring:#EAB94A;width:56px;height:56px"><div class="avatar-img" style="font-size:20px;width:42px;height:42px">🎲</div></div>
+        <div class="meta"><b>Classic 4P</b><span>Entry 500 · Prize 1,800</span></div>
+        <button class="btn btn-primary" style="padding:11px 18px;font-size:14px">Join</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Icon Orbs</h2>
+    <div class="panel row">
+      <button class="orb p">🎮</button>
+      <button class="orb a">🛒</button>
+      <button class="orb s">👥</button>
+      <button class="orb d">✕</button>
+    </div>
+  </section>
+</div>
+</body>
+</html>

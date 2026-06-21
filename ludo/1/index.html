@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>04 · Neubrutalism — Ludo Design System</title>
+<style>
+:root{
+  --primary:#7C5CFF; --accent:#FFD23F; --success:#3FD98B; --danger:#FF5C7A;
+  --seat0:#FF5C5C; --seat1:#4C8DFF; --seat2:#FFD23F; --seat3:#49E06B;
+  --ink:#16131F; --paper:#FFFFFF; --bg:#FFF6E6;
+  --r-sm:6px; --r-md:10px; --r-lg:14px; --r-pill:999px;
+  --bd:3px solid #16131F; --bd2:4px solid #16131F;
+  --sh:5px 5px 0 #16131F; --sh-lg:7px 7px 0 #16131F; --sh-sm:3px 3px 0 #16131F;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Archivo','Segoe UI',system-ui,sans-serif;color:var(--ink);
+  background:var(--bg);
+  background-image:radial-gradient(#16131f 1.4px, transparent 1.4px);background-size:26px 26px;
+  padding:32px 16px 80px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:980px;margin:0 auto}
+.back{display:inline-block;margin-bottom:20px;color:var(--ink);font-weight:900;text-decoration:none;background:#fff;border:var(--bd);box-shadow:var(--sh-sm);padding:8px 14px;border-radius:var(--r-sm)}
+.ds-tag{display:inline-block;background:var(--primary);color:#fff;border:var(--bd);box-shadow:var(--sh-sm);padding:7px 14px;border-radius:var(--r-sm);font-size:13px;font-weight:900;letter-spacing:.5px;text-transform:uppercase}
+.ds-header h1{font-size:50px;font-weight:900;margin:18px 0 10px;letter-spacing:-1.5px;text-transform:uppercase;-webkit-text-stroke:1px #16131f}
+.ds-philosophy{font-size:17px;color:var(--ink);font-weight:600;max-width:640px;line-height:1.5;background:#fff;border:var(--bd);box-shadow:var(--sh);padding:14px 18px;border-radius:var(--r-md)}
+.ds-section{margin-top:44px}
+.ds-section-title{font-size:14px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:var(--ink);margin-bottom:16px;background:var(--accent);display:inline-block;border:var(--bd);box-shadow:var(--sh-sm);padding:5px 12px;border-radius:var(--r-sm)}
+.panel{background:var(--paper);border:var(--bd2);border-radius:var(--r-lg);padding:26px;box-shadow:var(--sh-lg)}
+.row{display:flex;flex-wrap:wrap;gap:18px;align-items:center}
+
+.swatches{display:flex;flex-wrap:wrap;gap:14px}
+.sw{width:96px;height:80px;border-radius:var(--r-md);display:flex;align-items:flex-end;padding:8px;color:#fff;font-weight:900;font-size:12px;border:var(--bd);box-shadow:var(--sh)}
+.s-primary{background:var(--primary)}.s-accent{background:var(--accent);color:#16131f}.s-success{background:var(--success);color:#16131f}
+.s-danger{background:var(--danger)}.s-seat0{background:var(--seat0)}.s-seat1{background:var(--seat1)}
+.s-seat2{background:var(--seat2);color:#16131f}.s-seat3{background:var(--seat3);color:#16131f}
+
+.type-display{font-size:46px;font-weight:900;letter-spacing:-1.5px;text-transform:uppercase;color:var(--primary);-webkit-text-stroke:1.5px #16131f}
+.type-title{font-size:28px;font-weight:900;margin-top:12px;text-transform:uppercase}
+.type-heading{font-size:19px;font-weight:800;margin-top:8px}
+.type-body{font-size:15px;font-weight:600;color:#3a3550;margin-top:8px;max-width:560px;line-height:1.55}
+.type-caption{font-size:12px;font-weight:900;letter-spacing:2px;color:var(--ink);margin-top:10px}
+
+.btn{font-family:inherit;font-weight:900;font-size:16px;cursor:pointer;padding:14px 24px;color:var(--ink);
+  border:var(--bd);border-radius:var(--r-md);box-shadow:var(--sh);transition:transform .08s,box-shadow .08s;text-transform:uppercase}
+.btn:active{transform:translate(5px,5px);box-shadow:0 0 0 #16131f}
+.btn-primary{background:var(--primary);color:#fff}.btn-secondary{background:var(--accent)}
+.btn-success{background:var(--success)}.btn-danger{background:var(--danger);color:#fff}.btn-ghost{background:#fff}
+.btn:disabled{background:#d8d4e4;color:#7a7690;cursor:not-allowed;box-shadow:var(--sh-sm);transform:none}
+.btn-icon{width:54px;height:54px;border:var(--bd);border-radius:var(--r-md);cursor:pointer;font-size:22px;background:#fff;box-shadow:var(--sh)}
+.btn-icon:active{transform:translate(5px,5px);box-shadow:0 0 0 #16131f}
+
+.avatar{display:flex;flex-direction:column;align-items:center;gap:8px;width:96px}
+.avatar-ring{width:72px;height:72px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;position:relative;background:var(--ring);border:var(--bd);box-shadow:var(--sh)}
+.avatar-img{width:54px;height:54px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:26px;background:#fff;border:2px solid #16131f}
+.avatar-status{position:absolute;right:-6px;bottom:-6px;width:20px;height:20px;border-radius:50%;background:var(--success);border:var(--bd)}
+.avatar-status.off{background:#c5c0d4}
+.avatar-name{font-weight:900;font-size:13px}
+.avatar-name small{display:block;font-weight:700;color:#7a7690;font-size:11px}
+
+.pill{display:inline-flex;align-items:center;gap:8px;background:#fff;border:var(--bd);box-shadow:var(--sh);border-radius:var(--r-pill);padding:7px 16px 7px 7px;font-weight:900;font-size:15px}
+.pill .ico{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;border:2px solid #16131f}
+.pill.coin .ico{background:var(--coin,#FFC93C)}.pill.gem .ico{background:#45E0E0}
+.pill .add{margin-left:4px;width:26px;height:26px;border-radius:6px;background:var(--success);color:#16131f;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;border:2px solid #16131f}
+
+.die{width:64px;height:64px;border-radius:var(--r-md);background:#fff;border:var(--bd2);box-shadow:var(--sh);position:relative}
+.die .p{position:absolute;width:12px;height:12px;border-radius:50%;background:#16131f;transform:translate(-50%,-50%)}
+.die .tl{left:28%;top:28%}.die .tr{left:72%;top:28%}.die .ml{left:28%;top:50%}.die .c{left:50%;top:50%}.die .mr{left:72%;top:50%}.die .bl{left:28%;top:72%}.die .br{left:72%;top:72%}
+.die.rolled{background:var(--accent)}
+.die.rolled .p{background:#16131f}
+
+.toggle{position:relative;display:inline-block;width:66px;height:36px}
+.toggle input{display:none}
+.toggle .track{position:absolute;inset:0;border-radius:var(--r-sm);background:#fff;border:var(--bd);transition:.15s}
+.toggle .knob{position:absolute;top:3px;left:3px;width:26px;height:26px;border-radius:4px;background:var(--ink);transition:.15s}
+.toggle input:checked + .track{background:var(--success)}
+.toggle input:checked + .track + .knob{transform:translateX(30px)}
+.slider{-webkit-appearance:none;width:240px;height:16px;border-radius:var(--r-sm);background:#fff;border:var(--bd);outline:none}
+.slider::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:4px;background:var(--primary);border:var(--bd);cursor:pointer}
+
+.progress{height:22px;background:#fff;border:var(--bd);border-radius:var(--r-sm);overflow:hidden;padding:3px}
+.progress-fill{height:100%;width:66%;border-radius:3px;background:var(--accent);border-right:3px solid #16131f}
+.xp-row{display:flex;justify-content:space-between;font-weight:900;font-size:12px;color:var(--ink);margin-bottom:8px;text-transform:uppercase}
+
+.badge{display:inline-flex;align-items:center;gap:6px;font-weight:900;font-size:12px;padding:7px 13px;border-radius:var(--r-sm);color:#16131f;border:var(--bd);box-shadow:var(--sh-sm);text-transform:uppercase}
+.badge.new{background:var(--danger);color:#fff}.badge.pro{background:var(--accent)}.badge.win{background:var(--success)}
+.chip{display:inline-flex;align-items:center;gap:8px;background:#fff;border:var(--bd);box-shadow:var(--sh-sm);padding:8px 14px;border-radius:var(--r-sm);font-weight:800;font-size:13px}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--success);border:2px solid #16131f}
+.notif{position:relative;display:inline-flex}
+.notif .count{position:absolute;top:-8px;right:-8px;background:var(--danger);color:#fff;font-size:11px;font-weight:900;min-width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:var(--bd)}
+
+.card{background:#fff;border:var(--bd2);border-radius:var(--r-lg);padding:16px;display:flex;align-items:center;gap:14px;box-shadow:var(--sh-lg);max-width:430px}
+.card .meta{flex:1}
+.card .meta b{font-size:16px;font-weight:900}
+.card .meta span{display:block;font-size:13px;color:#7a7690;font-weight:700}
+.card .stat{text-align:center;font-weight:900;color:var(--primary)}
+.card .stat small{display:block;color:#7a7690;font-size:11px;font-weight:800}
+
+.orb{width:60px;height:60px;border-radius:50%;cursor:pointer;font-size:24px;border:var(--bd);box-shadow:var(--sh);display:flex;align-items:center;justify-content:center}
+.orb:active{transform:translate(5px,5px);box-shadow:0 0 0 #16131f}
+.orb.p{background:var(--primary)}.orb.a{background:var(--accent)}.orb.s{background:var(--success)}.orb.d{background:var(--danger)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← All designs</a>
+  <header class="ds-header">
+    <span class="ds-tag">DESIGN 04</span>
+    <h1>Neubrutalism</h1>
+    <p class="ds-philosophy">Loud and confident. Thick black outlines, hard offset shadows, flat saturated fills, zero gradients. High contrast and unmistakably tappable — buttons physically slam down on press.</p>
+  </header>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Palette</h2>
+    <div class="swatches">
+      <div class="sw s-primary"><span>Primary</span></div>
+      <div class="sw s-accent"><span>Accent</span></div>
+      <div class="sw s-success"><span>Success</span></div>
+      <div class="sw s-danger"><span>Danger</span></div>
+      <div class="sw s-seat0"><span>Seat 1</span></div>
+      <div class="sw s-seat1"><span>Seat 2</span></div>
+      <div class="sw s-seat2"><span>Seat 3</span></div>
+      <div class="sw s-seat3"><span>Seat 4</span></div>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Typography</h2>
+    <div class="panel">
+      <p class="type-display">Ludo Royale</p>
+      <p class="type-title">Match Found!</p>
+      <p class="type-heading">Private Room · 4 Players</p>
+      <p class="type-body">Roll the dice, race your tokens home, and knock your rivals back to the yard. First to bring all four pieces home wins the crown.</p>
+      <p class="type-caption">TAP ANYWHERE TO CONTINUE</p>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Buttons</h2>
+    <div class="panel row">
+      <button class="btn btn-primary">Play Now</button>
+      <button class="btn btn-secondary">Invite Friends</button>
+      <button class="btn btn-success">Ready</button>
+      <button class="btn btn-danger">Leave</button>
+      <button class="btn btn-ghost">Settings</button>
+      <button class="btn btn-primary" disabled>Waiting…</button>
+      <button class="btn-icon">⚙</button>
+      <button class="btn-icon">🔔</button>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Player Avatars</h2>
+    <div class="panel row">
+      <div class="avatar"><div class="avatar-ring" style="--ring:#FF5C5C"><div class="avatar-img">🦊</div><div class="avatar-status"></div></div><div class="avatar-name">You<small>P1 · Red</small></div></div>
+      <div class="avatar"><div class="avatar-ring" style="--ring:#4C8DFF"><div class="avatar-img">🐼</div><div class="avatar-status"></div></div><div class="avatar-name">Mika<small>P2 · Blue</small></div></div>
+      <div class="avatar"><div class="avatar-ring" style="--ring:#FFD23F"><div class="avatar-img">🐯</div><div class="avatar-status off"></div></div><div class="avatar-name">Bot<small>P3 · Yellow</small></div></div>
+      <div class="avatar"><div class="avatar-ring" style="--ring:#49E06B"><div class="avatar-img">🐸</div><div class="avatar-status"></div></div><div class="avatar-name">Leo<small>P4 · Green</small></div></div>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">HUD · Resources</h2>
+    <div class="panel row">
+      <div class="pill coin"><span class="ico">🪙</span> 12,450 <span class="add">+</span></div>
+      <div class="pill gem"><span class="ico">💎</span> 86 <span class="add">+</span></div>
+      <div class="pill"><span class="ico" style="background:#fff">⚡</span> Lvl 24</div>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Dice</h2>
+    <div class="panel row">
+      <div class="die"><b class="p c"></b></div>
+      <div class="die"><b class="p tl"></b><b class="p br"></b></div>
+      <div class="die"><b class="p tl"></b><b class="p c"></b><b class="p br"></b></div>
+      <div class="die"><b class="p tl"></b><b class="p tr"></b><b class="p bl"></b><b class="p br"></b></div>
+      <div class="die"><b class="p tl"></b><b class="p tr"></b><b class="p c"></b><b class="p bl"></b><b class="p br"></b></div>
+      <div class="die rolled"><b class="p tl"></b><b class="p tr"></b><b class="p ml"></b><b class="p mr"></b><b class="p bl"></b><b class="p br"></b></div>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Toggles & Sliders</h2>
+    <div class="panel row" style="gap:32px">
+      <label class="toggle"><input type="checkbox" checked><span class="track"></span><span class="knob"></span></label>
+      <label class="toggle"><input type="checkbox"><span class="track"></span><span class="knob"></span></label>
+      <input class="slider" type="range" min="0" max="100" value="60">
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Progress</h2>
+    <div class="panel">
+      <div class="xp-row"><span>Level 24</span><span>3,400 / 5,000 XP</span></div>
+      <div class="progress"><div class="progress-fill"></div></div>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Badges & Chips</h2>
+    <div class="panel row">
+      <span class="badge new">NEW</span>
+      <span class="badge pro">★ PRO</span>
+      <span class="badge win">🏆 WINNER</span>
+      <span class="chip"><span class="dot"></span> Online</span>
+      <span class="chip">🎲 Quick Match</span>
+      <span class="notif"><button class="btn-icon">✉</button><span class="count">3</span></span>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Cards & Panels</h2>
+    <div class="panel" style="display:flex;flex-direction:column;gap:16px">
+      <div class="card">
+        <div class="avatar-ring" style="--ring:#4C8DFF;width:56px;height:56px"><div class="avatar-img" style="font-size:20px;width:42px;height:42px">🐼</div></div>
+        <div class="meta"><b>Mika_99</b><span>Level 31 · 248 wins</span></div>
+        <div class="stat">2,100<small>RATING</small></div>
+      </div>
+      <div class="card">
+        <div class="avatar-ring" style="--ring:#FFD23F;width:56px;height:56px"><div class="avatar-img" style="font-size:20px;width:42px;height:42px">🎲</div></div>
+        <div class="meta"><b>Classic 4P</b><span>Entry 500 · Prize 1,800</span></div>
+        <button class="btn btn-primary" style="padding:11px 18px;font-size:14px">Join</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Icon Orbs</h2>
+    <div class="panel row">
+      <button class="orb p">🎮</button>
+      <button class="orb a">🛒</button>
+      <button class="orb s">👥</button>
+      <button class="orb d">✕</button>
+    </div>
+  </section>
+</div>
+</body>
+</html>

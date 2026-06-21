@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>28 · Brass Clockwork — Ludo Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Spectral:wght@300;500;600&display=swap" rel="stylesheet">
+<style>
+/* SUBJECT: the dice-and-token machine as a brass automaton — a coin-op contraption
+   that moves your pieces. SIGNATURE: gear-tooth ring borders + riveted engraved
+   brass plates with green patina in the recesses. RISK: warm aged brass, not cold
+   chrome. PRIOR ART: orreries, pocket-watch movements, penny-arcade machines. */
+:root{
+  --brass:#C79A48; --brass-l:#E6C77E; --brass-d:#8a6a26; --plate:#2A2418; --plate-2:#332B1C; --bg:#1C1810;
+  --ink:#F3E9D2; --ink-muted:#c2b288; --ink-faint:#8a7c5c; --patina:#3E8E7E; --copper:#C06A3A; --ruby:#B5413A;
+  --seat0:#B5413A; --seat1:#3E6E9E; --seat2:#C79A48; --seat3:#5E8C5A;
+  --line:rgba(199,154,72,.32);
+  --r-sm:4px; --r-md:8px; --r-lg:12px; --r-pill:999px;
+  --teeth:repeating-conic-gradient(from 0deg,var(--brass) 0deg 6deg,var(--brass-d) 6deg 12deg);
+  --emboss:inset 0 1px 0 rgba(255,255,255,.25),inset 0 -2px 4px rgba(0,0,0,.5),0 4px 10px rgba(0,0,0,.5);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Spectral',serif;color:var(--ink);
+  background:radial-gradient(900px 500px at 50% -5%,#2a2417,var(--bg) 65%,#100d08);
+  padding:32px 16px 80px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:980px;margin:0 auto}
+.back{display:inline-block;margin-bottom:20px;color:var(--brass-l);font-weight:500;text-decoration:none;letter-spacing:.5px}
+.ds-tag{display:inline-block;background:linear-gradient(180deg,var(--brass-l),var(--brass-d));color:var(--plate);padding:6px 16px;border-radius:var(--r-sm);font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;box-shadow:var(--emboss)}
+.ds-header h1{font-family:'Cinzel',serif;font-size:54px;font-weight:700;margin:16px 0 8px;letter-spacing:1px;
+  background:linear-gradient(180deg,var(--brass-l),var(--brass-d));-webkit-background-clip:text;background-clip:text;color:transparent}
+.ds-philosophy{font-size:17px;color:var(--ink-muted);font-weight:300;max-width:600px;line-height:1.6}
+.ds-section{margin-top:46px}
+.ds-section-title{font-family:'Cinzel',serif;font-size:13px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--brass);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.ds-section-title::before{content:"";width:16px;height:16px;background:var(--teeth);border-radius:50%;box-shadow:inset 0 0 0 4px var(--bg)}
+.panel{background:linear-gradient(180deg,var(--plate-2),var(--plate));border:1px solid var(--line);border-radius:var(--r-lg);padding:28px;position:relative;
+  box-shadow:var(--emboss)}
+.panel::before,.panel::after{content:"";position:absolute;width:8px;height:8px;border-radius:50%;background:radial-gradient(circle at 35% 30%,var(--brass-l),var(--brass-d));box-shadow:inset 0 -1px 1px rgba(0,0,0,.5)}
+.panel::before{left:10px;top:10px}.panel::after{right:10px;top:10px}
+.row{display:flex;flex-wrap:wrap;gap:18px;align-items:center}
+
+.swatches{display:flex;flex-wrap:wrap;gap:14px}
+.sw{width:92px;height:78px;border-radius:var(--r-md);display:flex;align-items:flex-end;padding:8px;color:var(--plate);font-weight:600;font-size:12px;box-shadow:var(--emboss)}
+.s-primary{background:linear-gradient(180deg,var(--brass-l),var(--brass))}.s-accent{background:var(--copper);color:#fff}.s-success{background:var(--patina);color:#fff}
+.s-danger{background:var(--ruby);color:#fff}.s-seat0{background:var(--seat0);color:#fff}.s-seat1{background:var(--seat1);color:#fff}
+.s-seat2{background:var(--seat2)}.s-seat3{background:var(--seat3);color:#fff}
+
+.type-display{font-family:'Cinzel',serif;font-size:48px;font-weight:700;background:linear-gradient(180deg,var(--brass-l),var(--brass-d));-webkit-background-clip:text;background-clip:text;color:transparent}
+.type-title{font-family:'Cinzel',serif;font-size:28px;font-weight:500;margin-top:12px;color:var(--ink)}
+.type-heading{font-size:19px;font-weight:600;margin-top:10px;color:var(--brass-l)}
+.type-body{font-size:16px;font-weight:300;color:var(--ink-muted);margin-top:8px;max-width:560px;line-height:1.65}
+.type-caption{font-size:12px;font-weight:600;letter-spacing:3px;color:var(--ink-faint);margin-top:12px;text-transform:uppercase}
+
+.btn{font-family:'Cinzel',serif;font-weight:700;font-size:13px;letter-spacing:1.5px;cursor:pointer;padding:14px 24px;text-transform:uppercase;color:var(--plate);
+  border:1px solid rgba(0,0,0,.4);border-radius:var(--r-md);box-shadow:var(--emboss);transition:transform .1s,filter .12s}
+.btn:hover{filter:brightness(1.06)}
+.btn:active{transform:translateY(2px)}
+.btn-primary{background:linear-gradient(180deg,var(--brass-l),var(--brass))}
+.btn-secondary{background:linear-gradient(180deg,#d98a5c,var(--copper));color:#fff}
+.btn-success{background:linear-gradient(180deg,#5cbfa9,var(--patina));color:#fff}
+.btn-danger{background:linear-gradient(180deg,#cf6359,var(--ruby));color:#fff}
+.btn-ghost{background:linear-gradient(180deg,var(--plate-2),var(--plate));color:var(--brass-l);border:1px solid var(--line)}
+.btn:disabled{background:#3a3326;color:var(--ink-faint);cursor:not-allowed;box-shadow:inset 0 2px 4px rgba(0,0,0,.5);transform:none}
+.btn-icon{width:52px;height:52px;border:1px solid rgba(0,0,0,.4);border-radius:50%;cursor:pointer;font-size:20px;background:linear-gradient(180deg,var(--brass-l),var(--brass));color:var(--plate);box-shadow:var(--emboss)}
+
+.avatar{display:flex;flex-direction:column;align-items:center;gap:8px;width:96px}
+.avatar-ring{width:74px;height:74px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;background:var(--teeth);box-shadow:var(--emboss);padding:6px}
+.avatar-img{width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;background:var(--plate);border:2px solid var(--ring)}
+.avatar-status{position:absolute;right:0;bottom:0;width:16px;height:16px;border-radius:50%;background:var(--patina);border:2px solid var(--plate)}
+.avatar-status.off{background:var(--ink-faint)}
+.avatar-name{font-family:'Cinzel',serif;font-weight:500;font-size:13px}
+.avatar-name small{display:block;font-family:'Spectral',serif;font-weight:300;color:var(--ink-faint);font-size:11px}
+
+.pill{display:inline-flex;align-items:center;gap:9px;background:linear-gradient(180deg,var(--plate-2),var(--plate));border:1px solid var(--line);border-radius:var(--r-pill);padding:6px 16px 6px 6px;font-weight:600;font-size:15px;box-shadow:var(--emboss)}
+.pill .ico{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;background:linear-gradient(180deg,var(--brass-l),var(--brass));box-shadow:var(--emboss)}
+.pill .add{margin-left:4px;width:24px;height:24px;border-radius:50%;background:linear-gradient(180deg,#5cbfa9,var(--patina));color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700;box-shadow:var(--emboss)}
+
+.die{width:64px;height:64px;border-radius:8px;background:linear-gradient(180deg,var(--brass-l),var(--brass));position:relative;border:1px solid var(--brass-d);box-shadow:var(--emboss)}
+.die .p{position:absolute;width:11px;height:11px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#4a3a16,#1c1408);transform:translate(-50%,-50%);box-shadow:inset 0 1px 1px rgba(255,255,255,.3)}
+.die .tl{left:28%;top:28%}.die .tr{left:72%;top:28%}.die .ml{left:28%;top:50%}.die .c{left:50%;top:50%}.die .mr{left:72%;top:50%}.die .bl{left:28%;top:72%}.die .br{left:72%;top:72%}
+.die.rolled{box-shadow:var(--emboss),0 0 22px rgba(199,154,72,.6)}
+
+.toggle{position:relative;display:inline-block;width:62px;height:30px}
+.toggle input{display:none}
+.toggle .track{position:absolute;inset:0;border-radius:var(--r-pill);background:var(--bg);border:1px solid var(--line);transition:.2s;box-shadow:inset 0 2px 4px rgba(0,0,0,.5)}
+.toggle .knob{position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:var(--teeth);box-shadow:var(--emboss);transition:.2s}
+.toggle input:checked + .track{box-shadow:inset 0 2px 4px rgba(0,0,0,.5),inset 0 0 0 15px rgba(62,142,126,.6)}
+.toggle input:checked + .track + .knob{transform:translateX(32px)}
+.slider{-webkit-appearance:none;width:240px;height:8px;border-radius:var(--r-pill);background:var(--bg);border:1px solid var(--line);box-shadow:inset 0 2px 4px rgba(0,0,0,.5);outline:none}
+.slider::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--teeth);cursor:pointer;box-shadow:var(--emboss)}
+
+.progress{height:18px;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-pill);overflow:hidden;padding:2px;box-shadow:inset 0 2px 4px rgba(0,0,0,.5)}
+.progress-fill{height:100%;width:66%;border-radius:var(--r-pill);background:linear-gradient(90deg,var(--brass-d),var(--brass-l));box-shadow:inset 0 1px 0 rgba(255,255,255,.3)}
+.xp-row{display:flex;justify-content:space-between;font-family:'Cinzel',serif;font-weight:500;font-size:13px;color:var(--ink-muted);margin-bottom:8px}
+
+.badge{display:inline-flex;align-items:center;gap:6px;font-family:'Cinzel',serif;font-weight:700;font-size:11px;padding:6px 14px;border-radius:var(--r-sm);color:var(--plate);box-shadow:var(--emboss);letter-spacing:1px}
+.badge.new{background:linear-gradient(180deg,#cf6359,var(--ruby));color:#fff}.badge.pro{background:linear-gradient(180deg,var(--brass-l),var(--brass))}.badge.win{background:linear-gradient(180deg,#5cbfa9,var(--patina));color:#fff}
+.chip{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(180deg,var(--plate-2),var(--plate));border:1px solid var(--line);padding:8px 15px;border-radius:var(--r-pill);font-weight:500;font-size:13px}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--patina)}
+.notif{position:relative;display:inline-flex}
+.notif .count{position:absolute;top:-8px;right:-8px;background:linear-gradient(180deg,#cf6359,var(--ruby));color:#fff;font-size:11px;font-weight:700;min-width:22px;height:22px;border-radius:var(--r-pill);display:flex;align-items:center;justify-content:center;box-shadow:var(--emboss)}
+
+.card{background:linear-gradient(180deg,var(--plate-2),var(--plate));border:1px solid var(--line);border-radius:var(--r-lg);padding:16px;display:flex;align-items:center;gap:14px;max-width:430px;box-shadow:var(--emboss)}
+.card .meta{flex:1}
+.card .meta b{font-family:'Cinzel',serif;font-size:18px;font-weight:500}
+.card .meta span{display:block;font-size:13px;color:var(--ink-muted)}
+.card .stat{text-align:center;font-family:'Cinzel',serif;font-weight:700;color:var(--brass-l)}
+.card .stat small{display:block;color:var(--ink-faint);font-size:10px;letter-spacing:1px;font-family:'Spectral',serif}
+
+.orb{width:56px;height:56px;border-radius:50%;cursor:pointer;font-size:22px;color:var(--plate);border:1px solid rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;box-shadow:var(--emboss);transition:transform .1s}
+.orb:active{transform:translateY(2px)}
+.orb.p{background:linear-gradient(180deg,var(--brass-l),var(--brass))}
+.orb.a{background:linear-gradient(180deg,#d98a5c,var(--copper));color:#fff}
+.orb.s{background:linear-gradient(180deg,#5cbfa9,var(--patina));color:#fff}
+.orb.d{background:linear-gradient(180deg,#cf6359,var(--ruby));color:#fff}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← All designs</a>
+  <header class="ds-header">
+    <span class="ds-tag">Design 28 · Mechanical</span>
+    <h1>Brass Clockwork</h1>
+    <p class="ds-philosophy">A coin-op automaton that rolls the dice and walks your tokens home. Aged brass plates, riveted seams, gear-tooth rings, and patina settled into the recesses. Warm, weighty, and intricately engineered.</p>
+  </header>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Palette</h2>
+    <div class="swatches">
+      <div class="sw s-primary"><span>Brass</span></div>
+      <div class="sw s-accent"><span>Copper</span></div>
+      <div class="sw s-success"><span>Patina</span></div>
+      <div class="sw s-danger"><span>Ruby</span></div>
+      <div class="sw s-seat0"><span>Seat 1</span></div>
+      <div class="sw s-seat1"><span>Seat 2</span></div>
+      <div class="sw s-seat2"><span>Seat 3</span></div>
+      <div class="sw s-seat3"><span>Seat 4</span></div>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Typography · Cinzel + Spectral</h2>
+    <div class="panel">
+      <p class="type-display">Ludo Royale</p>
+      <p class="type-title">Match Found</p>
+      <p class="type-heading">Private Room · 4 Players</p>
+      <p class="type-body">Roll the dice, race your tokens home, and knock your rivals back to the yard. First to bring all four pieces home wins the crown.</p>
+      <p class="type-caption">Tap anywhere to continue</p>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Buttons</h2>
+    <div class="panel row">
+      <button class="btn btn-primary">Play Now</button>
+      <button class="btn btn-secondary">Invite Friends</button>
+      <button class="btn btn-success">Ready</button>
+      <button class="btn btn-danger">Leave</button>
+      <button class="btn btn-ghost">Settings</button>
+      <button class="btn btn-primary" disabled>Waiting…</button>
+      <button class="btn-icon">⚙</button>
+      <button class="btn-icon">🔔</button>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Player Avatars</h2>
+    <div class="panel row">
+      <div class="avatar"><div class="avatar-ring" style="--ring:#B5413A"><div class="avatar-img">🦊</div><div class="avatar-status"></div></div><div class="avatar-name">You<small>P1 · Red</small></div></div>
+      <div class="avatar"><div class="avatar-ring" style="--ring:#3E6E9E"><div class="avatar-img">🐼</div><div class="avatar-status"></div></div><div class="avatar-name">Mika<small>P2 · Blue</small></div></div>
+      <div class="avatar"><div class="avatar-ring" style="--ring:#C79A48"><div class="avatar-img">🐯</div><div class="avatar-status off"></div></div><div class="avatar-name">Bot<small>P3 · Yellow</small></div></div>
+      <div class="avatar"><div class="avatar-ring" style="--ring:#5E8C5A"><div class="avatar-img">🐸</div><div class="avatar-status"></div></div><div class="avatar-name">Leo<small>P4 · Green</small></div></div>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">HUD · Resources</h2>
+    <div class="panel row">
+      <div class="pill coin"><span class="ico">🪙</span> 12,450 <span class="add">+</span></div>
+      <div class="pill gem"><span class="ico">💎</span> 86 <span class="add">+</span></div>
+      <div class="pill"><span class="ico">⚙</span> Lvl 24</div>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Dice</h2>
+    <div class="panel row">
+      <div class="die"><b class="p c"></b></div>
+      <div class="die"><b class="p tl"></b><b class="p br"></b></div>
+      <div class="die"><b class="p tl"></b><b class="p c"></b><b class="p br"></b></div>
+      <div class="die"><b class="p tl"></b><b class="p tr"></b><b class="p bl"></b><b class="p br"></b></div>
+      <div class="die"><b class="p tl"></b><b class="p tr"></b><b class="p c"></b><b class="p bl"></b><b class="p br"></b></div>
+      <div class="die rolled"><b class="p tl"></b><b class="p tr"></b><b class="p ml"></b><b class="p mr"></b><b class="p bl"></b><b class="p br"></b></div>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Toggles & Sliders</h2>
+    <div class="panel row" style="gap:32px">
+      <label class="toggle"><input type="checkbox" checked><span class="track"></span><span class="knob"></span></label>
+      <label class="toggle"><input type="checkbox"><span class="track"></span><span class="knob"></span></label>
+      <input class="slider" type="range" min="0" max="100" value="60">
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Progress</h2>
+    <div class="panel">
+      <div class="xp-row"><span>Level 24</span><span>3,400 / 5,000 XP</span></div>
+      <div class="progress"><div class="progress-fill"></div></div>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Badges & Chips</h2>
+    <div class="panel row">
+      <span class="badge new">NEW</span>
+      <span class="badge pro">★ PRO</span>
+      <span class="badge win">🏆 WINNER</span>
+      <span class="chip"><span class="dot"></span> Online</span>
+      <span class="chip">🎲 Quick Match</span>
+      <span class="notif"><button class="btn-icon">✉</button><span class="count">3</span></span>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Cards & Panels</h2>
+    <div class="panel" style="display:flex;flex-direction:column;gap:16px">
+      <div class="card">
+        <div class="avatar-ring" style="--ring:#3E6E9E;width:56px;height:56px"><div class="avatar-img" style="font-size:22px">🐼</div></div>
+        <div class="meta"><b>Mika_99</b><span>Level 31 · 248 wins</span></div>
+        <div class="stat">2,100<small>RATING</small></div>
+      </div>
+      <div class="card">
+        <div class="avatar-ring" style="--ring:#C79A48;width:56px;height:56px"><div class="avatar-img" style="font-size:22px">🎲</div></div>
+        <div class="meta"><b>Classic 4P</b><span>Entry 500 · Prize 1,800</span></div>
+        <button class="btn btn-primary" style="padding:11px 18px;font-size:12px">Join</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <h2 class="ds-section-title">Icon Orbs</h2>
+    <div class="panel row">
+      <button class="orb p">🎮</button>
+      <button class="orb a">🛒</button>
+      <button class="orb s">👥</button>
+      <button class="orb d">✕</button>
+    </div>
+  </section>
+</div>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ludo · Design System Explorer</title>
+<link rel="icon" href="../favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,800&family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;color:#ECE7DA;
+  background:radial-gradient(1000px 600px at 50% -10%,#2a2440,#16131f 55%,#0d0b14 100%);
+  padding:48px 20px 90px;-webkit-font-smoothing:antialiased;min-height:100vh}
+.wrap{max-width:1120px;margin:0 auto}
+.home{display:inline-block;margin-bottom:18px;color:#b6ae9c;font-weight:600;text-decoration:none;font-size:14px}
+.home:hover{color:#f2c879}
+.kicker{display:inline-block;background:rgba(242,162,12,.16);border:1px solid rgba(242,162,12,.45);
+  color:#f2c879;padding:6px 16px;border-radius:999px;font-size:13px;font-weight:700;letter-spacing:1px}
+h1{font-family:'Fraunces',serif;font-size:52px;font-weight:800;margin:16px 0 10px;letter-spacing:-1px;color:#fff}
+.lede{font-size:18px;color:#b6ae9c;max-width:760px;line-height:1.55;font-weight:400}
+.method{margin-top:18px;font-size:14px;color:#9a927e;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);
+  border-radius:14px;padding:16px 20px;max-width:820px;line-height:1.6}
+.method b{color:#f2c879;font-weight:700}
+.section-head{display:flex;align-items:center;gap:14px;margin:48px 0 6px}
+.section-head h2{font-family:'Fraunces',serif;font-size:24px;font-weight:800}
+.tagpill{font-size:12px;font-weight:800;letter-spacing:1px;padding:5px 12px;border-radius:999px}
+.tagpill.a{background:rgba(140,150,170,.16);border:1px solid rgba(140,150,170,.45);color:#c7cede}
+.tagpill.b{background:rgba(242,162,12,.16);border:1px solid rgba(242,162,12,.5);color:#ffce8a}
+.section-sub{color:#8b8470;font-size:14px;margin-bottom:22px;max-width:760px;line-height:1.5}
+.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.14),transparent);margin:14px 0 22px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.card{display:block;text-decoration:none;color:inherit;border-radius:18px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.1);background:#1a1726;transition:transform .15s,box-shadow .15s;position:relative}
+.card:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(0,0,0,.5)}
+.preview{height:146px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.chipset{display:flex;flex-direction:column;gap:9px;align-items:center;z-index:2}
+.demo-btn{padding:10px 20px;font-weight:800;font-size:14px;border-radius:12px;color:#fff}
+.demo-dice{display:flex;gap:8px}
+.demo-die{width:30px;height:30px;border-radius:7px;display:grid;place-items:center;font-size:13px;font-weight:900}
+.urlbadge{position:absolute;top:10px;left:10px;z-index:3;background:rgba(0,0,0,.55);color:#fff;font-size:11px;font-weight:700;
+  letter-spacing:.5px;padding:4px 9px;border-radius:999px;border:1px solid rgba(255,255,255,.25)}
+.body{padding:16px 20px 20px}
+.sig{font-size:11px;font-weight:700;color:#f2c879;letter-spacing:.3px}
+.body h3{font-family:'Fraunces',serif;font-size:20px;font-weight:800;margin:5px 0 6px}
+.body p{font-size:13px;color:#a89f8c;line-height:1.5}
+.foot{margin-top:60px;text-align:center;color:#6f6857;font-size:13px}
+
+.t04{background:#FFF6E6;background-image:radial-gradient(#16131f 1.2px,transparent 1.2px);background-size:18px 18px}
+.t04 .demo-btn{background:#7C5CFF;border:3px solid #16131f;box-shadow:4px 4px 0 #16131f;border-radius:8px}
+.t04 .demo-die{background:#fff;color:#16131f;border:3px solid #16131f;box-shadow:3px 3px 0 #16131f;border-radius:6px}
+.t07{background:#FBEAD7}
+.t07 .demo-btn{background:#FF8A5B;border:3px solid #5B4636;box-shadow:0 5px 0 #e36a3c;border-radius:16px}
+.t07 .demo-die{background:#FFF9F0;color:#FF8A5B;border:3px solid #5B4636;box-shadow:0 4px 0 #5B4636;border-radius:10px}
+.t10{background:#0B0E13;background-image:linear-gradient(135deg,rgba(198,255,61,.05) 25%,transparent 25%,transparent 50%,rgba(198,255,61,.05) 50%,rgba(198,255,61,.05) 75%,transparent 75%);background-size:8px 8px}
+.t10 .demo-btn{background:#C6FF3D;color:#0B0E13;clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px)}
+.t10 .demo-die{background:#1a2029;color:#C6FF3D;border:1px solid #C6FF3D;clip-path:polygon(6px 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%,0 6px)}
+.t12{background:linear-gradient(180deg,#8a5a30,#5a3a20)}
+.t12 .demo-btn{background:linear-gradient(180deg,#C8842F,#9c6420);border:2px solid #3b2716;box-shadow:0 5px 0 #3b2716;border-radius:9px;color:#fff7e8}
+.t12 .demo-die{background:linear-gradient(160deg,#f3e0bf,#d9bd8e);color:#3b2716;border:2px solid #3b2716;border-radius:7px}
+.t14{background:#F3ECE0;background-image:radial-gradient(rgba(0,0,0,.04) 1px,transparent 1px);background-size:5px 5px}
+.t14 .demo-btn{background:#EF6F53;clip-path:polygon(2% 4%,100% 0,98% 96%,0 100%);box-shadow:0 6px 10px rgba(80,60,40,.25)}
+.t14 .demo-die{background:#FBF6EC;color:#EF6F53;clip-path:polygon(4% 2%,98% 0,100% 96%,2% 100%);box-shadow:0 6px 10px rgba(80,60,40,.25)}
+.t22{background:#7C2B3E;background-image:repeating-linear-gradient(45deg,rgba(0,0,0,.06) 0 1px,transparent 1px 4px)}
+.t22 .demo-btn{background:#C8442F;color:#FBE7D2;border-radius:12px;box-shadow:0 4px 0 rgba(0,0,0,.3)}
+.t22 .demo-die{background:#FBF6EC;color:#C8442F;border:2px solid #F4D9B8;border-radius:12px}
+.t24{background:#F3ECDD;background-image:repeating-radial-gradient(circle at 13% 27%,rgba(0,0,0,.04) 0 1px,transparent 1px 3px)}
+.t24 .demo-btn{background:#FF4D8D;border:2.5px solid #1A1A1A;box-shadow:3px 3px 0 #1A1A1A;border-radius:0}
+.t24 .demo-die{background:#F3ECDD;color:#2F4DD0;border:2.5px solid #1A1A1A;box-shadow:3px 3px 0 #FF4D8D;border-radius:0}
+.t26{background:radial-gradient(300px 180px at 50% 0,#16203a,#070A14)}
+.t26 .demo-btn{background:linear-gradient(180deg,#f3d697,#E9C879);color:#070A14;border-radius:999px}
+.t26 .demo-die{background:radial-gradient(circle at 35% 30%,#1a2238,#070A14);color:#E9C879;border:1px solid rgba(233,200,121,.3);border-radius:8px}
+.t28{background:radial-gradient(300px 160px at 50% 0,#2a2417,#1C1810)}
+.t28 .demo-btn{background:linear-gradient(180deg,#E6C77E,#C79A48);color:#2A2418;border-radius:8px;box-shadow:inset 0 1px 0 rgba(255,255,255,.25)}
+.t28 .demo-die{background:linear-gradient(180deg,#E6C77E,#C79A48);color:#1c1408;border:1px solid #8a6a26;border-radius:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="home" href="/">← fahadmalik.me</a>
+  <div><span class="kicker">LUDO · UI REVAMP</span></div>
+  <h1>Design System Explorer</h1>
+  <p class="lede">Nine candidate visual directions for the new Ludo UI. Every tile renders the identical component group — palette, type, buttons, avatars, HUD pills, dice, toggles, progress, badges, cards and icon orbs — so they compare like-for-like.</p>
+  <p class="method"><b>Method.</b> The "grounded" set is built the way human design-system authors work: each direction derives from <b>Ludo's own world</b> — its origin as the Mughal game <em>Pachisi</em>, cowrie-shell dice, the four-armed cross, the race home — carries a distinctive type pairing, and commits to <b>one signature move</b>, with restraint everywhere else.</p>
+
+  <div class="section-head"><h2>Material &amp; form</h2><span class="tagpill a">5</span></div>
+  <p class="section-sub">Direction-by-feel — how the surfaces and edges behave.</p>
+  <div class="divider"></div>
+  <div class="grid">
+    <a class="card" href="1/">
+      <div class="preview t04"><span class="urlbadge">/ludo/1</span><div class="chipset"><div class="demo-btn">Play Now</div><div class="demo-dice"><div class="demo-die">⚄</div><div class="demo-die">⚂</div></div></div></div>
+      <div class="body"><h3>Neubrutalism</h3><p>Thick black outlines, hard offset shadows, flat saturated fills.</p></div>
+    </a>
+    <a class="card" href="2/">
+      <div class="preview t07"><span class="urlbadge">/ludo/2</span><div class="chipset"><div class="demo-btn">Play Now</div><div class="demo-dice"><div class="demo-die">⚄</div><div class="demo-die">⚂</div></div></div></div>
+      <div class="body"><h3>Cozy Cartoon</h3><p>Warm cream tones, thick rounded outlines, storybook charm.</p></div>
+    </a>
+    <a class="card" href="3/">
+      <div class="preview t10"><span class="urlbadge">/ludo/3</span><div class="chipset"><div class="demo-btn">Play Now</div><div class="demo-dice"><div class="demo-die">⚄</div><div class="demo-die">⚂</div></div></div></div>
+      <div class="body"><h3>Esports Dark</h3><p>Near-black, clipped corners, electric lime signal.</p></div>
+    </a>
+    <a class="card" href="4/">
+      <div class="preview t12"><span class="urlbadge">/ludo/4</span><div class="chipset"><div class="demo-btn">Play Now</div><div class="demo-dice"><div class="demo-die">⚄</div><div class="demo-die">⚂</div></div></div></div>
+      <div class="body"><div class="sig">◆ Carved wood grain + brass</div><h3>Woodcraft</h3><p>A real wooden board game with weight and warmth.</p></div>
+    </a>
+    <a class="card" href="5/">
+      <div class="preview t14"><span class="urlbadge">/ludo/5</span><div class="chipset"><div class="demo-btn">Play Now</div><div class="demo-dice"><div class="demo-die">⚄</div><div class="demo-die">⚂</div></div></div></div>
+      <div class="body"><div class="sig">◆ Cut-and-fold paper, trimmed edges</div><h3>Papercraft</h3><p>Layered construction paper with pop-up shadows.</p></div>
+    </a>
+  </div>
+
+  <div class="section-head"><h2>Grounded in Ludo's world</h2><span class="tagpill b">4 · research-led</span></div>
+  <p class="section-sub">Each derives from a real facet of Ludo's heritage and play culture.</p>
+  <div class="divider"></div>
+  <div class="grid">
+    <a class="card" href="6/">
+      <div class="preview t22"><span class="urlbadge">/ludo/6</span><div class="chipset"><div class="demo-btn">Play Now</div><div class="demo-dice"><div class="demo-die">⚄</div><div class="demo-die">⚂</div></div></div></div>
+      <div class="body"><div class="sig">◆ Running-stitch seams on fabric patches</div><h3>Cloth &amp; Cowrie</h3><p>The embroidered folk-textile board, before plastic.</p></div>
+    </a>
+    <a class="card" href="7/">
+      <div class="preview t24"><span class="urlbadge">/ludo/7</span><div class="chipset"><div class="demo-btn">Play Now</div><div class="demo-dice"><div class="demo-die">⚄</div><div class="demo-die">⚂</div></div></div></div>
+      <div class="body"><div class="sig">◆ Deliberate 2-ink misregistration</div><h3>Risograph Zine</h3><p>The photocopied games-night fanzine.</p></div>
+    </a>
+    <a class="card" href="8/">
+      <div class="preview t26"><span class="urlbadge">/ludo/8</span><div class="chipset"><div class="demo-btn">Play Now</div><div class="demo-dice"><div class="demo-die">⚄</div><div class="demo-die">⚂</div></div></div></div>
+      <div class="body"><div class="sig">◆ Orbital ring tracks, astrolabe gold</div><h3>Astral Orbits</h3><p>The race home charted as planetary orbits.</p></div>
+    </a>
+    <a class="card" href="9/">
+      <div class="preview t28"><span class="urlbadge">/ludo/9</span><div class="chipset"><div class="demo-btn">Play Now</div><div class="demo-dice"><div class="demo-die">⚄</div><div class="demo-die">⚂</div></div></div></div>
+      <div class="body"><div class="sig">◆ Gear-tooth rings + riveted brass</div><h3>Brass Clockwork</h3><p>A coin-op automaton that moves your pieces.</p></div>
+    </a>
+  </div>
+
+  <p class="foot">9 directions · same component group across all · fahadmalik.me/ludo</p>
+</div>
+</body>
+</html>
