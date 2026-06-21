@@ -1,169 +1,230 @@
 /* ============================================================================
-   CLOTH & COWRIE — Ludo design system (shared stylesheet)
-   Subject: Ludo's origin as embroidered cross-cloth played with cowrie shells.
-   Signature move: running-stitch (kantha) dashed seams on woven fabric patches.
-   Type: Fraunces (display) + Karla (body).  Seat colours are canon, never skinned.
+   CLOTH & COWRIE — Ludo design system (rebuilt fresh, true to the language)
+   The world: Ludo's ancestor Pachisi — an embroidered cross-cloth (chaupar)
+   played not with a cubic die but with a fistful of COWRIE SHELLS thrown to
+   the cloth; your move = how many land mouth-up. We build the whole UI from
+   that world.
+   Signature moves:
+     · kantha running-stitch (dashed) seams on woven fabric PATCHES
+     · the cowrie shell is the hero control — thrown, counted, glowing
+     · warm dyed cloth (madder / indigo / turmeric / leaf), cream calico patches
+     · Fraunces (display serif, the embroidered letterforms) + Karla (body)
+   Seat colours are canon and never skinned.
    ============================================================================ */
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,800;1,9..144,500&family=Karla:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,500;1,9..144,700&family=Karla:wght@400;500;600;700;800&display=swap');
 
 :root{
-  /* surfaces */
-  --cloth:#7C2B3E; --cloth-d:#5E1F2E; --cloth-l:#933a4d;
-  --patch:#FBE7D2; --patch-2:#F4D9B8; --patch-3:#FFF3E4;
-  /* ink */
+  /* dyed cloth surfaces */
+  --cloth:#7C2B3E; --cloth-d:#5E1F2E; --cloth-dd:#481622; --cloth-l:#933a4d;
+  /* calico / cream patches */
+  --patch:#FBE7D2; --patch-2:#F4D9B8; --patch-3:#FFF3E4; --patch-edge:#E7CFAE;
+  /* ink (walnut dye) */
   --ink:#3A2418; --ink-muted:#7a5a44; --ink-faint:#a98b71; --thread:#FBE7D2;
-  /* accents */
+  /* dye accents */
   --madder:#C8442F; --madder-d:#a8351f; --turmeric:#E8A526; --turmeric-d:#c4860f;
   --indigo:#2E5375; --indigo-d:#21405c; --leaf:#5C8C4A; --leaf-d:#477036;
-  /* seats (canon: red, blue, yellow, green) */
+  --rose:#D98E8E; --plum:#5b3a52;
+  /* seats (canon: red madder, blue indigo, yellow turmeric, green leaf) */
   --seat0:#C8442F; --seat1:#2E5375; --seat2:#E8A526; --seat3:#5C8C4A;
-  /* radii / motion */
+  /* radii / elevation */
   --r-sm:10px; --r-md:16px; --r-lg:22px; --r-xl:30px; --r-pill:999px;
-  --e1:0 6px 0 rgba(58,36,24,.18); --e2:0 12px 26px rgba(40,18,10,.35);
-  --stitch:var(--cloth);
+  --e1:0 6px 0 rgba(58,36,24,.18); --e2:0 12px 26px rgba(40,18,10,.35); --e3:0 18px 40px rgba(30,12,6,.45);
+  /* the woven thread texture */
   --weave:repeating-linear-gradient(45deg,rgba(0,0,0,.05) 0 1px,transparent 1px 4px),
           repeating-linear-gradient(-45deg,rgba(255,255,255,.06) 0 1px,transparent 1px 4px);
+  --weave-light:repeating-linear-gradient(45deg,rgba(124,43,62,.05) 0 1px,transparent 1px 5px),
+          repeating-linear-gradient(-45deg,rgba(124,43,62,.04) 0 1px,transparent 1px 5px);
 }
 
+/* ---- reset / base -------------------------------------------------------- */
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
-body{
-  font-family:'Karla',system-ui,sans-serif;color:var(--ink);
-  background:var(--cloth-d);
-  -webkit-font-smoothing:antialiased;
-  display:flex;align-items:flex-start;justify-content:center;min-height:100%;
-}
+body{font-family:'Karla',system-ui,sans-serif;color:var(--ink);background:var(--cloth-dd);
+  -webkit-font-smoothing:antialiased;display:flex;align-items:flex-start;justify-content:center;min-height:100%}
+::selection{background:var(--turmeric);color:var(--ink)}
 
 /* ---- phone frame --------------------------------------------------------- */
-.app{
-  position:relative;width:100%;max-width:440px;min-height:100vh;
-  background:var(--cloth);background-image:var(--weave);
-  display:flex;flex-direction:column;overflow:hidden;
-  box-shadow:0 0 60px rgba(0,0,0,.5);
-}
+.app{position:relative;width:100%;max-width:440px;min-height:100vh;overflow:hidden;
+  display:flex;flex-direction:column;background:var(--cloth);background-image:var(--weave);
+  box-shadow:0 0 60px rgba(0,0,0,.5);animation:appin .5s cubic-bezier(.2,.7,.3,1)}
 @media(min-width:520px){
   body{align-items:center;padding:24px 0}
-  .app{min-height:calc(100vh - 48px);border-radius:34px;border:6px solid #2a1018;
-       max-height:940px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+  .app{min-height:calc(100vh - 48px);max-height:944px;border-radius:36px;border:7px solid #2a1018;box-shadow:0 30px 80px rgba(0,0,0,.6)}
 }
-.app::before{ /* soft top vignette */
-  content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
-  background:radial-gradient(120% 60% at 50% -10%,rgba(255,255,255,.10),transparent 60%);
-}
+.app::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(120% 60% at 50% -10%,rgba(255,255,255,.10),transparent 60%)}
 .app>*{position:relative;z-index:1}
+/* selvage edge — stitched border just inside the frame */
+.app::after{content:"";position:absolute;inset:10px;border:2px dashed rgba(251,231,210,.18);
+  border-radius:26px;pointer-events:none;z-index:0}
+
+/* ---- layout helpers ------------------------------------------------------ */
+.scroll{flex:1;overflow-y:auto;overflow-x:hidden}
+.content{flex:1;display:flex;flex-direction:column;gap:16px;padding:8px 18px 26px;overflow-y:auto}
+.content.center{justify-content:center;align-items:center;text-align:center}
+.pad{padding:18px}
+.row{display:flex;align-items:center;gap:12px}
+.col{display:flex;flex-direction:column}
+.wrap{flex-wrap:wrap}
+.grow{flex:1;min-width:0}
+.between{justify-content:space-between}
+.center{align-items:center;justify-content:center}
+.gap-6{gap:6px}.gap-8{gap:8px}.gap-10{gap:10px}.gap-12{gap:12px}.gap-16{gap:16px}.gap-20{gap:20px}
+.mt-auto{margin-top:auto}
 
 /* ---- app bar ------------------------------------------------------------- */
-.appbar{display:flex;align-items:center;gap:12px;padding:18px 18px 8px}
-.appbar .title{font-family:'Fraunces',serif;font-weight:800;font-size:22px;color:var(--patch)}
-.appbar .spacer{flex:1}
-.iconbtn{
-  width:44px;height:44px;flex:none;border:none;cursor:pointer;border-radius:var(--r-md);
-  background:var(--patch-2);color:var(--cloth);font-size:20px;display:grid;place-items:center;
-  position:relative;box-shadow:0 4px 0 rgba(0,0,0,.22);transition:transform .12s,box-shadow .12s;
-}
-.iconbtn::after{content:"";position:absolute;inset:5px;border:1.5px dashed var(--cloth);border-radius:10px;opacity:.55}
-.iconbtn:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.22)}
-
-/* ---- content / layout ---------------------------------------------------- */
-.content{flex:1;padding:8px 18px 26px;display:flex;flex-direction:column;gap:16px;overflow-y:auto}
-.content.center{justify-content:center;align-items:center;text-align:center}
-.row{display:flex;align-items:center;gap:12px}
-.col{display:flex;flex-direction:column;gap:12px}
-.wrap{flex-wrap:wrap}
-.grow{flex:1}
-.between{justify-content:space-between}
-.center-x{justify-content:center}
-.gap-s{gap:8px}.gap-l{gap:20px}
+.appbar,.bar-top{display:flex;align-items:center;gap:12px;padding:18px 18px 10px}
+.appbar .title,.bar-top .ti{font-family:'Fraunces',serif;font-weight:900;font-size:22px;color:var(--patch)}
+.spacer{flex:1}
 
 /* ---- type ---------------------------------------------------------------- */
-.display{font-family:'Fraunces',serif;font-weight:800;font-size:44px;line-height:1;color:var(--patch)}
-.title{font-family:'Fraunces',serif;font-weight:800;font-size:28px;color:var(--patch)}
-.title.ink{color:var(--ink)}
+.kicker{display:inline-block;font-family:'Karla';font-weight:800;font-size:11px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--cloth);background:var(--turmeric);padding:5px 12px;border-radius:var(--r-pill)}
+.kicker.light{background:rgba(251,231,210,.14);color:var(--patch)}
+.display{font-family:'Fraunces',serif;font-weight:900;font-size:46px;line-height:.98;color:var(--patch);text-shadow:0 3px 0 rgba(0,0,0,.22)}
+.display em{font-style:italic;color:var(--turmeric)}
+.title{font-family:'Fraunces',serif;font-weight:900;font-size:28px;line-height:1.02;color:var(--patch)}
+.title.ink{color:var(--ink);text-shadow:none}
 .subtitle{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:18px;color:var(--turmeric)}
-.h{font-weight:700;font-size:17px;color:var(--ink)}
+.h{font-family:'Fraunces',serif;font-weight:700;font-size:18px;color:var(--ink)}
+.t{font-weight:700;font-size:15px;color:var(--ink)}
 .body{font-size:15px;color:var(--ink-muted);line-height:1.55;font-weight:600}
 .body.light{color:rgba(251,231,210,.82)}
-.cap{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--ink-faint)}
+.cap{font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--ink-faint)}
 .cap.light{color:rgba(251,231,210,.6)}
 .on-cloth{color:var(--patch)}
+.serif{font-family:'Fraunces',serif}
 
-/* ---- patch (panel) ------------------------------------------------------- */
-.patch{
-  position:relative;background:var(--patch);background-image:var(--weave);
-  border-radius:var(--r-lg);padding:20px;box-shadow:var(--e2);
-}
-.patch::before{content:"";position:absolute;inset:9px;border:2px dashed var(--stitch);border-radius:13px;opacity:.5;pointer-events:none}
+/* ---- patch (the fabric panel — signature) -------------------------------- */
+.patch{position:relative;background:var(--patch);background-image:var(--weave-light);border-radius:var(--r-lg);
+  padding:20px;box-shadow:var(--e2)}
+.patch::before{content:"";position:absolute;inset:9px;border:2px dashed var(--cloth);border-radius:13px;opacity:.5;pointer-events:none}
 .patch>*{position:relative}
 .patch.tight{padding:14px}
 .patch.cream{background:var(--patch-3)}
+.patch.cloth{background:var(--cloth-d);background-image:var(--weave)}
+.patch.cloth::before{border-color:rgba(251,231,210,.4)}
+/* stitched-on corner button (a sewn patch label) */
+.tag-patch{position:absolute;top:-12px;left:18px;background:var(--turmeric);color:var(--ink);font-family:'Fraunces';
+  font-weight:700;font-style:italic;font-size:13px;padding:3px 14px;border-radius:var(--r-pill);box-shadow:0 4px 8px rgba(0,0,0,.25)}
 
 /* ---- buttons ------------------------------------------------------------- */
-.btn{
-  font-family:'Karla',sans-serif;font-weight:700;font-size:16px;cursor:pointer;color:var(--patch);
-  border:none;border-radius:var(--r-md);padding:14px 24px;position:relative;
-  transition:transform .1s,box-shadow .1s;box-shadow:0 5px 0 rgba(0,0,0,.28);
-}
+.btn{position:relative;font-family:'Karla',sans-serif;font-weight:800;font-size:16px;cursor:pointer;color:var(--patch);
+  border:none;border-radius:var(--r-md);padding:15px 24px;box-shadow:0 5px 0 rgba(0,0,0,.28);
+  transition:transform .1s,box-shadow .1s,filter .15s;overflow:hidden}
 .btn::after{content:"";position:absolute;inset:4px;border:1.5px dashed rgba(255,255,255,.7);border-radius:11px;pointer-events:none}
 .btn:active{transform:translateY(4px);box-shadow:0 1px 0 rgba(0,0,0,.28)}
-.btn.lg{font-size:19px;padding:17px 28px}
-.btn.block{width:100%}
-.btn-primary{background:var(--madder)}
-.btn-accent{background:var(--turmeric);color:var(--ink)}
-.btn-accent::after{border-color:rgba(58,36,24,.45)}
-.btn-success{background:var(--leaf)}
-.btn-indigo{background:var(--indigo)}
-.btn-ghost{background:var(--patch-2);color:var(--cloth)}
-.btn-ghost::after{border-color:var(--cloth)}
+.btn.lg{font-size:19px;padding:18px 28px}
+.btn.sm{font-size:13px;padding:9px 15px;border-radius:var(--r-sm)}
+.btn.block{display:flex;width:100%;justify-content:center;align-items:center;gap:8px}
+.btn-primary{background:var(--madder)} .btn-accent{background:var(--turmeric);color:var(--ink)}
+.btn-accent::after{border-color:rgba(58,36,24,.4)}
+.btn-success{background:var(--leaf)} .btn-indigo{background:var(--indigo)}
+.btn-ghost{background:var(--patch-2);color:var(--cloth)} .btn-ghost::after{border-color:var(--cloth)}
 .btn:disabled{background:#cdbfae;color:#fff;cursor:not-allowed;transform:none;box-shadow:0 5px 0 #b3a796}
-.btn .ic{margin-right:6px}
+.btn:disabled::after{border-color:rgba(255,255,255,.5)}
+/* gloss sweep on the loud buttons */
+.btn-primary::before,.btn-accent::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(110deg,transparent 32%,rgba(255,255,255,.4) 48%,transparent 62%);
+  background-size:250% 100%;animation:sweep 4.5s ease-in-out infinite}
+.btn-primary.lg{animation:breathe 2.8s ease-in-out infinite}
+.ibtn{width:46px;height:46px;flex:none;border:none;cursor:pointer;border-radius:var(--r-md);background:var(--patch-2);
+  color:var(--cloth);font-size:20px;display:grid;place-items:center;position:relative;box-shadow:0 4px 0 rgba(0,0,0,.22);
+  transition:transform .12s,box-shadow .12s}
+.ibtn::after{content:"";position:absolute;inset:5px;border:1.5px dashed var(--cloth);border-radius:10px;opacity:.55}
+.ibtn:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.22)}
+
+/* ---- COWRIE SHELL (the hero control) ------------------------------------ */
+/* an oval ivory shell; .up shows the toothed mouth, .down the smooth back */
+.cowrie{position:relative;width:var(--csz,30px);height:calc(var(--csz,30px)*1.32);flex:none;
+  border-radius:50% 50% 48% 48% / 44% 44% 56% 56%;border:1px solid #cbb588;
+  background:radial-gradient(ellipse at 38% 30%,#fffaf0,#ecdcbb 68%,#dcc79c);
+  box-shadow:inset 0 -3px 6px rgba(120,90,40,.18),0 4px 9px rgba(40,20,8,.32);transition:transform .15s}
+.cowrie.down{background:radial-gradient(ellipse at 40% 28%,#fff8ea,#e3d0a6 70%,#cdb583)}
+.cowrie.down::before{content:"";position:absolute;left:50%;top:18%;width:14%;height:64%;transform:translateX(-50%);
+  background:rgba(120,90,40,.16);border-radius:50%}  /* faint dorsal seam */
+.cowrie.up::before{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:26%;height:62%;border-radius:50%;background:#f6ecd4;box-shadow:inset 0 0 0 1px #cbb588}
+.cowrie.up::after{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:14%;height:54%;border-radius:40%;
+  background:repeating-linear-gradient(0deg,#86653c 0 2px,#f6ecd4 2px 4px)}  /* the serrated teeth */
+.cowrie.lit{box-shadow:inset 0 -3px 6px rgba(120,90,40,.18),0 0 20px rgba(232,165,38,.85),0 4px 9px rgba(40,20,8,.32)}
+.cowrie.lit::after{background:repeating-linear-gradient(0deg,var(--turmeric-d) 0 2px,#fff3d6 2px 4px)}
+.cowrie.tossing{animation:cowrietoss .5s ease-in-out infinite}
+/* a thrown set, laid in a little tray */
+.throw{display:inline-flex;gap:8px;flex-wrap:wrap;padding:14px 16px;background:var(--cloth-d);background-image:var(--weave);
+  border-radius:var(--r-lg);box-shadow:inset 0 3px 10px rgba(0,0,0,.4);position:relative}
+.throw::before{content:"";position:absolute;inset:7px;border:2px dashed rgba(251,231,210,.35);border-radius:15px;pointer-events:none}
+
+/* ---- pip die (carved bone alternative skin) ------------------------------ */
+.die{position:relative;width:var(--dsz,56px);height:var(--dsz,56px);border-radius:14px;flex:none;
+  background:linear-gradient(160deg,#fff8ea,#e9d8b6);border:2px solid #d8c39a;
+  box-shadow:0 6px 12px rgba(0,0,0,.3),inset 0 1px 2px #fff}
+.die i{position:absolute;width:13%;height:13%;border-radius:50%;background:var(--madder);transform:translate(-50%,-50%)}
+.die .tl{left:28%;top:28%}.die .tr{left:72%;top:28%}.die .ml{left:28%;top:50%}.die .c{left:50%;top:50%}
+.die .mr{left:72%;top:50%}.die .bl{left:28%;top:72%}.die .br{left:72%;top:72%}
+.die--indigo{background:linear-gradient(160deg,#3a648c,#244463);border-color:#1b3349}.die--indigo i{background:var(--turmeric)}
+.die--turmeric{background:linear-gradient(160deg,#f3c259,#dc9412);border-color:#b07d0c}.die--turmeric i{background:var(--cloth)}
+.die--leaf{background:linear-gradient(160deg,#74a85f,#4c7a3b);border-color:#3a6029}.die--leaf i{background:var(--patch)}
+.die.lit{box-shadow:0 6px 12px rgba(0,0,0,.3),0 0 22px rgba(232,165,38,.85);border-color:var(--turmeric)}
+.die.rolling{animation:diejig .5s ease-in-out infinite}
+
+/* ---- TOKENS (game pieces — seat colour via --tc) ------------------------- */
+.tok{position:relative;width:var(--tsz,34px);height:var(--tsz,34px);flex:none;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,color-mix(in srgb,var(--tc,#C8442F) 70%,#fff),var(--tc,#C8442F) 72%);
+  box-shadow:0 4px 7px rgba(0,0,0,.35);border:2px solid rgba(0,0,0,.28)}
+.tok::after{content:"";position:absolute;left:24%;top:16%;width:30%;height:30%;border-radius:50%;background:rgba(255,255,255,.5)}
+/* bindi — embroidered disc with concentric running-stitch rings */
+.tok--bindi{background:var(--tc,#C8442F)}
+.tok--bindi::before{content:"";position:absolute;inset:18%;border:2px dashed var(--patch);border-radius:50%;opacity:.85}
+.tok--bindi::after{left:50%;top:50%;width:24%;height:24%;transform:translate(-50%,-50%);background:var(--patch)}
+/* shell — cowrie-shaped piece tinted to the seat */
+.tok--shell{border-radius:50% 50% 48% 48% / 44% 44% 56% 56%;height:calc(var(--tsz,34px)*1.25);
+  background:radial-gradient(ellipse at 38% 30%,color-mix(in srgb,var(--tc,#C8442F) 45%,#fff),var(--tc,#C8442F))}
+.tok--shell::after{left:50%;top:50%;transform:translate(-50%,-50%);width:14%;height:54%;border-radius:40%;
+  background:repeating-linear-gradient(0deg,rgba(0,0,0,.4) 0 2px,rgba(255,255,255,.6) 2px 4px)}
+/* bead — glassy */
+.tok--bead{background:radial-gradient(circle at 32% 26%,#fff,var(--tc,#C8442F) 60%,color-mix(in srgb,var(--tc,#C8442F) 60%,#000))}
+/* brass — metallic coin */
+.tok--brass{background:radial-gradient(circle at 34% 28%,#f6e3a8,#caa23f 55%,#8a6c1f);border-color:#6e5414}
+.tok--brass::before{content:"";position:absolute;inset:20%;border:1.5px solid rgba(255,255,255,.55);border-radius:50%}
+.tok--brass::after{display:none}
+/* tassel — pawn with a knot on top */
+.tok--tassel{border-radius:50% 50% 46% 46%}
+.tok--tassel::before{content:"";position:absolute;left:50%;top:-26%;width:34%;height:38%;transform:translateX(-50%);
+  background:var(--tc,#C8442F);border-radius:50% 50% 40% 40%;box-shadow:0 2px 3px rgba(0,0,0,.3)}
 
 /* ---- avatar -------------------------------------------------------------- */
-.avatar{position:relative;display:inline-grid;place-items:center}
-.avatar .ring{
-  width:var(--sz,64px);height:var(--sz,64px);border-radius:50%;display:grid;place-items:center;
-  background:var(--ring,var(--turmeric));box-shadow:0 5px 10px rgba(0,0,0,.3);
-  outline:2px dashed var(--patch);outline-offset:-6px;
-}
-.avatar .face{width:74%;height:74%;border-radius:50%;display:grid;place-items:center;
-  font-size:calc(var(--sz,64px)*.42);background:var(--patch)}
-.avatar .status{position:absolute;right:2px;bottom:2px;width:16px;height:16px;border-radius:50%;
-  background:var(--leaf);border:3px solid var(--patch)}
-.avatar .status.off{background:#b6a18d}
-.avatar .crown{position:absolute;top:-14px;left:50%;transform:translateX(-50%);font-size:20px}
+.avatar,.ava{position:relative;display:inline-grid;place-items:center}
+.avatar .ring,.ava{width:var(--sz,64px);height:var(--sz,64px);border-radius:50%;display:grid;place-items:center;
+  background:var(--ring,var(--turmeric));box-shadow:0 5px 10px rgba(0,0,0,.3);outline:2px dashed var(--patch);outline-offset:-6px}
+.avatar .face{width:74%;height:74%;border-radius:50%;display:grid;place-items:center;font-size:calc(var(--sz,64px)*.42);background:var(--patch)}
+.ava .face{font-size:calc(var(--sz,56px)*.5);line-height:1}
+.avatar .status,.ava .st{position:absolute;right:2px;bottom:2px;width:16px;height:16px;border-radius:50%;background:var(--leaf);border:3px solid var(--patch)}
+.avatar .status.off,.ava .st.off{background:#b6a18d}
+.avatar .crown,.ava .crown{position:absolute;top:-15px;left:50%;transform:translateX(-50%);font-size:20px}
 
 /* ---- pills / chips / badges --------------------------------------------- */
-.pill{display:inline-flex;align-items:center;gap:8px;background:var(--patch-2);border-radius:var(--r-pill);
-  padding:6px 14px 6px 6px;font-weight:800;font-size:14px;color:var(--ink);position:relative;box-shadow:0 3px 7px rgba(0,0,0,.18)}
+.pill{position:relative;display:inline-flex;align-items:center;gap:8px;background:var(--patch-2);border-radius:var(--r-pill);
+  padding:6px 14px 6px 6px;font-weight:800;font-size:14px;color:var(--ink);box-shadow:0 3px 7px rgba(0,0,0,.18)}
 .pill::after{content:"";position:absolute;inset:3px;border:1.5px dashed var(--cloth);border-radius:var(--r-pill);opacity:.35}
-.pill .ic{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:14px}
-.pill.coin .ic{background:var(--turmeric)}.pill.gem .ic{background:var(--indigo);color:#fff}
+.pill .ic{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:14px;background:var(--turmeric)}
 .chip{display:inline-flex;align-items:center;gap:7px;background:var(--patch-2);border:2px dashed var(--cloth);
   padding:7px 13px;border-radius:var(--r-pill);font-weight:700;font-size:13px;color:var(--cloth)}
-.badge{display:inline-flex;align-items:center;gap:5px;font-weight:800;font-size:11px;padding:5px 11px;
-  border-radius:var(--r-pill);color:#fff;letter-spacing:.5px}
-.badge.red{background:var(--madder)}.badge.gold{background:var(--turmeric);color:var(--ink)}.badge.green{background:var(--leaf)}
+.chip.light{background:rgba(251,231,210,.1);border-color:rgba(251,231,210,.4);color:var(--patch)}
+.badge{display:inline-flex;align-items:center;gap:5px;font-weight:800;font-size:11px;padding:5px 11px;border-radius:var(--r-pill);color:#fff;letter-spacing:.5px}
+.badge.red{background:var(--madder)}.badge.gold{background:var(--turmeric);color:var(--ink)}.badge.green{background:var(--leaf)}.badge.indigo{background:var(--indigo)}
 .dot{width:9px;height:9px;border-radius:50%;background:var(--leaf);display:inline-block}
 
 /* ---- list rows ----------------------------------------------------------- */
-.rowcard{display:flex;align-items:center;gap:13px;background:var(--patch);border-radius:var(--r-md);
-  padding:12px;position:relative;box-shadow:var(--e1)}
-.rowcard::after{content:"";position:absolute;inset:6px;border:1.5px dashed var(--cloth);border-radius:11px;opacity:.3;pointer-events:none}
-.rowcard .meta{flex:1;min-width:0}
-.rowcard .meta b{font-family:'Fraunces',serif;font-weight:800;font-size:16px;display:block}
-.rowcard .meta span{font-size:12.5px;color:var(--ink-muted);font-weight:600}
+.rowcard,.lrow{position:relative;display:flex;align-items:center;gap:13px;background:var(--patch);border-radius:var(--r-md);
+  padding:12px;box-shadow:var(--e1);transition:transform .15s}
+.rowcard::after,.lrow::after{content:"";position:absolute;inset:6px;border:1.5px dashed var(--cloth);border-radius:11px;opacity:.3;pointer-events:none}
+.rowcard .meta,.lrow .meta{flex:1;min-width:0}
+.rowcard .meta b,.lrow .meta b{font-family:'Fraunces',serif;font-weight:700;font-size:16px;display:block}
+.rowcard .meta span,.lrow .meta span{font-size:12.5px;color:var(--ink-muted);font-weight:600}
 
-/* ---- dice (cowrie/ivory) ------------------------------------------------- */
-.die{position:relative;width:var(--dsz,56px);height:var(--dsz,56px);border-radius:14px;
-  background:linear-gradient(160deg,#fff8ea,#ecdcc0);border:2px solid var(--patch-2);
-  box-shadow:0 6px 12px rgba(0,0,0,.3),inset 0 1px 2px #fff}
-.die i{position:absolute;width:11px;height:11px;border-radius:50%;background:var(--madder);transform:translate(-50%,-50%)}
-.die .tl{left:28%;top:28%}.die .tr{left:72%;top:28%}.die .ml{left:28%;top:50%}.die .c{left:50%;top:50%}
-.die .mr{left:72%;top:50%}.die .bl{left:28%;top:72%}.die .br{left:72%;top:72%}
-.die.lit{box-shadow:0 6px 12px rgba(0,0,0,.3),0 0 22px rgba(232,165,38,.85);border-color:var(--turmeric)}
-.die.lit i{background:var(--turmeric)}
-.die.rolling{animation:diejig .5s ease-in-out infinite}
-
-/* ---- toggle / slider / progress ----------------------------------------- */
+/* ---- controls ------------------------------------------------------------ */
 .toggle{position:relative;display:inline-block;width:60px;height:32px;flex:none}
 .toggle input{display:none}
 .toggle .track{position:absolute;inset:0;border-radius:var(--r-pill);background:var(--cloth);transition:.2s}
@@ -174,97 +235,80 @@ body{
 .slider::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:var(--turmeric);cursor:pointer;box-shadow:0 2px 5px rgba(0,0,0,.4)}
 .progress{height:16px;background:var(--cloth);border-radius:var(--r-pill);overflow:hidden;padding:3px}
 .progress .fill{height:100%;border-radius:var(--r-pill);background:repeating-linear-gradient(90deg,var(--turmeric) 0 10px,var(--madder) 10px 12px)}
-
-/* ---- inputs -------------------------------------------------------------- */
-.input{width:100%;font-family:'Karla',sans-serif;font-weight:700;font-size:16px;color:var(--ink);
-  background:var(--patch-3);border:2px dashed var(--cloth);border-radius:var(--r-md);padding:14px 16px}
-.input::placeholder{color:var(--ink-faint)}
-.otp{display:flex;gap:10px;justify-content:center}
-.otp .cell{width:48px;height:58px;border-radius:var(--r-md);background:var(--patch-3);border:2px dashed var(--cloth);
-  display:grid;place-items:center;font-family:'Fraunces',serif;font-weight:800;font-size:26px;color:var(--ink)}
-.otp .cell.on{background:var(--turmeric);border-style:solid}
-
-/* ---- bottom nav ---------------------------------------------------------- */
-.bottomnav{display:flex;background:var(--cloth-d);padding:10px 8px calc(10px + env(safe-area-inset-bottom));gap:4px;
-  border-top:2px dashed rgba(251,231,210,.3)}
-.bottomnav a{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;
-  color:rgba(251,231,210,.6);font-weight:700;font-size:11px;padding:6px 0;border-radius:14px}
-.bottomnav a .ic{font-size:20px}
-.bottomnav a.on{color:var(--turmeric);background:rgba(251,231,210,.08)}
-
-/* ---- divider / misc ------------------------------------------------------ */
-.stitch{height:0;border:none;border-top:2px dashed rgba(251,231,210,.35);margin:4px 0}
-.stitch.dark{border-top-color:rgba(58,36,24,.25)}
 .seg{display:flex;background:var(--cloth-d);border-radius:var(--r-pill);padding:4px;gap:4px}
-.seg button{flex:1;border:none;background:transparent;color:rgba(251,231,210,.7);font-weight:700;font-size:14px;
-  padding:9px;border-radius:var(--r-pill);cursor:pointer;font-family:'Karla',sans-serif}
+.seg button{flex:1;border:none;background:transparent;color:rgba(251,231,210,.7);font-weight:800;font-size:14px;padding:9px;border-radius:var(--r-pill);cursor:pointer;font-family:'Karla',sans-serif}
 .seg button.on{background:var(--turmeric);color:var(--ink)}
 
-/* ---- seat colour helpers ------------------------------------------------- */
+/* ---- inputs -------------------------------------------------------------- */
+.input{width:100%;font-family:'Karla',sans-serif;font-weight:700;font-size:16px;color:var(--ink);background:var(--patch-3);
+  border:2px dashed var(--cloth);border-radius:var(--r-md);padding:14px 16px}
+.input::placeholder{color:var(--ink-faint)}
+.input:focus{outline:none;border-style:solid;border-color:var(--turmeric)}
+.otp{display:flex;gap:10px;justify-content:center}
+.otp .cell,.cell{width:48px;height:58px;border-radius:var(--r-md);background:var(--patch-3);border:2px dashed var(--cloth);
+  display:grid;place-items:center;font-family:'Fraunces',serif;font-weight:900;font-size:26px;color:var(--ink)}
+.otp .cell.on,.cell.on{background:var(--turmeric);border-style:solid}
+.otp .cell.cur{border-color:var(--turmeric);border-style:solid}
+
+/* ---- bottom nav ---------------------------------------------------------- */
+.bottomnav,.nav{display:flex;background:var(--cloth-d);padding:10px 8px calc(10px + env(safe-area-inset-bottom));gap:4px;border-top:2px dashed rgba(251,231,210,.3)}
+.bottomnav a,.nav a{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;color:rgba(251,231,210,.6);font-weight:800;font-size:11px;padding:6px 0;border-radius:14px}
+.bottomnav a .ic,.nav a .ic{font-size:20px}
+.bottomnav a.on,.nav a.on{color:var(--turmeric);background:rgba(251,231,210,.08)}
+
+/* ---- divider / ticker ---------------------------------------------------- */
+.stitch{height:0;border:none;border-top:2px dashed rgba(251,231,210,.35);margin:4px 0}
+.stitch.dark{border-top-color:rgba(58,36,24,.25)}
+.ticker{overflow:hidden;border-top:2px dashed rgba(251,231,210,.3);border-bottom:2px dashed rgba(251,231,210,.3);background:var(--cloth-d)}
+.ticker div{display:inline-flex;white-space:nowrap;animation:marquee 16s linear infinite;font-family:'Fraunces';font-style:italic;font-weight:500;font-size:13px;color:var(--patch);padding:7px 0}
+.ticker span{padding:0 20px}
+
+/* ---- bottom sheet -------------------------------------------------------- */
+.scrim{position:absolute;inset:0;background:rgba(20,8,12,.55);opacity:0;pointer-events:none;transition:opacity .25s;z-index:40}
+.sheet{position:absolute;left:0;right:0;bottom:0;z-index:41;background:var(--cloth);background-image:var(--weave);
+  border-top:3px solid var(--turmeric);border-radius:28px 28px 0 0;padding:18px 18px calc(20px + env(safe-area-inset-bottom));
+  transform:translateY(110%);transition:transform .32s cubic-bezier(.2,.9,.3,1)}
+.app.open .scrim{opacity:1;pointer-events:auto}
+.app.open .sheet{transform:none}
+.grab{width:46px;height:6px;border-radius:9px;background:rgba(251,231,210,.4);margin:0 auto 14px}
+
+/* ---- seat helpers -------------------------------------------------------- */
 .s0{--ring:var(--seat0)}.s1{--ring:var(--seat1)}.s2{--ring:var(--seat2)}.s3{--ring:var(--seat3)}
 
 /* ===========================================================================
    ANIMATIONS
    =========================================================================== */
+@keyframes appin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @keyframes fadeup{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 @keyframes pop{0%{opacity:0;transform:scale(.7)}60%{transform:scale(1.08)}100%{opacity:1;transform:scale(1)}}
 @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 @keyframes diejig{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(7deg)}}
+@keyframes cowrietoss{0%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-10px) rotate(10deg)}100%{transform:translateY(0) rotate(-8deg)}}
 @keyframes spin{to{transform:rotate(360deg)}}
-@keyframes shimmer{to{background-position:200% 0}}
 @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.06);opacity:.85}}
+@keyframes sweep{0%{background-position:200% 0}55%,100%{background-position:-120% 0}}
+@keyframes breathe{0%,100%{box-shadow:0 5px 0 rgba(0,0,0,.28),0 0 0 rgba(232,165,38,0)}50%{box-shadow:0 5px 0 rgba(0,0,0,.28),0 0 26px rgba(232,165,38,.45)}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes sendhome{0%{transform:translate(-50%,-50%) scale(1);opacity:1}100%{transform:translate(-50%,-180%) scale(.4);opacity:0}}
+@keyframes sway{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
 @keyframes drawdash{to{stroke-dashoffset:0}}
-@keyframes litseq{0%,100%{box-shadow:0 6px 12px rgba(0,0,0,.3)}50%{box-shadow:0 6px 12px rgba(0,0,0,.3),0 0 22px rgba(232,165,38,.9)}}
 
 .reveal{opacity:0;animation:fadeup .55s cubic-bezier(.2,.7,.3,1) forwards;animation-delay:var(--d,0s)}
 .reveal-pop{opacity:0;animation:pop .5s cubic-bezier(.2,.8,.3,1.2) forwards;animation-delay:var(--d,0s)}
 .float{animation:floaty 4s ease-in-out infinite}
 .spin-slow{animation:spin 18s linear infinite}
 .pulse{animation:pulse 1.8s ease-in-out infinite}
+.sway{animation:sway 3.2s ease-in-out infinite;transform-origin:top center}
 
-/* link reset for full-screen tap targets */
 a.bare{text-decoration:none;color:inherit}
-.tapnote{position:fixed;left:0;right:0;bottom:10px;text-align:center;font-size:11px;letter-spacing:1px;
-  color:rgba(251,231,210,.4);font-weight:700;z-index:50;pointer-events:none}
+.tapnote{position:fixed;left:0;right:0;bottom:10px;text-align:center;font-size:11px;letter-spacing:1px;color:rgba(251,231,210,.4);font-weight:700;z-index:50;pointer-events:none}
 
-/* ===========================================================================
-   POLISH PASS — page transitions, hover, idle life, accessibility
-   =========================================================================== */
-@keyframes appin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-.app{animation:appin .45s cubic-bezier(.2,.7,.3,1)}
-
-/* main CTA gets a slow "breathing" glow so the eye lands on it */
-@keyframes breathe{0%,100%{box-shadow:0 5px 0 rgba(0,0,0,.28),0 0 0 rgba(232,165,38,0)}
-  50%{box-shadow:0 5px 0 rgba(0,0,0,.28),0 0 26px rgba(232,165,38,.45)}}
-.btn-primary.lg{animation:breathe 2.6s ease-in-out infinite}
-
-/* gloss sweep across primary buttons */
-.btn::before{content:"";position:absolute;inset:0;border-radius:inherit;overflow:hidden;pointer-events:none;
-  background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.35) 48%,transparent 60%);
-  background-size:250% 100%;background-position:200% 0;opacity:0}
-.btn-primary::before,.btn-accent::before{opacity:1;animation:sweep 4.5s ease-in-out infinite}
-@keyframes sweep{0%{background-position:200% 0}55%,100%{background-position:-120% 0}}
-
-/* capture / token bounce demo */
-@keyframes capture{0%{transform:translate(-50%,-50%) scale(1)}40%{transform:translate(-50%,-110%) scale(1.25)}
-  100%{transform:translate(-50%,-50%) scale(1)}}
-@keyframes sendhome{0%{transform:translate(-50%,-50%) scale(1);opacity:1}
-  100%{transform:translate(-50%,-180%) scale(.4);opacity:0}}
-
-/* turn timer ring */
-@keyframes ring-sweep{from{stroke-dashoffset:0}to{stroke-dashoffset:113}}
-
-/* desktop hover affordances (no effect on touch) */
 @media(hover:hover){
   .btn:hover{filter:brightness(1.06)}
-  .mode:hover,.scard:hover,.rowcard:hover{transform:translateY(-3px)}
-  .mode,.rowcard{transition:transform .15s}
-  .iconbtn:hover{filter:brightness(1.05)}
+  .rowcard:hover,.mode:hover,.tile:hover{transform:translateY(-3px)}
+  .ibtn:hover{filter:brightness(1.05)}
 }
-
-/* respect reduced motion everywhere */
 @media (prefers-reduced-motion: reduce){
-  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;
-    transition-duration:.001ms!important;scroll-behavior:auto!important}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
   .reveal,.reveal-pop{opacity:1!important;transform:none!important}
 }

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloth & Cowrie · Components</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  body{display:block;background:var(--cloth);background-image:var(--weave)}
+  .guide{max-width:1000px;margin:0 auto;padding:36px 22px 100px}
+  .sec{margin-top:38px}
+  .sec>.lab{display:inline-block;font-weight:800;font-size:11px;letter-spacing:3px;text-transform:uppercase;
+    color:var(--ink);background:var(--turmeric);padding:6px 13px;border-radius:var(--r-pill);margin-bottom:18px}
+  .panel{background:var(--patch);background-image:var(--weave-light);border-radius:var(--r-lg);padding:22px;position:relative;box-shadow:var(--e2)}
+  .panel::before{content:"";position:absolute;inset:9px;border:2px dashed var(--cloth);border-radius:13px;opacity:.4;pointer-events:none}
+  .grid{display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end;position:relative}
+  .spec{display:flex;flex-direction:column;align-items:center;gap:8px}
+  .spec .nm{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--ink-muted)}
+  .boards{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:22px}
+  .boardcard img{width:100%;display:block;border-radius:var(--r-md)}
+  .boardcard .nm{font-family:'Fraunces';font-weight:900;margin-top:10px;font-size:16px;color:var(--ink)}
+  .swrow{display:flex;flex-wrap:wrap;gap:10px}
+  .sw{width:74px;height:74px;border-radius:var(--r-md);display:grid;place-items:end;padding:6px;font-size:9px;font-weight:800;color:#fff;box-shadow:var(--e1)}
+  a.top{font-weight:800;text-decoration:none;color:var(--ink);background:var(--turmeric);border-radius:var(--r-pill);padding:9px 16px;display:inline-block;box-shadow:var(--e1)}
+</style>
+</head>
+<body>
+<div class="guide">
+  <a class="top" href="index.html">← Flow</a>
+  <div style="margin-top:20px"><span class="kicker light">Design system</span></div>
+  <h1 class="display" style="font-size:52px;margin-top:12px">Cloth &amp; Cowrie<br><em>components</em></h1>
+  <p class="body light" style="max-width:580px;margin-top:14px">Kantha running-stitch on woven cloth, calico patches, walnut ink. The cowrie shell is the hero control — thrown, counted, lit. Seat colours are canon and never skinned.</p>
+
+  <div class="sec"><span class="lab">Dyed cloth &amp; calico</span><div class="swrow">
+    <div class="sw" style="background:#7C2B3E">CLOTH</div><div class="sw" style="background:#FBE7D2;color:#3A2418">CALICO</div>
+    <div class="sw" style="background:#3A2418">INK</div><div class="sw" style="background:#E8A526;color:#3A2418">TURMERIC</div>
+    <div class="sw" style="background:#C8442F">MADDER·S1</div><div class="sw" style="background:#2E5375">INDIGO·S2</div>
+    <div class="sw" style="background:#E8A526;color:#3A2418">TURM·S3</div><div class="sw" style="background:#5C8C4A">LEAF·S4</div>
+  </div></div>
+
+  <div class="sec"><span class="lab">Type</span><div class="panel">
+    <div class="display" style="color:var(--ink);text-shadow:none">Display <em>serif</em></div>
+    <div class="title ink" style="margin-top:8px">Section title</div>
+    <div class="subtitle" style="margin-top:4px">an italic subtitle</div>
+    <div class="h" style="margin-top:10px">Heading</div>
+    <div class="body" style="max-width:520px;margin-top:4px">Body copy in Karla — comfortable for reading rules and labels across the cloth.</div>
+    <div class="cap" style="margin-top:8px">Mono-ish caption · data</div>
+  </div></div>
+
+  <div class="sec"><span class="lab">Cowrie shells — the hero control</span><div class="panel">
+    <div class="grid" style="--csz:34px">
+      <div class="spec"><div class="cowrie up"></div><div class="nm">Mouth up = 1</div></div>
+      <div class="spec"><div class="cowrie down"></div><div class="nm">Back down</div></div>
+      <div class="spec"><div class="cowrie up lit"></div><div class="nm">Lit / scoring</div></div>
+    </div>
+    <div class="throw" style="--csz:30px;margin-top:18px">
+      <div class="cowrie up"></div><div class="cowrie down"></div><div class="cowrie up"></div>
+      <div class="cowrie up"></div><div class="cowrie down"></div><div class="cowrie down"></div>
+    </div>
+    <div class="cap" style="margin-top:10px">A thrown set in its tray · 3 mouth-up = move 3</div>
+  </div></div>
+
+  <div class="sec"><span class="lab">Bone dice — 4 designs</span><div class="panel"><div class="grid" style="--dsz:58px">
+    <div class="spec"><div class="die"><i class="tl"></i><i class="tr"></i><i class="c"></i><i class="bl"></i><i class="br"></i></div><div class="nm">Bone</div></div>
+    <div class="spec"><div class="die die--indigo"><i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i></div><div class="nm">Indigo</div></div>
+    <div class="spec"><div class="die die--turmeric"><i class="tl"></i><i class="c"></i><i class="br"></i></div><div class="nm">Turmeric</div></div>
+    <div class="spec"><div class="die die--leaf"><i class="tl"></i><i class="tr"></i><i class="ml"></i><i class="mr"></i><i class="bl"></i><i class="br"></i></div><div class="nm">Leaf</div></div>
+  </div></div></div>
+
+  <div class="sec"><span class="lab">Tokens — 5 designs × 4 seats</span><div class="panel"><div class="grid" style="--tsz:40px">
+    <div class="spec"><div class="tok tok--bindi" style="--tc:#C8442F"></div><div class="nm">Bindi</div></div>
+    <div class="spec"><div class="tok tok--shell" style="--tc:#2E5375"></div><div class="nm">Shell</div></div>
+    <div class="spec"><div class="tok tok--bead" style="--tc:#E8A526"></div><div class="nm">Bead</div></div>
+    <div class="spec"><div class="tok tok--brass" style="--tc:#5C8C4A"></div><div class="nm">Brass</div></div>
+    <div class="spec"><div class="tok tok--tassel" style="--tc:#5b3a52"></div><div class="nm">Tassel</div></div>
+    <div class="spec"><div class="row gap-8">
+      <div class="tok tok--bindi" style="--tc:#C8442F"></div><div class="tok tok--bindi" style="--tc:#2E5375"></div>
+      <div class="tok tok--bindi" style="--tc:#E8A526"></div><div class="tok tok--bindi" style="--tc:#5C8C4A"></div>
+    </div><div class="nm">Seat set</div></div>
+  </div></div></div>
+
+  <div class="sec"><span class="lab">Boards — 3 cloths</span><div class="boards">
+    <div class="boardcard panel"><img src="board-1.svg" alt=""><div class="nm">01 · Chaupar</div></div>
+    <div class="boardcard panel"><img src="board-2.svg" alt=""><div class="nm">02 · Indigo</div></div>
+    <div class="boardcard panel"><img src="board-3.svg" alt=""><div class="nm">03 · Calico</div></div>
+  </div></div>
+
+  <div class="sec"><span class="lab">Buttons · patches · pills</span><div class="panel"><div class="grid">
+    <button class="btn btn-primary">Throw</button>
+    <button class="btn btn-accent">Invite</button>
+    <button class="btn btn-success">Ready</button>
+    <button class="btn btn-indigo">Join</button>
+    <button class="btn btn-ghost">Cancel</button>
+    <button class="btn" disabled>Waiting…</button>
+    <button class="ibtn">⚙</button>
+    <span class="pill"><span class="ic">🪙</span> 12,450</span>
+    <span class="chip">🎲 Quick</span>
+    <span class="badge gold">NEW</span><span class="badge red">PRO</span><span class="badge green">WIN</span>
+  </div>
+  <div class="grid" style="margin-top:24px">
+    <div class="patch tight" style="width:220px"><span class="tag-patch">Mode</span><div class="title ink" style="font-size:22px;margin-top:6px">Classic</div><p class="body" style="margin-top:4px">Race all four home.</p></div>
+    <div class="avatar s2" style="--sz:64px"><div class="ring"><div class="face">🦚</div><div class="status"></div></div></div>
+    <label class="toggle"><input type="checkbox" checked><span class="track"></span><span class="knob"></span></label>
+    <div class="seg" style="width:200px"><button class="on">2</button><button>3</button><button>4</button></div>
+    <div style="width:200px"><div class="progress"><div class="fill" style="width:62%"></div></div></div>
+    <div class="cell on">L</div>
+  </div></div></div>
+</div>
+</body>
+</html>

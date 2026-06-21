@@ -6,69 +6,70 @@
 <title>Ludo · Friends</title>
 <link rel="stylesheet" href="styles.css">
 <style>
-  .fbtn{font-size:12px;font-weight:800;border:none;border-radius:999px;padding:8px 14px;cursor:pointer}
-  .fbtn.play{background:var(--leaf);color:#fff}
-  .fbtn.inv{background:var(--patch-2);color:var(--cloth);border:2px dashed var(--cloth)}
-  .fbtn.acc{background:var(--turmeric);color:var(--ink)}
-  .addbar{display:flex;gap:10px}
+  .tabsrow{padding:0 16px;margin-top:4px}
+  .frowmeta b{font-family:'Fraunces';font-weight:700;font-size:15px;display:block;line-height:1.1}
+  .frowmeta span{font-size:12px;font-weight:700;color:var(--ink-muted)}
+  .flist{display:flex;flex-direction:column;gap:10px;padding:14px 16px}
 </style>
 </head>
 <body>
 <div class="app">
-  <div class="appbar">
-    <a class="bare" href="home.html"><button class="iconbtn">←</button></a>
-    <div class="title">Friends</div><div class="spacer"></div>
-    <button class="iconbtn">🔍</button>
+  <div class="bar-top">
+    <a class="bare" href="home.html"><button class="ibtn">←</button></a>
+    <div class="ti">Friends</div>
+    <button class="ibtn" style="margin-left:auto">＋</button>
   </div>
 
-  <div class="content">
-    <div class="seg reveal">
-      <button class="on">Friends · 6</button><button>Requests · 2</button><button>Add</button>
-    </div>
+  <div class="tabsrow">
+    <div class="seg" id="tabs"><button class="on">Online · 3</button><button>All · 12</button><button>Requests · 2</button></div>
+  </div>
 
-    <div class="addbar reveal" style="--d:.05s">
-      <input class="input" placeholder="Add by username or code…">
-      <button class="btn btn-accent">Add</button>
-    </div>
+  <div class="pad" style="padding-bottom:0">
+    <input class="input" placeholder="🔍 Search friends…">
+  </div>
 
-    <div class="cap light" style="margin:2px 2px -6px">Online · 2</div>
-    <div class="rowcard reveal" style="--d:.1s">
-      <div class="avatar s1" style="--sz:48px"><div class="ring"><div class="face">🐼</div></div><div class="status"></div></div>
-      <div class="meta"><b>Mika_99</b><span>Lv 31 · in lobby</span></div>
-      <button class="fbtn play">Invite</button>
-    </div>
-    <div class="rowcard reveal" style="--d:.15s">
-      <div class="avatar s3" style="--sz:48px"><div class="ring"><div class="face">🐸</div></div><div class="status"></div></div>
-      <div class="meta"><b>Leo</b><span>Lv 18 · online</span></div>
-      <button class="fbtn play">Invite</button>
-    </div>
-
-    <div class="cap light" style="margin:6px 2px -6px">Requests</div>
-    <div class="rowcard reveal" style="--d:.2s">
-      <div class="avatar s0" style="--sz:48px"><div class="ring"><div class="face">🐯</div></div></div>
-      <div class="meta"><b>Aarav</b><span>wants to be friends</span></div>
-      <div class="row gap-s"><button class="fbtn acc">Accept</button><button class="fbtn inv">✕</button></div>
-    </div>
-
-    <div class="cap light" style="margin:6px 2px -6px">Offline · 4</div>
-    <div class="rowcard reveal" style="--d:.25s">
-      <div class="avatar s2" style="--sz:48px"><div class="ring"><div class="face">🐵</div></div><div class="status off"></div></div>
-      <div class="meta"><b>Sana</b><span>last seen 2h ago</span></div>
-      <button class="fbtn inv">Profile</button>
-    </div>
-    <div class="rowcard reveal" style="--d:.3s">
-      <div class="avatar s1" style="--sz:48px"><div class="ring"><div class="face">🦁</div></div><div class="status off"></div></div>
-      <div class="meta"><b>Bilal</b><span>last seen yesterday</span></div>
-      <button class="fbtn inv">Profile</button>
+  <div class="scroll">
+    <div class="flist">
+      <div class="rowcard reveal-pop" style="--d:.05s">
+        <div class="avatar s3" style="--sz:48px"><div class="ring"><div class="face">🐼</div><div class="status"></div></div></div>
+        <div class="meta frowmeta"><b>Mika</b><span>🟢 In a match</span></div>
+        <button class="btn btn-success sm">Watch</button>
+      </div>
+      <div class="rowcard reveal-pop" style="--d:.1s">
+        <div class="avatar s0" style="--sz:48px"><div class="ring"><div class="face">🐯</div><div class="status"></div></div></div>
+        <div class="meta frowmeta"><b>Aarav</b><span>🟢 In lobby</span></div>
+        <button class="btn btn-primary sm">Invite</button>
+      </div>
+      <div class="rowcard reveal-pop" style="--d:.15s">
+        <div class="avatar s2" style="--sz:48px"><div class="ring"><div class="face">🐨</div><div class="status"></div></div></div>
+        <div class="meta frowmeta"><b>Zoya</b><span>🟢 Online</span></div>
+        <button class="btn btn-primary sm">Invite</button>
+      </div>
+      <div class="rowcard reveal-pop" style="--d:.2s">
+        <div class="avatar s1" style="--sz:48px"><div class="ring"><div class="face">🐸</div><div class="status off"></div></div></div>
+        <div class="meta frowmeta"><b>Leo</b><span>⚪ Last seen 2h ago</span></div>
+        <button class="btn btn-ghost sm" disabled>Offline</button>
+      </div>
+      <div class="patch tight" style="margin-top:4px;display:flex;align-items:center;gap:12px">
+        <span style="font-size:26px">🎁</span>
+        <div class="grow"><div class="h">Invite &amp; earn</div><div class="body">Get 500 🪙 per friend who joins the cloth.</div></div>
+        <button class="btn btn-accent sm">Share</button>
+      </div>
     </div>
   </div>
 
-  <nav class="bottomnav">
-    <a href="home.html"><span class="ic">🏠</span>Home</a>
-    <a class="on" href="friends.html"><span class="ic">👥</span>Friends</a>
-    <a href="customize.html"><span class="ic">🎨</span>Customize</a>
-    <a href="profile.html"><span class="ic">🪪</span>Profile</a>
-  </nav>
+  <div class="nav">
+    <a href="home.html"><span class="ic">🏡</span>Home</a>
+    <a class="on" href="friends.html"><span class="ic">🧶</span>Friends</a>
+    <a href="customize.html"><span class="ic">🎨</span>Shop</a>
+    <a href="profile.html"><span class="ic">🦚</span>You</a>
+  </div>
 </div>
+<script>
+  document.getElementById('tabs').addEventListener('click',e=>{
+    const b=e.target.closest('button'); if(!b)return;
+    [...e.currentTarget.children].forEach(x=>x.classList.remove('on')); b.classList.add('on');
+  });
+</script>
 </body>
 </html>

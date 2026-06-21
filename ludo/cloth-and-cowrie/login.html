@@ -3,39 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ludo · Sign in</title>
+<title>Ludo · Login</title>
 <link rel="stylesheet" href="styles.css">
 <style>
-  .login{justify-content:flex-end;gap:0;padding-bottom:34px}
-  .hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px}
-  .hero .board{width:188px;height:188px;animation:floaty 5s ease-in-out infinite}
-  .hero .board img{width:100%;filter:drop-shadow(0 18px 30px rgba(0,0,0,.5))}
-  .brand{font-family:'Fraunces',serif;font-weight:800;font-size:40px;color:var(--patch);margin-top:14px}
-  .brand em{font-style:italic;color:var(--turmeric)}
-  .welcome{font-family:'Fraunces',serif;font-style:italic;color:rgba(251,231,210,.78);font-size:16px}
-  .auth{display:flex;flex-direction:column;gap:12px}
-  .oauth{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;background:var(--patch-3);
-    color:var(--ink);border:2px dashed var(--cloth);border-radius:var(--r-md);padding:14px;font-weight:700;font-size:15px;
-    cursor:pointer;font-family:'Karla',sans-serif}
-  .oauth .g{width:22px;height:22px;border-radius:50%;background:#fff;display:grid;place-items:center;font-weight:800;color:#4285F4}
-  .legal{text-align:center;font-size:11px;color:rgba(251,231,210,.5);line-height:1.5;margin-top:4px}
+  .hero{padding:34px 22px 26px;text-align:center;position:relative}
+  .hero .cowrie{position:absolute;opacity:.9}
+  .formzone{flex:1;display:flex;flex-direction:column;gap:14px;padding:6px 18px 26px}
+  .or{display:flex;align-items:center;gap:12px;color:rgba(251,231,210,.6);font-weight:800;font-size:11px;
+    letter-spacing:2px;text-transform:uppercase;margin:2px 0}
+  .or::before,.or::after{content:"";flex:1;border-top:2px dashed rgba(251,231,210,.3)}
+  .gbtn{display:flex;align-items:center;justify-content:center;gap:12px}
+  .gbtn .g{width:26px;height:26px;border-radius:50%;background:#fff;display:grid;place-items:center;font-family:'Fraunces';font-weight:900;color:var(--indigo)}
+  .nametape{position:relative}
+  .nametape .lbl{position:absolute;top:-9px;left:16px;background:var(--turmeric);color:var(--ink);font-family:'Fraunces';
+    font-style:italic;font-weight:700;font-size:12px;padding:2px 12px;border-radius:var(--r-pill);z-index:2}
+  .legal{text-align:center;color:rgba(251,231,210,.5);font-size:12px;line-height:1.7;margin-top:auto;font-weight:600}
   .legal a{color:var(--turmeric)}
 </style>
 </head>
 <body>
-<div class="app login content">
+<div class="app">
   <div class="hero">
-    <div class="board reveal-pop"><img src="board.svg" alt="board"></div>
-    <h1 class="brand reveal" style="--d:.2s">Ludo <em>Royale</em></h1>
-    <p class="welcome reveal" style="--d:.35s">Pull up a cushion. Let's play.</p>
+    <div class="cowrie float" style="--csz:24px;left:30px;top:24px"></div>
+    <div class="cowrie float" style="--csz:18px;right:40px;top:18px;animation-delay:.6s"></div>
+    <div class="cowrie float" style="--csz:20px;right:30px;bottom:6px;animation-delay:1s"></div>
+    <span class="kicker reveal">Welcome to the cloth</span>
+    <h1 class="display reveal" style="--d:.05s;margin-top:14px">Ready to<br><em>throw?</em></h1>
+    <p class="body light reveal" style="--d:.15s;max-width:300px;margin:12px auto 0">Play as a guest in seconds, or stitch your name to Google to keep coins and stats forever.</p>
   </div>
 
-  <div class="auth">
-    <a class="bare reveal" style="--d:.5s" href="home.html"><button class="btn btn-primary lg block"><span class="ic">🎲</span> Play as Guest</button></a>
-    <hr class="stitch">
-    <a class="bare reveal" style="--d:.6s" href="home.html"><button class="oauth"><span class="g">G</span> Continue with Google</button></a>
-    <a class="bare reveal" style="--d:.68s" href="home.html"><button class="oauth"><span class="g" style="background:#000;color:#fff"></span> Continue with Apple</button></a>
-    <p class="legal reveal" style="--d:.8s">By continuing you agree to our <a href="#">Terms</a> &amp; <a href="#">Privacy Policy</a>.</p>
+  <div class="formzone">
+    <div class="nametape reveal" style="--d:.1s">
+      <span class="lbl">your name</span>
+      <input class="input" placeholder="Pick a handle…" value="Mayura" style="padding-top:18px">
+    </div>
+
+    <a class="bare reveal" style="--d:.18s" href="home.html"><button class="btn btn-primary lg block">🐚 Play as Guest</button></a>
+
+    <div class="or reveal" style="--d:.24s">or stitch an account</div>
+
+    <a class="bare reveal" style="--d:.28s" href="home.html"><button class="btn btn-ghost block gbtn"><span class="g">G</span> Continue with Google</button></a>
+    <a class="bare reveal" style="--d:.32s" href="home.html"><button class="btn btn-indigo block"> Continue with Apple</button></a>
+
+    <p class="legal reveal" style="--d:.4s">By playing you agree to our<br><a href="#">Terms</a> · <a href="#">Privacy Policy</a></p>
   </div>
 </div>
 </body>

@@ -6,124 +6,143 @@
 <title>Ludo · Game</title>
 <link rel="stylesheet" href="styles.css">
 <style>
-  .gamebar{display:flex;align-items:center;gap:10px;padding:14px 16px 6px}
+  .gamebar{display:flex;align-items:center;gap:10px;padding:14px 14px 8px}
   .gamebar .pot{flex:1;text-align:center}
-  .gamebar .pot b{font-family:'Fraunces',serif;color:var(--turmeric);font-size:18px}
-  .gamebar .pot small{display:block;font-size:10px;letter-spacing:2px;color:rgba(251,231,210,.55);text-transform:uppercase}
-  .ppr{display:flex;gap:10px;padding:4px 14px}
-  .pp{flex:1;display:flex;align-items:center;gap:9px;background:rgba(0,0,0,.18);border:2px solid transparent;
-    border-radius:var(--r-md);padding:8px 10px;transition:.2s}
-  .pp.active{background:var(--patch);border-color:var(--turmeric);box-shadow:0 0 18px rgba(232,165,38,.45)}
-  .pp .nm{flex:1;min-width:0}
-  .pp .nm b{font-size:13px;font-weight:800;color:var(--patch);display:block;line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .pp.active .nm b{color:var(--ink)}
-  .pp .nm .home{display:flex;gap:3px;margin-top:5px}
-  .pp .nm .home i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3)}
-  .pp .nm .home i.in{background:var(--c)}
-  .pp.active .nm .home i{background:rgba(0,0,0,.15)}
-  .pp.active .nm .home i.in{background:var(--c)}
-  .pp .clock{font-size:11px;font-weight:800;color:var(--turmeric)}
+  .gamebar .pot b{font-family:'Fraunces';font-weight:900;color:var(--turmeric);font-size:18px}
+  .gamebar .pot small{display:block;font-size:10px;letter-spacing:2px;color:rgba(251,231,210,.55);text-transform:uppercase;font-weight:800}
+  .ppr{display:flex;gap:8px;padding:4px 14px}
+  .pp{flex:1;display:flex;align-items:center;gap:8px;background:rgba(0,0,0,.16);border:2px solid transparent;border-radius:var(--r-md);padding:7px 9px;transition:.2s}
+  .pp.active{background:var(--patch);border-color:var(--turmeric);box-shadow:0 0 16px rgba(232,165,38,.4)}
+  .pp .meta{flex:1;min-width:0}
+  .pp .meta b{font-family:'Fraunces';font-weight:700;font-size:13px;color:var(--patch);display:block;line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .pp.active .meta b{color:var(--ink)}
+  .pp .home{display:flex;gap:3px;margin-top:5px}
+  .pp .home i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.28)}
+  .pp .home i.in{background:var(--c)}
+  .pp.active .home i{background:rgba(0,0,0,.12)}.pp.active .home i.in{background:var(--c)}
   .boardstage{padding:10px 14px;display:flex;justify-content:center}
   .board{position:relative;width:100%;max-width:360px;aspect-ratio:1}
   .board>img{width:100%;display:block;filter:drop-shadow(0 14px 26px rgba(0,0,0,.5))}
-  .tok{position:absolute;width:7.2%;height:7.2%;transform:translate(-50%,-50%);border-radius:50%;
-    border:2px solid rgba(0,0,0,.45);box-shadow:0 3px 5px rgba(0,0,0,.4);
+  .tk{position:absolute;width:7.4%;height:7.4%;transform:translate(-50%,-50%);border-radius:50%;
+    border:2px solid rgba(0,0,0,.4);box-shadow:0 3px 5px rgba(0,0,0,.4);z-index:5;
     transition:left .55s cubic-bezier(.3,.8,.3,1.1),top .55s cubic-bezier(.3,.8,.3,1.1)}
-  .tok.gone{animation:sendhome .6s ease forwards}
-  .tok::after{content:"";position:absolute;left:22%;top:14%;width:34%;height:34%;border-radius:50%;background:rgba(255,255,255,.45)}
-  .tok.me{cursor:pointer;animation:pulse 1.1s ease-in-out infinite;box-shadow:0 0 0 4px rgba(232,165,38,.5),0 3px 5px rgba(0,0,0,.4)}
-  .footzone{margin-top:auto;padding:10px 14px calc(14px + env(safe-area-inset-bottom))}
-  .turnbar{display:flex;align-items:center;gap:12px;background:var(--patch);border-radius:var(--r-lg);padding:12px;
-    position:relative;box-shadow:var(--e2)}
-  .turnbar::after{content:"";position:absolute;inset:7px;border:1.5px dashed var(--cloth);border-radius:14px;opacity:.3;pointer-events:none}
+  .tk::after{content:"";position:absolute;left:24%;top:16%;width:32%;height:32%;border-radius:50%;background:rgba(255,255,255,.5)}
+  .tk.gone{animation:sendhome .6s ease forwards}
+  .tk.me{cursor:pointer;animation:pulse 1.1s ease-in-out infinite;box-shadow:0 0 0 4px rgba(232,165,38,.5),0 3px 5px rgba(0,0,0,.4)}
+  .switcher{position:absolute;left:8px;top:8px;display:flex;flex-direction:column;gap:6px;z-index:8}
+  .switcher button{width:34px;height:34px;border:2px dashed var(--cloth);border-radius:10px;background:var(--patch);
+    font-family:'Fraunces';font-weight:900;font-size:13px;color:var(--cloth);cursor:pointer}
+  .switcher button.on{background:var(--turmeric);border-style:solid}
+  .footzone{margin-top:auto;padding:8px 14px calc(14px + env(safe-area-inset-bottom))}
+  .turnbar{position:relative;display:flex;align-items:center;gap:12px;background:var(--patch);border-radius:var(--r-lg);padding:12px;box-shadow:var(--e2)}
+  .turnbar::after{content:"";position:absolute;inset:7px;border:2px dashed var(--cloth);border-radius:15px;opacity:.3;pointer-events:none}
   .turnbar .you{display:flex;align-items:center;gap:9px;flex:1}
-  .turnbar .you .nm b{font-family:'Fraunces',serif;font-weight:800;font-size:15px;display:block}
-  .turnbar .you .nm span{font-size:11px;color:var(--ink-muted);font-weight:700}
-  .dice-btn{width:64px;height:64px;border:none;border-radius:18px;cursor:pointer;background:linear-gradient(160deg,#fff8ea,#ecdcc0);
-    box-shadow:0 6px 0 #cdbf9d, inset 0 1px 2px #fff;position:relative;flex:none}
-  .dice-btn .die{position:absolute;inset:6px;width:auto;height:auto;border:none;background:none;box-shadow:none}
-  .dice-btn:active{transform:translateY(3px);box-shadow:0 3px 0 #cdbf9d}
-  .hint{position:absolute;left:0;right:0;top:-30px;text-align:center;font-size:12px;font-weight:800;color:var(--turmeric);
-    background:var(--cloth-d);display:inline-block;margin:0 auto;padding:5px 14px;border-radius:999px;width:max-content;left:50%;transform:translateX(-50%)}
-  .emote{position:absolute;right:14px;top:62px;display:flex;flex-direction:column;gap:8px}
+  .turnbar .you .meta b{font-family:'Fraunces';font-weight:900;font-size:15px;display:block}
+  .turnbar .you .meta span{font-size:11px;color:var(--ink-muted);font-weight:700}
+  /* the cowrie cast tray = the dice */
+  .casttray{width:96px;flex:none;background:var(--cloth-d);background-image:var(--weave);border-radius:var(--r-md);
+    padding:8px;cursor:pointer;display:flex;flex-wrap:wrap;gap:4px;justify-content:center;align-items:center;position:relative;
+    box-shadow:inset 0 3px 8px rgba(0,0,0,.4);transition:transform .1s}
+  .casttray:active{transform:scale(.96)}
+  .casttray .cowrie{--csz:18px}
+  .castnum{position:absolute;right:-8px;top:-12px;background:var(--madder);color:#fff;font-family:'Fraunces';font-weight:900;
+    font-size:15px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;box-shadow:var(--e1);opacity:0;transform:scale(.4);transition:.2s}
+  .castnum.show{opacity:1;transform:scale(1)}
+  .hint{position:absolute;left:50%;top:-16px;transform:translateX(-50%);white-space:nowrap;font-weight:800;font-size:11px;
+    letter-spacing:1px;text-transform:uppercase;background:var(--cloth-d);color:var(--turmeric);padding:4px 12px;border-radius:var(--r-pill)}
+  .emote{position:absolute;right:14px;top:60px;display:flex;flex-direction:column;gap:8px;z-index:8}
 </style>
 </head>
 <body>
 <div class="app">
   <div class="gamebar">
-    <a class="bare" href="results.html"><button class="iconbtn">⏏</button></a>
+    <a class="bare" href="results.html"><button class="ibtn">⏏</button></a>
     <div class="pot"><b>🪙 1,800</b><small>prize pot · round 1</small></div>
-    <button class="iconbtn">🔊</button>
+    <button class="ibtn">🔊</button>
   </div>
 
-  <!-- opponents top -->
   <div class="ppr">
     <div class="pp" style="--c:var(--seat1)">
-      <div class="avatar s1" style="--sz:38px"><div class="ring"><div class="face">🐼</div></div></div>
-      <div class="nm"><b>Mika</b><div class="home"><i class="in"></i><i></i><i></i><i></i></div></div>
+      <div class="avatar s1" style="--sz:34px"><div class="ring"><div class="face">🐼</div></div></div>
+      <div class="meta"><b>Mika</b><div class="home"><i class="in"></i><i></i><i></i><i></i></div></div>
     </div>
     <div class="pp" style="--c:var(--seat0)">
-      <div class="avatar s0" style="--sz:38px"><div class="ring"><div class="face">🐯</div></div></div>
-      <div class="nm"><b>Aarav</b><div class="home"><i class="in"></i><i class="in"></i><i></i><i></i></div></div>
+      <div class="avatar s0" style="--sz:34px"><div class="ring"><div class="face">🐯</div></div></div>
+      <div class="meta"><b>Aarav</b><div class="home"><i class="in"></i><i class="in"></i><i></i><i></i></div></div>
     </div>
   </div>
 
-  <!-- board -->
   <div class="boardstage">
     <div class="board" id="board">
-      <img src="board.svg" alt="Ludo board">
-      <!-- active tokens overlaid on the track (cell centres as % of 660) -->
-      <span class="tok" style="left:13.64%;top:43.94%;background:var(--seat3)"></span>
-      <span class="tok" id="redtok" style="left:56.06%;top:13.64%;background:var(--seat0)"></span>
-      <span class="tok" style="left:86.36%;top:56.06%;background:var(--seat1)"></span>
-      <span class="tok me" id="metok" style="left:56.06%;top:80.3%;background:var(--seat2)"></span>
+      <div class="switcher" id="switcher">
+        <button class="on" data-b="1">1</button><button data-b="2">2</button><button data-b="3">3</button>
+      </div>
+      <img src="board-1.svg" alt="Ludo board" id="boardimg">
+      <span class="tk tok--bindi" style="left:13.64%;top:43.94%;background:var(--seat3)"></span>
+      <span class="tk tok--bindi" id="redtok" style="left:56.06%;top:13.64%;background:var(--seat0)"></span>
+      <span class="tk tok--bindi" style="left:86.36%;top:56.06%;background:var(--seat1)"></span>
+      <span class="tk tok--bindi me" id="metok" style="left:56.06%;top:80.3%;background:var(--seat2)"></span>
     </div>
   </div>
 
   <div class="emote">
-    <button class="iconbtn">😄</button>
-    <button class="iconbtn">💬</button>
+    <button class="ibtn">😄</button>
+    <button class="ibtn">💬</button>
   </div>
 
-  <!-- you + dice -->
   <div class="footzone">
-    <div class="ppr" style="padding:0 0 10px">
-      <div class="pp" style="--c:var(--seat3)">
-        <div class="avatar s3" style="--sz:38px"><div class="ring"><div class="face">🐸</div></div></div>
-        <div class="nm"><b>Leo</b><div class="home"><i></i><i></i><i></i><i></i></div></div>
+    <div class="ppr" style="padding:0 0 8px">
+      <div class="pp active" style="--c:var(--seat2)">
+        <div class="avatar s2" style="--sz:34px"><div class="ring"><div class="face">🦚</div></div></div>
+        <div class="meta"><b>You · Turmeric</b><div class="home"><i></i><i></i><i></i><i></i></div></div>
       </div>
     </div>
-    <div class="turnbar" style="--c:var(--seat2)">
-      <span class="hint" id="hint">Your turn — tap to roll</span>
+    <div class="turnbar">
+      <span class="hint" id="hint">Your turn — tap to cast</span>
       <div class="you">
-        <div class="avatar s2" style="--sz:46px"><div class="ring"><div class="face">🦊</div><div class="status"></div></div></div>
-        <div class="nm"><b>You</b><span>yellow · 0 home</span></div>
+        <div class="avatar s2" style="--sz:44px"><div class="ring"><div class="face">🦚</div><div class="status"></div></div></div>
+        <div class="meta"><b>You</b><span>0 home · 4 in yard</span></div>
       </div>
-      <button class="dice-btn" id="dice" aria-label="Roll dice">
-        <div class="die" id="dieface"><i class="tl"></i><i class="br"></i></div>
-      </button>
+      <div class="casttray" id="tray" aria-label="Cast cowries">
+        <span class="castnum" id="castnum">3</span>
+        <div class="cowrie up"></div><div class="cowrie down"></div><div class="cowrie up"></div>
+        <div class="cowrie down"></div><div class="cowrie up"></div><div class="cowrie down"></div>
+      </div>
     </div>
   </div>
 </div>
 <script>
-  const faces={1:['c'],2:['tl','br'],3:['tl','c','br'],4:['tl','tr','bl','br'],5:['tl','tr','c','bl','br'],6:['tl','tr','ml','mr','bl','br']};
-  const die=document.getElementById('dieface'), btn=document.getElementById('dice'),
-        hint=document.getElementById('hint'), me=document.getElementById('metok'), red=document.getElementById('redtok');
-  let rolling=false, rolled=false;
-  function render(n){die.innerHTML=faces[n].map(p=>'<i class="'+p+'"></i>').join('')}
-  btn.addEventListener('click',()=>{
-    if(rolling||rolled) return; rolling=true; hint.textContent='rolling…'; die.classList.add('rolling');
-    let spins=0; const iv=setInterval(()=>{render(1+Math.floor(Math.random()*6)); if(++spins>10){clearInterval(iv);land();}},70);
-    function land(){const n=1+Math.floor(Math.random()*6);render(n);die.classList.remove('rolling');
-      hint.textContent='rolled '+n+' — tap your glowing token'; rolling=false; rolled=true;}
+  const tray=document.getElementById('tray'), cows=[...tray.querySelectorAll('.cowrie')],
+        num=document.getElementById('castnum'), hint=document.getElementById('hint'),
+        me=document.getElementById('metok'), red=document.getElementById('redtok');
+  let casting=false, cast=false;
+  tray.addEventListener('click',()=>{
+    if(casting||cast)return; casting=true; hint.textContent='casting…'; num.classList.remove('show');
+    cows.forEach(c=>c.classList.add('tossing'));
+    let spins=0;
+    const iv=setInterval(()=>{
+      cows.forEach(c=>{const up=Math.random()>.5;c.className='cowrie tossing '+(up?'up':'down');});
+      if(++spins>9){clearInterval(iv);land();}
+    },70);
+    function land(){
+      let n=0; cows.forEach(c=>{const up=Math.random()>.45;c.className='cowrie '+(up?'up lit':'down');if(up)n++;});
+      if(n===0)n=6; // all-backs scores 6 (pachisi convention)
+      num.textContent=n; num.classList.add('show');
+      hint.textContent='cast '+n+' — tap your token'; casting=false; cast=true;
+    }
   });
   me.addEventListener('click',()=>{
-    if(!rolled) return; rolled=false; me.style.animation='none'; hint.textContent='moving…';
-    me.style.left='56.06%'; me.style.top='13.64%';                 // glide onto the red square
-    setTimeout(()=>{ red.classList.add('gone'); hint.textContent='captured! sent home';   // capture flourish
-      setTimeout(()=>{ hint.textContent="opponent's turn"; },900); }, 600);
+    if(!cast)return; cast=false; me.style.animation='none'; hint.textContent='moving…';
+    me.style.left='56.06%'; me.style.top='13.64%';
+    setTimeout(()=>{ red.classList.add('gone'); hint.textContent='captured! → yard';
+      setTimeout(()=>hint.textContent="opponent's turn",900); },600);
   });
-  render(2);
+  document.getElementById('switcher').addEventListener('click',e=>{
+    const b=e.target.closest('button'); if(!b)return;
+    document.querySelectorAll('.switcher button').forEach(x=>x.classList.remove('on')); b.classList.add('on');
+    const img=document.getElementById('boardimg'); img.style.transition='opacity .2s'; img.style.opacity=0;
+    setTimeout(()=>{img.src='board-'+b.dataset.b+'.svg';img.style.opacity=1;},120);
+  });
 </script>
 </body>
 </html>

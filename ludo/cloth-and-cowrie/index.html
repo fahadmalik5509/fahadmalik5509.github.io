@@ -3,77 +3,52 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cloth &amp; Cowrie · Screen Flow</title>
+<title>Ludo Cloth & Cowrie · Flow</title>
 <link rel="stylesheet" href="styles.css">
 <style>
-  body{display:block;background:var(--cloth-d);background-image:var(--weave)}
-  .hub{max-width:1100px;margin:0 auto;padding:40px 22px 80px;color:var(--patch)}
-  .hub h1{font-family:'Fraunces',serif;font-weight:800;font-size:46px;line-height:1}
-  .hub h1 em{font-style:italic;color:var(--turmeric)}
-  .hub .lede{color:rgba(251,231,210,.8);max-width:640px;line-height:1.55;margin-top:10px;font-weight:600}
-  .start{display:inline-flex;margin-top:18px}
-  .sec{margin-top:38px}
-  .sec h2{font-family:'Fraunces',serif;font-size:22px;margin-bottom:4px}
-  .sec p{color:rgba(251,231,210,.55);font-size:14px;margin-bottom:16px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
-  .scard{display:block;text-decoration:none;background:var(--patch);border-radius:var(--r-lg);overflow:hidden;
-    box-shadow:var(--e2);color:var(--ink);transition:transform .15s}
-  .scard:hover{transform:translateY(-5px)}
-  .scard .thumb{height:96px;display:grid;place-items:center;font-size:34px;position:relative;
-    background:var(--cloth);background-image:var(--weave);color:var(--patch)}
-  .scard .thumb::after{content:"";position:absolute;inset:8px;border:1.5px dashed var(--patch);border-radius:12px;opacity:.4}
-  .scard .lab{padding:10px 12px}
-  .scard .lab b{font-family:'Fraunces',serif;font-weight:800;font-size:15px;display:block}
-  .scard .lab span{font-size:12px;color:var(--ink-muted);font-weight:600}
-  .num{position:absolute;top:8px;left:10px;font-size:11px;font-weight:800;color:var(--turmeric)}
+  body{display:block;background:#481622;
+    background-image:repeating-linear-gradient(45deg,rgba(0,0,0,.06) 0 1px,transparent 1px 5px),repeating-linear-gradient(-45deg,rgba(255,255,255,.04) 0 1px,transparent 1px 5px)}
+  .hub{max-width:1080px;margin:0 auto;padding:44px 22px 110px}
+  .head{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:18px}
+  .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:22px;margin-top:38px}
+  .tile{display:block;text-decoration:none;color:var(--ink);background:var(--patch);background-image:var(--weave-light);
+    border-radius:var(--r-lg);box-shadow:var(--e2);overflow:hidden;position:relative;transition:transform .2s}
+  .tile::before{content:"";position:absolute;inset:9px;border:2px dashed var(--cloth);border-radius:14px;opacity:.4;pointer-events:none;z-index:2}
+  .tile:hover{transform:translateY(-5px)}
+  .tile .frame{aspect-ratio:1.5;display:grid;place-items:center;font-size:48px;background:var(--cloth-d);background-image:var(--weave);
+    border-bottom:2px dashed rgba(251,231,210,.35)}
+  .tile .meta{padding:14px 16px}
+  .tile .meta .n{font-weight:800;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-faint)}
+  .tile .meta .t{font-family:'Fraunces',serif;font-weight:900;font-size:18px;margin-top:2px}
+  .topbtn{font-family:'Karla';font-weight:800;text-decoration:none;color:var(--ink);background:var(--turmeric);
+    border-radius:var(--r-pill);padding:11px 18px;display:inline-block;box-shadow:var(--e1)}
 </style>
 </head>
 <body>
 <div class="hub">
-  <h1>Cloth &amp; <em>Cowrie</em></h1>
-  <p class="lede">The full Ludo flow rendered in the Cloth &amp; Cowrie design system — embroidered fabric patches, running-stitch seams, cowrie dice. Each screen is its own page and links onward; the board is a redesigned SVG.</p>
-  <a class="bare start" href="splash.html"><button class="btn btn-primary lg"><span class="ic">▶</span> Start the flow (splash)</button></a>
-
-  <div class="sec">
-    <h2>Onboarding</h2><p>splash → login</p>
-    <div class="grid">
-      <a class="scard" href="splash.html"><div class="thumb"><span class="num">01</span>🎲</div><div class="lab"><b>Splash</b><span>dice ladder loader</span></div></a>
-      <a class="scard" href="splash-2.html"><div class="thumb"><span class="num">01b</span>🐚</div><div class="lab"><b>Splash · var</b><span>cowrie toss</span></div></a>
-      <a class="scard" href="splash-3.html"><div class="thumb"><span class="num">01c</span>🧵</div><div class="lab"><b>Splash · var</b><span>board weave</span></div></a>
-      <a class="scard" href="login.html"><div class="thumb"><span class="num">02</span>🔑</div><div class="lab"><b>Login</b><span>guest · google · apple</span></div></a>
+  <div class="head">
+    <div>
+      <span class="kicker">Design system · Cloth &amp; Cowrie</span>
+      <h1 class="display" style="font-size:64px;margin-top:16px">Throw the<br><em>cowries.</em></h1>
+      <p class="body light" style="max-width:540px;margin-top:14px">A full Ludo flow drawn from Pachisi — the embroidered cross-cloth played not with a die but a fistful of cowrie shells. Kantha stitch, dyed cloth, calico patches. Every screen below is a real mock.</p>
     </div>
+    <a class="topbtn" href="components.html">Components →</a>
   </div>
-
-  <div class="sec">
-    <h2>Hub &amp; setup</h2><p>home → modes</p>
-    <div class="grid">
-      <a class="scard" href="home.html"><div class="thumb"><span class="num">03</span>🏠</div><div class="lab"><b>Home</b><span>modes · HUD · daily</span></div></a>
-      <a class="scard" href="matchmaking.html"><div class="thumb"><span class="num">04</span>📡</div><div class="lab"><b>Matchmaking</b><span>radar · seats fill</span></div></a>
-      <a class="scard" href="team-lobby.html"><div class="thumb"><span class="num">05</span>🤝</div><div class="lab"><b>Team Up</b><span>2v2 lobby</span></div></a>
-      <a class="scard" href="private-room.html"><div class="thumb"><span class="num">06</span>🔒</div><div class="lab"><b>Private Room</b><span>code · seats</span></div></a>
-      <a class="scard" href="join.html"><div class="thumb"><span class="num">07</span>⌨️</div><div class="lab"><b>Join</b><span>code keypad</span></div></a>
-      <a class="scard" href="local-setup.html"><div class="thumb"><span class="num">08</span>📵</div><div class="lab"><b>Pass &amp; Play</b><span>seats · bots</span></div></a>
-    </div>
-  </div>
-
-  <div class="sec">
-    <h2>Play</h2><p>game → results</p>
-    <div class="grid">
-      <a class="scard" href="game.html"><div class="thumb"><span class="num">09</span>🎯</div><div class="lab"><b>Game Board</b><span>HUD · dice · tokens</span></div></a>
-      <a class="scard" href="results.html"><div class="thumb"><span class="num">10</span>👑</div><div class="lab"><b>Results</b><span>podium · rewards</span></div></a>
-    </div>
-  </div>
-
-  <div class="sec">
-    <h2>Social &amp; account</h2>
-    <div class="grid">
-      <a class="scard" href="friends.html"><div class="thumb"><span class="num">11</span>👥</div><div class="lab"><b>Friends</b><span>list · requests</span></div></a>
-      <a class="scard" href="profile.html"><div class="thumb"><span class="num">12</span>🪪</div><div class="lab"><b>Profile</b><span>stats · equipped</span></div></a>
-      <a class="scard" href="customize.html"><div class="thumb"><span class="num">13</span>🎨</div><div class="lab"><b>Customize</b><span>cosmetics</span></div></a>
-      <a class="scard" href="settings.html"><div class="thumb"><span class="num">14</span>⚙️</div><div class="lab"><b>Settings</b><span>sound · packs</span></div></a>
-      <a class="scard" href="no-internet.html"><div class="thumb"><span class="num">15</span>🧶</div><div class="lab"><b>Offline</b><span>retry state</span></div></a>
-    </div>
-  </div>
+  <div class="tiles" id="tiles"></div>
 </div>
+<script>
+  const S=[
+    ['splash','Splash','🐚','00'],['login','Login','🪡','01'],['home','Home','🏡','02'],
+    ['matchmaking','Matchmaking','🔮','03'],['team-lobby','Team Lobby','🤝','04'],['private-room','Private Room','🚪','05'],
+    ['join','Join by Code','🧵','06'],['local-setup','Pass & Play','📿','07'],['game','Game Board','🎯','08'],
+    ['results','Results','🏆','09'],['friends','Friends','🧶','10'],['profile','Profile','🦚','11'],
+    ['customize','Customize','🎨','12'],['settings','Settings','⚙','13'],['no-internet','No Internet','📵','14'],
+  ];
+  document.getElementById('tiles').innerHTML=S.map((s,i)=>
+    `<a class="tile reveal-pop" style="--d:${i*0.04}s" href="${s[0]}.html">
+      <div class="frame">${s[2]}</div>
+      <div class="meta"><div class="n">Screen ${s[3]}</div><div class="t">${s[1]}</div></div>
+    </a>`).join('');
+</script>
 </body>
 </html>

@@ -3,55 +3,77 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ludo · Team Up</title>
+<title>Ludo · Team Lobby</title>
 <link rel="stylesheet" href="styles.css">
 <style>
-  .team{position:relative;padding:18px}
-  .team .lbl{font-family:'Fraunces',serif;font-style:italic;color:var(--turmeric);font-size:15px;margin-bottom:10px}
-  .team .members{display:flex;gap:14px}
-  .member{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px}
-  .member b{font-weight:800;font-size:13px}
-  .member .r{font-size:11px;color:var(--ink-muted);font-weight:700}
-  .vs{display:grid;place-items:center;margin:-6px 0}
-  .vs span{font-family:'Fraunces',serif;font-weight:800;font-style:italic;color:rgba(251,231,210,.8);font-size:20px;
-    background:var(--cloth-d);width:46px;height:46px;border-radius:50%;display:grid;place-items:center;border:2px dashed rgba(251,231,210,.4)}
+  .teamzone{flex:1;display:flex;flex-direction:column;padding:14px 16px 22px;gap:14px}
+  .codecard{display:flex;align-items:center;gap:12px}
+  .codebox{font-family:'Fraunces';font-weight:900;font-size:22px;letter-spacing:4px;color:var(--turmeric);
+    background:var(--cloth-d);padding:8px 16px;border-radius:var(--r-md);border:2px dashed rgba(251,231,210,.4)}
+  .vs{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:stretch}
+  .banner{position:relative;border-radius:var(--r-lg);padding:14px;display:flex;flex-direction:column;gap:12px;box-shadow:var(--e2)}
+  .banner::before{content:"";position:absolute;inset:8px;border:2px dashed rgba(251,231,210,.5);border-radius:13px;pointer-events:none}
+  .banner.a{background:var(--seat0);background-image:var(--weave)} .banner.b{background:var(--seat1);background-image:var(--weave)}
+  .banner .ttl{font-family:'Fraunces';font-weight:900;color:var(--patch);font-size:20px;position:relative}
+  .slot{position:relative;display:flex;align-items:center;gap:10px;background:var(--patch);border-radius:var(--r-md);padding:8px}
+  .slot.empty{background:rgba(251,231,210,.25);border:2px dashed rgba(251,231,210,.6)}
+  .slot .meta b{font-family:'Fraunces';font-weight:700;font-size:14px;display:block;line-height:1}
+  .slot .meta span{font-size:11px;font-weight:700;color:var(--ink-muted)}
+  .vsknot{align-self:center;font-family:'Fraunces';font-weight:900;font-size:22px;color:var(--ink);background:var(--turmeric);
+    border-radius:50%;width:46px;height:46px;display:grid;place-items:center;box-shadow:var(--e1)}
 </style>
 </head>
 <body>
 <div class="app">
-  <div class="appbar">
-    <a class="bare" href="home.html"><button class="iconbtn">←</button></a>
-    <div class="title">Team Up · 2v2</div><div class="spacer"></div>
+  <div class="bar-top">
+    <a class="bare" href="home.html"><button class="ibtn">←</button></a>
+    <div class="ti">Team Up · 2v2</div>
   </div>
 
-  <div class="content">
-    <p class="body light reveal">Partners sit diagonally. Bring <b>both</b> your armies home to win together.</p>
+  <div class="teamzone">
+    <div class="rowcard codecard reveal">
+      <span style="font-size:24px">🧵</span>
+      <div class="meta"><span class="cap">Invite code</span><div class="codebox" style="margin-top:4px;display:inline-block">K7-LU2</div></div>
+      <button class="ibtn">📋</button>
+    </div>
 
-    <div class="patch team reveal" style="--d:.05s">
-      <div class="lbl">Your team · A</div>
-      <div class="members">
-        <div class="member"><div class="avatar s2" style="--sz:60px"><div class="ring"><div class="face">🦊</div></div><div class="status"></div></div><b>You</b><span class="r">ready</span></div>
-        <div class="member"><div class="avatar s3" style="--sz:60px"><div class="ring"><div class="face">🐸</div></div><div class="status"></div></div><b>Leo</b><span class="r">ready</span></div>
+    <div class="vs">
+      <div class="banner a reveal-pop" style="--d:.05s">
+        <div class="ttl">Team A</div>
+        <div class="slot">
+          <div class="avatar s0" style="--sz:40px"><div class="ring"><div class="face">🦚</div></div></div>
+          <div class="meta"><b>You</b><span>Captain</span></div>
+        </div>
+        <div class="slot">
+          <div class="avatar s2" style="--sz:40px"><div class="ring"><div class="face">🐯</div></div></div>
+          <div class="meta"><b>Aarav</b><span>Ready</span></div>
+        </div>
+      </div>
+
+      <div class="vsknot">VS</div>
+
+      <div class="banner b reveal-pop" style="--d:.12s">
+        <div class="ttl">Team B</div>
+        <div class="slot">
+          <div class="avatar s1" style="--sz:40px"><div class="ring"><div class="face">🐼</div></div></div>
+          <div class="meta"><b>Mika</b><span>Ready</span></div>
+        </div>
+        <div class="slot empty">
+          <div class="avatar" style="--sz:40px;--ring:rgba(251,231,210,.5)"><div class="ring"><div class="face">＋</div></div></div>
+          <div class="meta"><b style="color:var(--patch)">Open seat</b><span style="color:rgba(251,231,210,.7)">waiting…</span></div>
+        </div>
       </div>
     </div>
 
-    <div class="vs"><span>VS</span></div>
-
-    <div class="patch team reveal" style="--d:.1s">
-      <div class="lbl" style="color:var(--ink-faint)">Opponents · B</div>
-      <div class="members">
-        <div class="member"><div class="avatar s0" style="--sz:60px"><div class="ring"><div class="face">🐯</div></div><div class="status off"></div></div><b>Searching…</b><span class="r">—</span></div>
-        <div class="member"><div class="avatar s1" style="--sz:60px"><div class="ring"><div class="face">⏳</div></div><div class="status off"></div></div><b>Searching…</b><span class="r">—</span></div>
-      </div>
+    <div class="rowcard">
+      <div class="meta"><span class="cap">Wager</span><b style="font-size:20px">1,800 🪙</b></div>
+      <div class="seg" style="width:170px"><button>Casual</button><button class="on">Ranked</button></div>
     </div>
 
-    <div class="patch reveal" style="--d:.2s">
-      <div class="row between"><div><div class="h">Wager</div><div class="body" style="font-size:13px">Per player · pooled prize</div></div>
-        <div class="seg" style="width:170px"><button>Free</button><button class="on">500</button><button>1K</button></div></div>
+    <div class="mt-auto col gap-10">
+      <button class="btn btn-success lg block" disabled>Waiting for 1 player…</button>
+      <a class="bare" href="home.html"><button class="btn btn-ghost block">Leave Party</button></a>
     </div>
-
-    <a class="bare" href="game.html"><button class="btn btn-primary lg block reveal" style="--d:.3s"><span class="ic">🤝</span> Queue with team</button></a>
-    <a class="bare" href="friends.html"><button class="btn btn-ghost block reveal" style="--d:.35s">Invite a friend to your team</button></a>
   </div>
 </div>
 </body>

@@ -6,70 +6,86 @@
 <title>Ludo · Matchmaking</title>
 <link rel="stylesheet" href="styles.css">
 <style>
-  .mm{justify-content:center;align-items:center;text-align:center;gap:18px}
-  .radar{width:200px;height:200px;position:relative;display:grid;place-items:center}
-  .radar .ring{position:absolute;border:2px dashed rgba(251,231,210,.4);border-radius:50%}
-  .r1{width:200px;height:200px;animation:spin 14s linear infinite}
-  .r2{width:140px;height:140px;animation:spin 9s linear infinite reverse}
-  .radar .core{width:96px;height:96px;border-radius:50%;background:var(--turmeric);display:grid;place-items:center;
-    box-shadow:0 0 0 8px rgba(232,165,38,.25);animation:pulse 1.8s ease-in-out infinite}
-  .radar .core .die{--dsz:54px}
-  .seats{display:flex;gap:14px;justify-content:center}
-  .seat{display:flex;flex-direction:column;align-items:center;gap:6px;width:66px}
-  .seat .slot{width:60px;height:60px;border-radius:50%;border:2px dashed rgba(251,231,210,.4);display:grid;place-items:center;
-    background:rgba(0,0,0,.18);color:rgba(251,231,210,.5);font-size:24px}
-  .seat .slot.searching{animation:pulse 1.2s ease-in-out infinite}
-  .seat small{font-size:11px;color:rgba(251,231,210,.7);font-weight:700}
-  .seat.filled .slot{border-style:solid}
+  .mmwrap{flex:1;display:flex;flex-direction:column;padding:14px 18px 24px}
+  .caster{text-align:center;margin-top:4px}
+  .caster .throw{--csz:26px;justify-content:center}
+  .dots span{animation:pulse 1.2s ease-in-out infinite;display:inline-block}
+  .dots span:nth-child(2){animation-delay:.2s}.dots span:nth-child(3){animation-delay:.4s}
+  .seats{display:flex;flex-direction:column;gap:12px;margin-top:20px}
+  .seat .meta b{font-family:'Fraunces';font-weight:900;font-size:16px}
+  .seat .search{font-weight:700;color:var(--ink-faint);font-size:13px}
+  .seatdot{width:16px;height:16px;border-radius:50%;flex:none;border:2px solid rgba(0,0,0,.2)}
+  .timer{font-weight:800;font-size:14px;color:var(--turmeric)}
 </style>
 </head>
 <body>
 <div class="app">
-  <div class="appbar">
-    <a class="bare" href="home.html"><button class="iconbtn">←</button></a>
-    <div class="title">Quick Match</div><div class="spacer"></div>
-    <span class="chip">🪙 500 entry</span>
+  <div class="bar-top">
+    <a class="bare" href="home.html"><button class="ibtn">←</button></a>
+    <div class="ti">Casting lots</div>
   </div>
 
-  <div class="content mm">
-    <div class="radar">
-      <div class="ring r1"></div><div class="ring r2"></div>
-      <div class="core"><div class="die rolling"><i class="tl"></i><i class="tr"></i><i class="c"></i><i class="bl"></i><i class="br"></i></div></div>
+  <div class="mmwrap">
+    <div class="caster">
+      <div class="patch cloth tight" style="display:inline-block;padding:18px 22px">
+        <div class="throw" id="throw">
+          <div class="cowrie up"></div><div class="cowrie down"></div><div class="cowrie up"></div>
+          <div class="cowrie down"></div><div class="cowrie up"></div><div class="cowrie down"></div>
+        </div>
+      </div>
+      <h1 class="title on-cloth" style="font-size:26px;margin-top:16px">Finding players<span class="dots"><span>.</span><span>.</span><span>.</span></span></h1>
+      <div class="row center gap-10" style="margin-top:12px">
+        <span class="chip light">🎲 Classic · 4P</span>
+        <span class="chip light"><span class="dot"></span> Online</span>
+      </div>
     </div>
-    <div>
-      <div class="title on-cloth" id="status">Finding players…</div>
-      <p class="body light" id="sub">Matching you with players of similar skill</p>
+
+    <div class="rowcard" style="margin-top:18px">
+      <div class="meta"><span class="cap">Wager tier</span><b style="font-size:22px">1,800 🪙</b></div>
+      <div class="row gap-8"><span class="cap">Elapsed</span><span class="timer" id="t">00:09</span></div>
     </div>
 
     <div class="seats" id="seats">
-      <div class="seat filled s0"><div class="slot" style="border-color:var(--seat0);color:var(--seat0)">🦊</div><small>You</small></div>
-      <div class="seat s1"><div class="slot searching">⏳</div><small>—</small></div>
-      <div class="seat s2"><div class="slot searching">⏳</div><small>—</small></div>
-      <div class="seat s3"><div class="slot searching">⏳</div><small>—</small></div>
+      <div class="rowcard seat">
+        <div class="avatar s0" style="--sz:46px"><div class="ring"><div class="face">🦚</div></div></div>
+        <div class="meta"><span class="cap">Seat 1 · You</span><b>Mayura</b></div>
+        <span class="seatdot" style="background:var(--seat0)"></span>
+      </div>
+      <div class="rowcard seat empty"><div class="avatar" style="--sz:46px;--ring:var(--patch-2)"><div class="ring"><div class="face">⏳</div></div></div>
+        <div class="meta"><span class="cap">Seat 2</span><div class="search">searching…</div></div><span class="seatdot" style="background:var(--patch-2)"></span></div>
+      <div class="rowcard seat empty"><div class="avatar" style="--sz:46px;--ring:var(--patch-2)"><div class="ring"><div class="face">⏳</div></div></div>
+        <div class="meta"><span class="cap">Seat 3</span><div class="search">searching…</div></div><span class="seatdot" style="background:var(--patch-2)"></span></div>
+      <div class="rowcard seat empty"><div class="avatar" style="--sz:46px;--ring:var(--patch-2)"><div class="ring"><div class="face">⏳</div></div></div>
+        <div class="meta"><span class="cap">Seat 4</span><div class="search">searching…</div></div><span class="seatdot" style="background:var(--patch-2)"></span></div>
     </div>
 
-    <div class="pill"><span class="ic" style="background:var(--leaf);color:#fff">⏱</span> <span id="timer">00:03</span> · est. wait</div>
-    <a class="bare" href="home.html"><button class="btn btn-ghost block" style="max-width:240px">Cancel search</button></a>
+    <div class="mt-auto" style="padding-top:20px">
+      <a class="bare" href="home.html"><button class="btn btn-ghost block">✕ Cancel Search</button></a>
+    </div>
   </div>
 </div>
 <script>
-  const seats=[...document.querySelectorAll('#seats .seat')];
-  const names=['','Mika','Aarav','Leo'], faces=['','🐼','🐯','🐸'];
-  let t=3,f=1;
-  const tm=setInterval(()=>{t++;document.getElementById('timer').textContent='00:'+String(t).padStart(2,'0')},1000);
-  function fill(){
-    if(f>=seats.length){ clearInterval(tm); done(); return; }
-    const s=seats[f]; s.classList.add('filled');
-    const slot=s.querySelector('.slot'); slot.classList.remove('searching'); slot.textContent=faces[f];
-    slot.style.borderColor=getComputedStyle(s).getPropertyValue('--ring');
-    s.querySelector('small').textContent=names[f];
-    f++; setTimeout(fill, 900+Math.random()*700);
-  }
-  setTimeout(fill,1100);
-  function done(){
-    document.getElementById('status').textContent='Match found!';
-    document.getElementById('sub').textContent='Starting in a moment…';
-    setTimeout(()=>location.href='game.html',1200);
+  // shuffle the casting cowries
+  const cows=[...document.querySelectorAll('#throw .cowrie')];
+  setInterval(()=>cows.forEach(c=>{const up=Math.random()>.5;c.className='cowrie '+(up?'up lit':'down');}),700);
+  let s=9; const t=document.getElementById('t');
+  setInterval(()=>{s++;t.textContent='00:'+String(s).padStart(2,'0');},1000);
+  const players=[['🐼','Mika','--seat1'],['🐯','Aarav','--seat2'],['🐸','Leo','--seat3']];
+  let i=0;
+  const fill=setInterval(()=>{
+    const seat=document.querySelector('.seat.empty'); if(!seat){clearInterval(fill);ready();return;}
+    const p=players[i++], color=getComputedStyle(document.documentElement).getPropertyValue(p[2]);
+    seat.classList.remove('empty'); seat.style.animation='pop .5s cubic-bezier(.2,.8,.3,1.2) both';
+    seat.innerHTML=`<div class="avatar" style="--sz:46px;--ring:${color}"><div class="ring"><div class="face">${p[0]}</div><div class="status"></div></div></div>
+      <div class="meta"><span class="cap">Seat ${i+1} · Found</span><b>${p[1]}</b></div>
+      <span class="seatdot" style="background:${color}"></span>`;
+  },1300);
+  function ready(){
+    const w=document.createElement('div'); w.className='patch tight reveal';
+    w.style.cssText='margin-top:14px;text-align:center;background:var(--leaf)';
+    w.innerHTML='<div class="title on-cloth" style="font-size:22px">Match ready!</div>';
+    document.getElementById('seats').after(w);
+    setTimeout(()=>location.href='game.html',1100);
   }
 </script>
 </body>
