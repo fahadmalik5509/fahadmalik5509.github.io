@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ludo · Friends</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  .fbtn{font-size:12px;font-weight:800;border:none;border-radius:999px;padding:8px 14px;cursor:pointer}
+  .fbtn.play{background:var(--leaf);color:#fff}
+  .fbtn.inv{background:var(--patch-2);color:var(--cloth);border:2px solid var(--cloth)}
+  .fbtn.acc{background:var(--turmeric);color:var(--ink)}
+  .addbar{display:flex;gap:10px}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="appbar">
+    <a class="bare" href="home.html"><button class="iconbtn">←</button></a>
+    <div class="title">Friends</div><div class="spacer"></div>
+    <button class="iconbtn">🔍</button>
+  </div>
+
+  <div class="content">
+    <div class="seg reveal">
+      <button class="on">Friends · 6</button><button>Requests · 2</button><button>Add</button>
+    </div>
+
+    <div class="addbar reveal" style="--d:.05s">
+      <input class="input" placeholder="Add by username or code…">
+      <button class="btn btn-accent">Add</button>
+    </div>
+
+    <div class="cap light" style="margin:2px 2px -6px">Online · 2</div>
+    <div class="rowcard reveal" style="--d:.1s">
+      <div class="avatar s1" style="--sz:48px"><div class="ring"><div class="face">🐼</div></div><div class="status"></div></div>
+      <div class="meta"><b>Mika_99</b><span>Lv 31 · in lobby</span></div>
+      <button class="fbtn play">Invite</button>
+    </div>
+    <div class="rowcard reveal" style="--d:.15s">
+      <div class="avatar s3" style="--sz:48px"><div class="ring"><div class="face">🐸</div></div><div class="status"></div></div>
+      <div class="meta"><b>Leo</b><span>Lv 18 · online</span></div>
+      <button class="fbtn play">Invite</button>
+    </div>
+
+    <div class="cap light" style="margin:6px 2px -6px">Requests</div>
+    <div class="rowcard reveal" style="--d:.2s">
+      <div class="avatar s0" style="--sz:48px"><div class="ring"><div class="face">🐯</div></div></div>
+      <div class="meta"><b>Aarav</b><span>wants to be friends</span></div>
+      <div class="row gap-s"><button class="fbtn acc">Accept</button><button class="fbtn inv">✕</button></div>
+    </div>
+
+    <div class="cap light" style="margin:6px 2px -6px">Offline · 4</div>
+    <div class="rowcard reveal" style="--d:.25s">
+      <div class="avatar s2" style="--sz:48px"><div class="ring"><div class="face">🐵</div></div><div class="status off"></div></div>
+      <div class="meta"><b>Sana</b><span>last seen 2h ago</span></div>
+      <button class="fbtn inv">Profile</button>
+    </div>
+    <div class="rowcard reveal" style="--d:.3s">
+      <div class="avatar s1" style="--sz:48px"><div class="ring"><div class="face">🦁</div></div><div class="status off"></div></div>
+      <div class="meta"><b>Bilal</b><span>last seen yesterday</span></div>
+      <button class="fbtn inv">Profile</button>
+    </div>
+  </div>
+
+  <nav class="bottomnav">
+    <a href="home.html"><span class="ic">🏠</span>Home</a>
+    <a class="on" href="friends.html"><span class="ic">👥</span>Friends</a>
+    <a href="customize.html"><span class="ic">🎨</span>Customize</a>
+    <a href="profile.html"><span class="ic">🪪</span>Profile</a>
+  </nav>
+</div>
+</body>
+</html>

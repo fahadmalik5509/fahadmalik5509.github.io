@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ludo · Pass &amp; Play</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  .seatrow{display:flex;align-items:center;gap:12px}
+  .seatrow .swatch{width:14px;height:40px;border-radius:6px}
+  .seatrow .grow b{font-family:'Fraunces',serif;font-weight:800;font-size:16px;display:block}
+  .seatrow .grow span{font-size:12px;color:var(--ink-muted);font-weight:700}
+  .miniseg{display:flex;background:var(--cloth-d);border-radius:999px;padding:3px}
+  .miniseg button{border:none;background:transparent;color:rgba(255,255,255,.7);font-weight:800;font-size:12px;padding:6px 12px;border-radius:999px;cursor:pointer;font-family:'Karla',sans-serif}
+  .miniseg button.on{background:var(--turmeric);color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="appbar">
+    <a class="bare" href="home.html"><button class="iconbtn">←</button></a>
+    <div class="title">Pass &amp; Play</div><div class="spacer"></div>
+    <span class="chip">📵 offline</span>
+  </div>
+
+  <div class="content">
+    <div class="patch reveal">
+      <div class="h" style="margin-bottom:10px">How many players?</div>
+      <div class="seg"><button>2</button><button>3</button><button class="on">4</button></div>
+    </div>
+
+    <div class="cap light" style="margin:2px 2px -4px">Seats</div>
+    <div class="patch col reveal" style="--d:.1s">
+      <div class="seatrow"><span class="swatch" style="background:var(--seat2)"></span>
+        <div class="avatar s2" style="--sz:40px"><div class="ring"><div class="face">🦊</div></div></div>
+        <div class="grow"><b>You</b><span>yellow · this device</span></div></div>
+      <hr class="stitch dark">
+      <div class="seatrow"><span class="swatch" style="background:var(--seat0)"></span>
+        <div class="avatar s0" style="--sz:40px"><div class="ring"><div class="face">🤖</div></div></div>
+        <div class="grow"><b>Bot</b><span>red</span></div>
+        <div class="miniseg"><button>Easy</button><button class="on">Med</button><button>Hard</button></div></div>
+      <hr class="stitch dark">
+      <div class="seatrow"><span class="swatch" style="background:var(--seat1)"></span>
+        <div class="avatar s1" style="--sz:40px"><div class="ring"><div class="face">🤖</div></div></div>
+        <div class="grow"><b>Bot</b><span>blue</span></div>
+        <div class="miniseg"><button class="on">Easy</button><button>Med</button><button>Hard</button></div></div>
+      <hr class="stitch dark">
+      <div class="seatrow"><span class="swatch" style="background:var(--seat3)"></span>
+        <div class="avatar s3" style="--sz:40px"><div class="ring"><div class="face">🙂</div></div></div>
+        <div class="grow"><b>Player 4</b><span>green · pass device</span></div>
+        <div class="miniseg"><button class="on">Human</button><button>Bot</button></div></div>
+    </div>
+
+    <div class="patch reveal" style="--d:.2s">
+      <div class="row between"><div><div class="h">Quick mode</div><div class="body" style="font-size:13px">Start tokens already out</div></div>
+        <label class="toggle"><input type="checkbox"><span class="track"></span><span class="knob"></span></label></div>
+    </div>
+
+    <a class="bare" href="game.html"><button class="btn btn-primary lg block reveal" style="--d:.3s"><span class="ic">🎲</span> Start Game</button></a>
+  </div>
+</div>
+</body>
+</html>

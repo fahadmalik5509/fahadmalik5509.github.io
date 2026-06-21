@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ludo · Splash (cowrie toss)</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  .splash{justify-content:center;align-items:center;text-align:center}
+  .brand{font-family:'Fraunces',serif;font-weight:800;font-size:50px;line-height:.95;color:var(--patch);text-shadow:0 3px 0 rgba(0,0,0,.25)}
+  .brand em{font-style:italic;color:var(--turmeric);display:block;font-size:36px}
+  .tag{margin-top:12px;font-family:'Fraunces',serif;font-style:italic;font-size:16px;color:rgba(255,255,255,.75)}
+  .cowries{display:flex;gap:14px;margin:38px 0 6px}
+  .cw{width:40px;height:52px;border-radius:50%/40%;background:#fbf3df;border:2px solid #b89a5a;position:relative;
+    transform-style:preserve-3d;animation:toss 1s ease-in-out infinite}
+  .cw::before{content:"";position:absolute;left:50%;top:8%;bottom:8%;width:3px;transform:translateX(-50%);
+    background:repeating-linear-gradient(#9a7b3a 0 3px,transparent 3px 6px)}
+  .cw.tails{background:#C8442F;border-color:#7e2415}
+  .cw.tails::before{opacity:0}
+  .cw:nth-child(2){animation-delay:.12s}.cw:nth-child(3){animation-delay:.24s}
+  .cw:nth-child(4){animation-delay:.36s}.cw:nth-child(5){animation-delay:.48s}.cw:nth-child(6){animation-delay:.6s}
+  @keyframes toss{0%,100%{transform:translateY(0) rotateX(0)}45%{transform:translateY(-30px) rotateX(180deg)}}
+  .count{font-family:'Fraunces',serif;font-weight:800;font-size:20px;color:var(--turmeric);margin-top:8px}
+  .variants{position:absolute;bottom:24px;left:0;right:0;display:flex;gap:8px;justify-content:center}
+  .variants a{font-size:11px;color:rgba(255,255,255,.5);text-decoration:none;border:1px solid rgba(255,255,255,.3);padding:5px 11px;border-radius:999px;font-weight:700}
+</style>
+</head>
+<body>
+<a class="bare" href="login.html"><div class="app splash content">
+  <h1 class="brand reveal">Ludo<em>Royale</em></h1>
+  <div class="cowries" id="cw">
+    <div class="cw"></div><div class="cw tails"></div><div class="cw"></div>
+    <div class="cw tails"></div><div class="cw"></div><div class="cw tails"></div>
+  </div>
+  <div class="count" id="count">tossing the cowries…</div>
+  <p class="tag reveal" style="--d:.3s">six shells decide your move</p>
+  <div class="variants" onclick="event.preventDefault();event.stopPropagation();">
+    <a href="splash.html">◂ dice ladder</a>
+    <a href="splash-3.html">board weave ▸</a>
+  </div>
+  <div class="tapnote">tap anywhere to continue</div>
+</div></a>
+<script>
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!reduce){
+    const cws=[...document.querySelectorAll('.cw')];
+    setInterval(()=>{ cws.forEach(c=>{ if(Math.random()>.5)c.classList.toggle('tails'); });
+      const up=cws.filter(c=>!c.classList.contains('tails')).length||6;
+      document.getElementById('count').textContent='roll · '+up;
+    },1000);
+    setTimeout(()=>location.href='login.html',3400);
+  }
+</script>
+</body>
+</html>

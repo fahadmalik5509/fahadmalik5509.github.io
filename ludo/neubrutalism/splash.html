@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ludo · Splash</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  .splash{justify-content:center;align-items:center;gap:0;text-align:center;position:relative}
+  .crest{width:96px;height:96px;border-radius:50%;background:var(--turmeric);display:grid;place-items:center;
+    box-shadow:0 10px 0 var(--turmeric-d);position:relative;margin-bottom:26px}
+  .crest::after{content:"";position:absolute;inset:7px;border:2.5px solid var(--cloth);border-radius:50%}
+  .crest span{font-size:46px}
+  .brand{font-family:'Fraunces',serif;font-weight:800;font-size:52px;line-height:.95;color:var(--patch);
+    text-shadow:0 3px 0 rgba(0,0,0,.25)}
+  .brand em{font-style:italic;color:var(--turmeric);display:block;font-size:38px}
+  .tag{margin-top:14px;font-family:'Fraunces',serif;font-style:italic;font-size:16px;color:rgba(255,255,255,.75)}
+  /* dice ladder loader */
+  .ladder{position:absolute;left:26px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px}
+  .ladder .die{--dsz:38px;border-radius:11px}
+  .ladder .die i{width:7px;height:7px}
+  .loadtxt{position:absolute;bottom:64px;left:0;right:0;font-size:12px;letter-spacing:3px;
+    text-transform:uppercase;color:rgba(255,255,255,.55);font-weight:700}
+  .variants{position:absolute;bottom:24px;left:0;right:0;display:flex;gap:8px;justify-content:center}
+  .variants a{font-size:11px;color:rgba(255,255,255,.5);text-decoration:none;border:1px solid rgba(255,255,255,.3);
+    padding:5px 11px;border-radius:999px;font-weight:700}
+  .variants a:hover{color:var(--turmeric);border-color:var(--turmeric)}
+  /* drifting cowries */
+  .drift{position:absolute;font-size:24px;opacity:.18;animation:floaty 6s ease-in-out infinite}
+</style>
+</head>
+<body>
+<a class="bare" href="login.html"><div class="app splash content">
+  <span class="drift" style="top:12%;right:14%">🐚</span>
+  <span class="drift" style="bottom:20%;right:22%;animation-delay:1.5s">🎲</span>
+  <span class="drift" style="top:24%;left:30%;animation-delay:2.5s">🐚</span>
+
+  <!-- dice ladder loader -->
+  <div class="ladder" id="ladder">
+    <div class="die" data-f="1"><i class="c"></i></div>
+    <div class="die" data-f="2"><i class="tl"></i><i class="br"></i></div>
+    <div class="die" data-f="3"><i class="tl"></i><i class="c"></i><i class="br"></i></div>
+    <div class="die" data-f="4"><i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i></div>
+    <div class="die" data-f="5"><i class="tl"></i><i class="tr"></i><i class="c"></i><i class="bl"></i><i class="br"></i></div>
+    <div class="die" data-f="6"><i class="tl"></i><i class="tr"></i><i class="ml"></i><i class="mr"></i><i class="bl"></i><i class="br"></i></div>
+  </div>
+
+  <div class="crest reveal-pop"><span>🎲</span></div>
+  <h1 class="brand reveal" style="--d:.15s">Ludo<em>Royale</em></h1>
+  <p class="tag reveal" style="--d:.45s">loud, bold, unmissable</p>
+
+  <div class="loadtxt" id="loadtxt">rolling in…</div>
+  <div class="variants" onclick="event.preventDefault();event.stopPropagation();">
+    <a href="splash-2.html">cowrie toss ▸</a>
+    <a href="splash-3.html">board weave ▸</a>
+  </div>
+  <div class="tapnote">tap anywhere to continue</div>
+</div></a>
+
+<script>
+  const dice=[...document.querySelectorAll('#ladder .die')];
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let i=0;
+  if(!reduce){
+    const tick=setInterval(()=>{
+      dice.forEach(d=>d.classList.remove('lit'));
+      for(let k=0;k<=i;k++) dice[k].classList.add('lit');
+      i++; if(i>=dice.length){ i=0; }
+    },180);
+    // auto-advance into the flow
+    setTimeout(()=>{ document.getElementById('loadtxt').textContent='ready'; }, 2200);
+    setTimeout(()=>{ location.href='login.html'; }, 3200);
+  } else { dice.forEach(d=>d.classList.add('lit')); }
+</script>
+</body>
+</html>

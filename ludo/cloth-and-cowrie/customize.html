@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ludo · Customize</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  .preview{display:flex;align-items:center;justify-content:center;gap:18px;padding:18px}
+  .preview .die{--dsz:64px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .skin{position:relative;background:var(--patch-2);border-radius:var(--r-md);aspect-ratio:1;display:grid;place-items:center;
+    font-size:34px;cursor:pointer;border:2px dashed transparent;box-shadow:var(--e1)}
+  .skin .nm{position:absolute;bottom:6px;left:0;right:0;text-align:center;font-size:10px;font-weight:800;color:var(--ink)}
+  .skin.on{border-color:var(--leaf);background:var(--patch-3)}
+  .skin.on::before{content:"✓";position:absolute;top:5px;right:7px;color:var(--leaf-d);font-weight:900}
+  .skin.lock{color:#b5a18d}
+  .skin .price{position:absolute;top:5px;right:6px;font-size:10px;font-weight:800;color:var(--indigo-d);background:#fff;border-radius:999px;padding:2px 7px}
+  .tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px}
+  .tabs button{flex:none;border:none;background:var(--cloth-d);color:rgba(251,231,210,.7);font-weight:800;font-size:13px;
+    padding:9px 15px;border-radius:999px;cursor:pointer;font-family:'Karla',sans-serif}
+  .tabs button.on{background:var(--turmeric);color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="appbar">
+    <a class="bare" href="profile.html"><button class="iconbtn">←</button></a>
+    <div class="title">Customize</div><div class="spacer"></div>
+    <div class="pill gem"><span class="ic">💎</span> 86</div>
+  </div>
+
+  <div class="content">
+    <div class="patch preview reveal">
+      <div class="avatar s2" style="--sz:72px"><div class="ring"><div class="face">🦊</div></div></div>
+      <div class="die lit"><i class="tl"></i><i class="tr"></i><i class="c"></i><i class="bl"></i><i class="br"></i></div>
+      <span style="width:40px;height:40px;border-radius:50%;background:var(--seat2);border:2px solid #3A2418;box-shadow:0 4px 6px rgba(0,0,0,.3)"></span>
+    </div>
+
+    <div class="tabs reveal" style="--d:.05s">
+      <button class="on">Avatar</button><button>Board</button><button>Dice</button><button>Token</button><button>Name</button>
+    </div>
+
+    <div class="grid reveal" style="--d:.1s">
+      <div class="skin on">🦊<span class="nm">Fox</span></div>
+      <div class="skin">🐼<span class="nm">Panda</span></div>
+      <div class="skin">🐯<span class="nm">Tiger</span></div>
+      <div class="skin">🦁<span class="nm">Lion</span></div>
+      <div class="skin">🐸<span class="nm">Frog</span></div>
+      <div class="skin lock">🦉<span class="price">💎 20</span><span class="nm">Owl</span></div>
+      <div class="skin lock">🐲<span class="price">💎 40</span><span class="nm">Dragon</span></div>
+      <div class="skin lock">🦚<span class="price">💎 60</span><span class="nm">Peacock</span></div>
+      <div class="skin lock">👑<span class="price">💎 99</span><span class="nm">Royal</span></div>
+    </div>
+
+    <a class="bare" href="profile.html"><button class="btn btn-success block reveal" style="--d:.2s"><span class="ic">✓</span> Equip Fox</button></a>
+  </div>
+
+  <nav class="bottomnav">
+    <a href="home.html"><span class="ic">🏠</span>Home</a>
+    <a href="friends.html"><span class="ic">👥</span>Friends</a>
+    <a class="on" href="customize.html"><span class="ic">🎨</span>Customize</a>
+    <a href="profile.html"><span class="ic">🪪</span>Profile</a>
+  </nav>
+</div>
+</body>
+</html>

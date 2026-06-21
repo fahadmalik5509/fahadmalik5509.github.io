@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ludo · Profile</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  .phead{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px}
+  .phead .name{font-family:'Fraunces',serif;font-weight:800;font-size:28px;color:var(--patch)}
+  .xpbar{width:100%;max-width:260px}
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .stat{background:var(--patch);border-radius:var(--r-md);padding:14px;position:relative;box-shadow:var(--e1);text-align:center}
+  .stat::after{content:"";position:absolute;inset:6px;border:1.5px solid var(--cloth);border-radius:11px;opacity:.28;pointer-events:none}
+  .stat b{font-family:'Fraunces',serif;font-weight:800;font-size:26px;display:block;color:var(--ink)}
+  .stat span{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--ink-faint);font-weight:700}
+  .equip{display:flex;gap:10px;justify-content:space-between}
+  .equip .e{flex:1;text-align:center}
+  .equip .e .box{width:100%;aspect-ratio:1;border-radius:var(--r-md);background:var(--patch-2);border:2px solid var(--cloth);
+    display:grid;place-items:center;font-size:26px;margin-bottom:5px}
+  .equip .e small{font-size:10px;color:var(--ink-muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="appbar">
+    <a class="bare" href="home.html"><button class="iconbtn">←</button></a>
+    <div class="title">Profile</div><div class="spacer"></div>
+    <button class="iconbtn">🔗</button>
+  </div>
+
+  <div class="content">
+    <div class="phead reveal">
+      <div class="avatar s2" style="--sz:108px"><div class="ring"><div class="face">🦊</div></div>
+        <a class="bare" href="customize.html"><div class="status" style="background:var(--turmeric);width:30px;height:30px;display:grid;place-items:center;font-size:14px">✎</div></a></div>
+      <div class="name">You</div>
+      <div class="row gap-s"><span class="chip">Lv 24</span><span class="chip">🏅 Gold III</span></div>
+      <div class="xpbar"><div class="progress" style="height:12px"><div class="fill" style="width:62%"></div></div></div>
+      <div class="cap light">3,400 / 5,000 XP to Lv 25</div>
+    </div>
+
+    <div class="stats reveal" style="--d:.1s">
+      <div class="stat"><b>248</b><span>Games</span></div>
+      <div class="stat"><b>61%</b><span>Win rate</span></div>
+      <div class="stat"><b>2,100</b><span>Rating</span></div>
+      <div class="stat"><b>7</b><span>Win streak</span></div>
+    </div>
+
+    <div class="cap light" style="margin:2px 2px -6px">Equipped</div>
+    <div class="patch reveal" style="--d:.15s">
+      <div class="equip">
+        <div class="e"><div class="box">🦊</div><small>Avatar</small></div>
+        <div class="e"><div class="box" style="font-size:18px">🧵</div><small>Board</small></div>
+        <div class="e"><div class="box">🎲</div><small>Dice</small></div>
+        <div class="e"><div class="box">🟡</div><small>Token</small></div>
+      </div>
+      <a class="bare" href="customize.html"><button class="btn btn-accent block" style="margin-top:14px"><span class="ic">🎨</span> Customize</button></a>
+    </div>
+
+    <a class="bare" href="settings.html"><button class="btn btn-ghost block reveal" style="--d:.2s">Settings</button></a>
+  </div>
+
+  <nav class="bottomnav">
+    <a href="home.html"><span class="ic">🏠</span>Home</a>
+    <a href="friends.html"><span class="ic">👥</span>Friends</a>
+    <a href="customize.html"><span class="ic">🎨</span>Customize</a>
+    <a class="on" href="profile.html"><span class="ic">🪪</span>Profile</a>
+  </nav>
+</div>
+</body>
+</html>

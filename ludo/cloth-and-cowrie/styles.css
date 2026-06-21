@@ -1,0 +1,270 @@
+/* ============================================================================
+   CLOTH & COWRIE — Ludo design system (shared stylesheet)
+   Subject: Ludo's origin as embroidered cross-cloth played with cowrie shells.
+   Signature move: running-stitch (kantha) dashed seams on woven fabric patches.
+   Type: Fraunces (display) + Karla (body).  Seat colours are canon, never skinned.
+   ============================================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,800;1,9..144,500&family=Karla:wght@400;600;700&display=swap');
+
+:root{
+  /* surfaces */
+  --cloth:#7C2B3E; --cloth-d:#5E1F2E; --cloth-l:#933a4d;
+  --patch:#FBE7D2; --patch-2:#F4D9B8; --patch-3:#FFF3E4;
+  /* ink */
+  --ink:#3A2418; --ink-muted:#7a5a44; --ink-faint:#a98b71; --thread:#FBE7D2;
+  /* accents */
+  --madder:#C8442F; --madder-d:#a8351f; --turmeric:#E8A526; --turmeric-d:#c4860f;
+  --indigo:#2E5375; --indigo-d:#21405c; --leaf:#5C8C4A; --leaf-d:#477036;
+  /* seats (canon: red, blue, yellow, green) */
+  --seat0:#C8442F; --seat1:#2E5375; --seat2:#E8A526; --seat3:#5C8C4A;
+  /* radii / motion */
+  --r-sm:10px; --r-md:16px; --r-lg:22px; --r-xl:30px; --r-pill:999px;
+  --e1:0 6px 0 rgba(58,36,24,.18); --e2:0 12px 26px rgba(40,18,10,.35);
+  --stitch:var(--cloth);
+  --weave:repeating-linear-gradient(45deg,rgba(0,0,0,.05) 0 1px,transparent 1px 4px),
+          repeating-linear-gradient(-45deg,rgba(255,255,255,.06) 0 1px,transparent 1px 4px);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:'Karla',system-ui,sans-serif;color:var(--ink);
+  background:var(--cloth-d);
+  -webkit-font-smoothing:antialiased;
+  display:flex;align-items:flex-start;justify-content:center;min-height:100%;
+}
+
+/* ---- phone frame --------------------------------------------------------- */
+.app{
+  position:relative;width:100%;max-width:440px;min-height:100vh;
+  background:var(--cloth);background-image:var(--weave);
+  display:flex;flex-direction:column;overflow:hidden;
+  box-shadow:0 0 60px rgba(0,0,0,.5);
+}
+@media(min-width:520px){
+  body{align-items:center;padding:24px 0}
+  .app{min-height:calc(100vh - 48px);border-radius:34px;border:6px solid #2a1018;
+       max-height:940px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+}
+.app::before{ /* soft top vignette */
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(120% 60% at 50% -10%,rgba(255,255,255,.10),transparent 60%);
+}
+.app>*{position:relative;z-index:1}
+
+/* ---- app bar ------------------------------------------------------------- */
+.appbar{display:flex;align-items:center;gap:12px;padding:18px 18px 8px}
+.appbar .title{font-family:'Fraunces',serif;font-weight:800;font-size:22px;color:var(--patch)}
+.appbar .spacer{flex:1}
+.iconbtn{
+  width:44px;height:44px;flex:none;border:none;cursor:pointer;border-radius:var(--r-md);
+  background:var(--patch-2);color:var(--cloth);font-size:20px;display:grid;place-items:center;
+  position:relative;box-shadow:0 4px 0 rgba(0,0,0,.22);transition:transform .12s,box-shadow .12s;
+}
+.iconbtn::after{content:"";position:absolute;inset:5px;border:1.5px dashed var(--cloth);border-radius:10px;opacity:.55}
+.iconbtn:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.22)}
+
+/* ---- content / layout ---------------------------------------------------- */
+.content{flex:1;padding:8px 18px 26px;display:flex;flex-direction:column;gap:16px;overflow-y:auto}
+.content.center{justify-content:center;align-items:center;text-align:center}
+.row{display:flex;align-items:center;gap:12px}
+.col{display:flex;flex-direction:column;gap:12px}
+.wrap{flex-wrap:wrap}
+.grow{flex:1}
+.between{justify-content:space-between}
+.center-x{justify-content:center}
+.gap-s{gap:8px}.gap-l{gap:20px}
+
+/* ---- type ---------------------------------------------------------------- */
+.display{font-family:'Fraunces',serif;font-weight:800;font-size:44px;line-height:1;color:var(--patch)}
+.title{font-family:'Fraunces',serif;font-weight:800;font-size:28px;color:var(--patch)}
+.title.ink{color:var(--ink)}
+.subtitle{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:18px;color:var(--turmeric)}
+.h{font-weight:700;font-size:17px;color:var(--ink)}
+.body{font-size:15px;color:var(--ink-muted);line-height:1.55;font-weight:600}
+.body.light{color:rgba(251,231,210,.82)}
+.cap{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--ink-faint)}
+.cap.light{color:rgba(251,231,210,.6)}
+.on-cloth{color:var(--patch)}
+
+/* ---- patch (panel) ------------------------------------------------------- */
+.patch{
+  position:relative;background:var(--patch);background-image:var(--weave);
+  border-radius:var(--r-lg);padding:20px;box-shadow:var(--e2);
+}
+.patch::before{content:"";position:absolute;inset:9px;border:2px dashed var(--stitch);border-radius:13px;opacity:.5;pointer-events:none}
+.patch>*{position:relative}
+.patch.tight{padding:14px}
+.patch.cream{background:var(--patch-3)}
+
+/* ---- buttons ------------------------------------------------------------- */
+.btn{
+  font-family:'Karla',sans-serif;font-weight:700;font-size:16px;cursor:pointer;color:var(--patch);
+  border:none;border-radius:var(--r-md);padding:14px 24px;position:relative;
+  transition:transform .1s,box-shadow .1s;box-shadow:0 5px 0 rgba(0,0,0,.28);
+}
+.btn::after{content:"";position:absolute;inset:4px;border:1.5px dashed rgba(255,255,255,.7);border-radius:11px;pointer-events:none}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 rgba(0,0,0,.28)}
+.btn.lg{font-size:19px;padding:17px 28px}
+.btn.block{width:100%}
+.btn-primary{background:var(--madder)}
+.btn-accent{background:var(--turmeric);color:var(--ink)}
+.btn-accent::after{border-color:rgba(58,36,24,.45)}
+.btn-success{background:var(--leaf)}
+.btn-indigo{background:var(--indigo)}
+.btn-ghost{background:var(--patch-2);color:var(--cloth)}
+.btn-ghost::after{border-color:var(--cloth)}
+.btn:disabled{background:#cdbfae;color:#fff;cursor:not-allowed;transform:none;box-shadow:0 5px 0 #b3a796}
+.btn .ic{margin-right:6px}
+
+/* ---- avatar -------------------------------------------------------------- */
+.avatar{position:relative;display:inline-grid;place-items:center}
+.avatar .ring{
+  width:var(--sz,64px);height:var(--sz,64px);border-radius:50%;display:grid;place-items:center;
+  background:var(--ring,var(--turmeric));box-shadow:0 5px 10px rgba(0,0,0,.3);
+  outline:2px dashed var(--patch);outline-offset:-6px;
+}
+.avatar .face{width:74%;height:74%;border-radius:50%;display:grid;place-items:center;
+  font-size:calc(var(--sz,64px)*.42);background:var(--patch)}
+.avatar .status{position:absolute;right:2px;bottom:2px;width:16px;height:16px;border-radius:50%;
+  background:var(--leaf);border:3px solid var(--patch)}
+.avatar .status.off{background:#b6a18d}
+.avatar .crown{position:absolute;top:-14px;left:50%;transform:translateX(-50%);font-size:20px}
+
+/* ---- pills / chips / badges --------------------------------------------- */
+.pill{display:inline-flex;align-items:center;gap:8px;background:var(--patch-2);border-radius:var(--r-pill);
+  padding:6px 14px 6px 6px;font-weight:800;font-size:14px;color:var(--ink);position:relative;box-shadow:0 3px 7px rgba(0,0,0,.18)}
+.pill::after{content:"";position:absolute;inset:3px;border:1.5px dashed var(--cloth);border-radius:var(--r-pill);opacity:.35}
+.pill .ic{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:14px}
+.pill.coin .ic{background:var(--turmeric)}.pill.gem .ic{background:var(--indigo);color:#fff}
+.chip{display:inline-flex;align-items:center;gap:7px;background:var(--patch-2);border:2px dashed var(--cloth);
+  padding:7px 13px;border-radius:var(--r-pill);font-weight:700;font-size:13px;color:var(--cloth)}
+.badge{display:inline-flex;align-items:center;gap:5px;font-weight:800;font-size:11px;padding:5px 11px;
+  border-radius:var(--r-pill);color:#fff;letter-spacing:.5px}
+.badge.red{background:var(--madder)}.badge.gold{background:var(--turmeric);color:var(--ink)}.badge.green{background:var(--leaf)}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--leaf);display:inline-block}
+
+/* ---- list rows ----------------------------------------------------------- */
+.rowcard{display:flex;align-items:center;gap:13px;background:var(--patch);border-radius:var(--r-md);
+  padding:12px;position:relative;box-shadow:var(--e1)}
+.rowcard::after{content:"";position:absolute;inset:6px;border:1.5px dashed var(--cloth);border-radius:11px;opacity:.3;pointer-events:none}
+.rowcard .meta{flex:1;min-width:0}
+.rowcard .meta b{font-family:'Fraunces',serif;font-weight:800;font-size:16px;display:block}
+.rowcard .meta span{font-size:12.5px;color:var(--ink-muted);font-weight:600}
+
+/* ---- dice (cowrie/ivory) ------------------------------------------------- */
+.die{position:relative;width:var(--dsz,56px);height:var(--dsz,56px);border-radius:14px;
+  background:linear-gradient(160deg,#fff8ea,#ecdcc0);border:2px solid var(--patch-2);
+  box-shadow:0 6px 12px rgba(0,0,0,.3),inset 0 1px 2px #fff}
+.die i{position:absolute;width:11px;height:11px;border-radius:50%;background:var(--madder);transform:translate(-50%,-50%)}
+.die .tl{left:28%;top:28%}.die .tr{left:72%;top:28%}.die .ml{left:28%;top:50%}.die .c{left:50%;top:50%}
+.die .mr{left:72%;top:50%}.die .bl{left:28%;top:72%}.die .br{left:72%;top:72%}
+.die.lit{box-shadow:0 6px 12px rgba(0,0,0,.3),0 0 22px rgba(232,165,38,.85);border-color:var(--turmeric)}
+.die.lit i{background:var(--turmeric)}
+.die.rolling{animation:diejig .5s ease-in-out infinite}
+
+/* ---- toggle / slider / progress ----------------------------------------- */
+.toggle{position:relative;display:inline-block;width:60px;height:32px;flex:none}
+.toggle input{display:none}
+.toggle .track{position:absolute;inset:0;border-radius:var(--r-pill);background:var(--cloth);transition:.2s}
+.toggle .knob{position:absolute;top:3px;left:3px;width:26px;height:26px;border-radius:50%;background:var(--patch);transition:.2s;box-shadow:0 2px 4px rgba(0,0,0,.4)}
+.toggle input:checked + .track{background:var(--leaf)}
+.toggle input:checked + .track + .knob{transform:translateX(28px)}
+.slider{-webkit-appearance:none;width:100%;height:12px;border-radius:var(--r-pill);background:var(--cloth);outline:none}
+.slider::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:var(--turmeric);cursor:pointer;box-shadow:0 2px 5px rgba(0,0,0,.4)}
+.progress{height:16px;background:var(--cloth);border-radius:var(--r-pill);overflow:hidden;padding:3px}
+.progress .fill{height:100%;border-radius:var(--r-pill);background:repeating-linear-gradient(90deg,var(--turmeric) 0 10px,var(--madder) 10px 12px)}
+
+/* ---- inputs -------------------------------------------------------------- */
+.input{width:100%;font-family:'Karla',sans-serif;font-weight:700;font-size:16px;color:var(--ink);
+  background:var(--patch-3);border:2px dashed var(--cloth);border-radius:var(--r-md);padding:14px 16px}
+.input::placeholder{color:var(--ink-faint)}
+.otp{display:flex;gap:10px;justify-content:center}
+.otp .cell{width:48px;height:58px;border-radius:var(--r-md);background:var(--patch-3);border:2px dashed var(--cloth);
+  display:grid;place-items:center;font-family:'Fraunces',serif;font-weight:800;font-size:26px;color:var(--ink)}
+.otp .cell.on{background:var(--turmeric);border-style:solid}
+
+/* ---- bottom nav ---------------------------------------------------------- */
+.bottomnav{display:flex;background:var(--cloth-d);padding:10px 8px calc(10px + env(safe-area-inset-bottom));gap:4px;
+  border-top:2px dashed rgba(251,231,210,.3)}
+.bottomnav a{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;
+  color:rgba(251,231,210,.6);font-weight:700;font-size:11px;padding:6px 0;border-radius:14px}
+.bottomnav a .ic{font-size:20px}
+.bottomnav a.on{color:var(--turmeric);background:rgba(251,231,210,.08)}
+
+/* ---- divider / misc ------------------------------------------------------ */
+.stitch{height:0;border:none;border-top:2px dashed rgba(251,231,210,.35);margin:4px 0}
+.stitch.dark{border-top-color:rgba(58,36,24,.25)}
+.seg{display:flex;background:var(--cloth-d);border-radius:var(--r-pill);padding:4px;gap:4px}
+.seg button{flex:1;border:none;background:transparent;color:rgba(251,231,210,.7);font-weight:700;font-size:14px;
+  padding:9px;border-radius:var(--r-pill);cursor:pointer;font-family:'Karla',sans-serif}
+.seg button.on{background:var(--turmeric);color:var(--ink)}
+
+/* ---- seat colour helpers ------------------------------------------------- */
+.s0{--ring:var(--seat0)}.s1{--ring:var(--seat1)}.s2{--ring:var(--seat2)}.s3{--ring:var(--seat3)}
+
+/* ===========================================================================
+   ANIMATIONS
+   =========================================================================== */
+@keyframes fadeup{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{opacity:0;transform:scale(.7)}60%{transform:scale(1.08)}100%{opacity:1;transform:scale(1)}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes diejig{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(7deg)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes shimmer{to{background-position:200% 0}}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.06);opacity:.85}}
+@keyframes drawdash{to{stroke-dashoffset:0}}
+@keyframes litseq{0%,100%{box-shadow:0 6px 12px rgba(0,0,0,.3)}50%{box-shadow:0 6px 12px rgba(0,0,0,.3),0 0 22px rgba(232,165,38,.9)}}
+
+.reveal{opacity:0;animation:fadeup .55s cubic-bezier(.2,.7,.3,1) forwards;animation-delay:var(--d,0s)}
+.reveal-pop{opacity:0;animation:pop .5s cubic-bezier(.2,.8,.3,1.2) forwards;animation-delay:var(--d,0s)}
+.float{animation:floaty 4s ease-in-out infinite}
+.spin-slow{animation:spin 18s linear infinite}
+.pulse{animation:pulse 1.8s ease-in-out infinite}
+
+/* link reset for full-screen tap targets */
+a.bare{text-decoration:none;color:inherit}
+.tapnote{position:fixed;left:0;right:0;bottom:10px;text-align:center;font-size:11px;letter-spacing:1px;
+  color:rgba(251,231,210,.4);font-weight:700;z-index:50;pointer-events:none}
+
+/* ===========================================================================
+   POLISH PASS — page transitions, hover, idle life, accessibility
+   =========================================================================== */
+@keyframes appin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.app{animation:appin .45s cubic-bezier(.2,.7,.3,1)}
+
+/* main CTA gets a slow "breathing" glow so the eye lands on it */
+@keyframes breathe{0%,100%{box-shadow:0 5px 0 rgba(0,0,0,.28),0 0 0 rgba(232,165,38,0)}
+  50%{box-shadow:0 5px 0 rgba(0,0,0,.28),0 0 26px rgba(232,165,38,.45)}}
+.btn-primary.lg{animation:breathe 2.6s ease-in-out infinite}
+
+/* gloss sweep across primary buttons */
+.btn::before{content:"";position:absolute;inset:0;border-radius:inherit;overflow:hidden;pointer-events:none;
+  background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.35) 48%,transparent 60%);
+  background-size:250% 100%;background-position:200% 0;opacity:0}
+.btn-primary::before,.btn-accent::before{opacity:1;animation:sweep 4.5s ease-in-out infinite}
+@keyframes sweep{0%{background-position:200% 0}55%,100%{background-position:-120% 0}}
+
+/* capture / token bounce demo */
+@keyframes capture{0%{transform:translate(-50%,-50%) scale(1)}40%{transform:translate(-50%,-110%) scale(1.25)}
+  100%{transform:translate(-50%,-50%) scale(1)}}
+@keyframes sendhome{0%{transform:translate(-50%,-50%) scale(1);opacity:1}
+  100%{transform:translate(-50%,-180%) scale(.4);opacity:0}}
+
+/* turn timer ring */
+@keyframes ring-sweep{from{stroke-dashoffset:0}to{stroke-dashoffset:113}}
+
+/* desktop hover affordances (no effect on touch) */
+@media(hover:hover){
+  .btn:hover{filter:brightness(1.06)}
+  .mode:hover,.scard:hover,.rowcard:hover{transform:translateY(-3px)}
+  .mode,.rowcard{transition:transform .15s}
+  .iconbtn:hover{filter:brightness(1.05)}
+}
+
+/* respect reduced motion everywhere */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;
+    transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .reveal,.reveal-pop{opacity:1!important;transform:none!important}
+}

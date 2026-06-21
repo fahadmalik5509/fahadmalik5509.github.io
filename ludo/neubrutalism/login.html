@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ludo · Sign in</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  .login{justify-content:flex-end;gap:0;padding-bottom:34px}
+  .hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px}
+  .hero .board{width:188px;height:188px;animation:floaty 5s ease-in-out infinite}
+  .hero .board img{width:100%;filter:drop-shadow(0 18px 30px rgba(0,0,0,.5))}
+  .brand{font-family:'Fraunces',serif;font-weight:800;font-size:40px;color:var(--patch);margin-top:14px}
+  .brand em{font-style:italic;color:var(--turmeric)}
+  .welcome{font-family:'Fraunces',serif;font-style:italic;color:rgba(255,255,255,.78);font-size:16px}
+  .auth{display:flex;flex-direction:column;gap:12px}
+  .oauth{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;background:var(--patch-3);
+    color:var(--ink);border:2px solid var(--cloth);border-radius:var(--r-md);padding:14px;font-weight:700;font-size:15px;
+    cursor:pointer;font-family:'Karla',sans-serif}
+  .oauth .g{width:22px;height:22px;border-radius:50%;background:#fff;display:grid;place-items:center;font-weight:800;color:#4285F4}
+  .legal{text-align:center;font-size:11px;color:rgba(255,255,255,.5);line-height:1.5;margin-top:4px}
+  .legal a{color:var(--turmeric)}
+</style>
+</head>
+<body>
+<div class="app login content">
+  <div class="hero">
+    <div class="board reveal-pop"><img src="board.svg" alt="board"></div>
+    <h1 class="brand reveal" style="--d:.2s">Ludo <em>Royale</em></h1>
+    <p class="welcome reveal" style="--d:.35s">Drop in. Let's play.</p>
+  </div>
+
+  <div class="auth">
+    <a class="bare reveal" style="--d:.5s" href="home.html"><button class="btn btn-primary lg block"><span class="ic">🎲</span> Play as Guest</button></a>
+    <hr class="stitch">
+    <a class="bare reveal" style="--d:.6s" href="home.html"><button class="oauth"><span class="g">G</span> Continue with Google</button></a>
+    <a class="bare reveal" style="--d:.68s" href="home.html"><button class="oauth"><span class="g" style="background:#000;color:#fff"></span> Continue with Apple</button></a>
+    <p class="legal reveal" style="--d:.8s">By continuing you agree to our <a href="#">Terms</a> &amp; <a href="#">Privacy Policy</a>.</p>
+  </div>
+</div>
+</body>
+</html>

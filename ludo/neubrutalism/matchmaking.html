@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ludo · Matchmaking</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  .mm{justify-content:center;align-items:center;text-align:center;gap:18px}
+  .radar{width:200px;height:200px;position:relative;display:grid;place-items:center}
+  .radar .ring{position:absolute;border:2px solid rgba(255,255,255,.4);border-radius:50%}
+  .r1{width:200px;height:200px;animation:spin 14s linear infinite}
+  .r2{width:140px;height:140px;animation:spin 9s linear infinite reverse}
+  .radar .core{width:96px;height:96px;border-radius:50%;background:var(--turmeric);display:grid;place-items:center;
+    box-shadow:0 0 0 8px rgba(232,165,38,.25);animation:pulse 1.8s ease-in-out infinite}
+  .radar .core .die{--dsz:54px}
+  .seats{display:flex;gap:14px;justify-content:center}
+  .seat{display:flex;flex-direction:column;align-items:center;gap:6px;width:66px}
+  .seat .slot{width:60px;height:60px;border-radius:50%;border:2px solid rgba(255,255,255,.4);display:grid;place-items:center;
+    background:rgba(0,0,0,.18);color:rgba(255,255,255,.5);font-size:24px}
+  .seat .slot.searching{animation:pulse 1.2s ease-in-out infinite}
+  .seat small{font-size:11px;color:rgba(255,255,255,.7);font-weight:700}
+  .seat.filled .slot{border-style:solid}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="appbar">
+    <a class="bare" href="home.html"><button class="iconbtn">←</button></a>
+    <div class="title">Quick Match</div><div class="spacer"></div>
+    <span class="chip">🪙 500 entry</span>
+  </div>
+
+  <div class="content mm">
+    <div class="radar">
+      <div class="ring r1"></div><div class="ring r2"></div>
+      <div class="core"><div class="die rolling"><i class="tl"></i><i class="tr"></i><i class="c"></i><i class="bl"></i><i class="br"></i></div></div>
+    </div>
+    <div>
+      <div class="title on-cloth" id="status">Finding players…</div>
+      <p class="body light" id="sub">Matching you with players of similar skill</p>
+    </div>
+
+    <div class="seats" id="seats">
+      <div class="seat filled s0"><div class="slot" style="border-color:var(--seat0);color:var(--seat0)">🦊</div><small>You</small></div>
+      <div class="seat s1"><div class="slot searching">⏳</div><small>—</small></div>
+      <div class="seat s2"><div class="slot searching">⏳</div><small>—</small></div>
+      <div class="seat s3"><div class="slot searching">⏳</div><small>—</small></div>
+    </div>
+
+    <div class="pill"><span class="ic" style="background:var(--leaf);color:#fff">⏱</span> <span id="timer">00:03</span> · est. wait</div>
+    <a class="bare" href="home.html"><button class="btn btn-ghost block" style="max-width:240px">Cancel search</button></a>
+  </div>
+</div>
+<script>
+  const seats=[...document.querySelectorAll('#seats .seat')];
+  const names=['','Mika','Aarav','Leo'], faces=['','🐼','🐯','🐸'];
+  let t=3,f=1;
+  const tm=setInterval(()=>{t++;document.getElementById('timer').textContent='00:'+String(t).padStart(2,'0')},1000);
+  function fill(){
+    if(f>=seats.length){ clearInterval(tm); done(); return; }
+    const s=seats[f]; s.classList.add('filled');
+    const slot=s.querySelector('.slot'); slot.classList.remove('searching'); slot.textContent=faces[f];
+    slot.style.borderColor=getComputedStyle(s).getPropertyValue('--ring');
+    s.querySelector('small').textContent=names[f];
+    f++; setTimeout(fill, 900+Math.random()*700);
+  }
+  setTimeout(fill,1100);
+  function done(){
+    document.getElementById('status').textContent='Match found!';
+    document.getElementById('sub').textContent='Starting in a moment…';
+    setTimeout(()=>location.href='game.html',1200);
+  }
+</script>
+</body>
+</html>

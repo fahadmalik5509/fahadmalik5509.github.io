@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ludo · Results</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  .res{align-items:center;text-align:center}
+  .winner{margin-top:6px}
+  .winner .avatar{--sz:104px}
+  .winner .label{font-family:'Fraunces',serif;font-style:italic;color:var(--turmeric);font-size:16px;margin-top:10px}
+  .winner .name{font-family:'Fraunces',serif;font-weight:800;color:var(--patch);font-size:30px;line-height:1}
+  .place{display:flex;align-items:center;gap:12px;width:100%}
+  .place .rank{width:30px;font-family:'Fraunces',serif;font-weight:800;font-size:18px;color:var(--ink-faint)}
+  .place.you{outline:2px solid var(--turmeric);outline-offset:-2px}
+  .place .rw{font-weight:800;color:var(--leaf-d)}
+  .confetti{position:absolute;top:0;left:0;right:0;height:0;z-index:5;pointer-events:none}
+  .confetti b{position:absolute;font-size:18px;animation:drop linear forwards}
+  @keyframes drop{to{transform:translateY(720px) rotate(540deg);opacity:0}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="confetti" id="cf"></div>
+  <div class="appbar"><div class="spacer"></div><a class="bare" href="home.html"><button class="iconbtn">✕</button></a></div>
+
+  <div class="content res">
+    <div class="winner">
+      <div class="avatar s2 reveal-pop" style="--sz:104px"><div class="ring"><div class="face">🦊</div></div><div class="crown">👑</div></div>
+      <div class="label reveal" style="--d:.2s">Winner · brings all four home</div>
+      <div class="name reveal" style="--d:.3s">You</div>
+    </div>
+
+    <div class="patch reveal" style="--d:.4s;width:100%">
+      <div class="col">
+        <div class="place you"><span class="rank">1</span>
+          <div class="avatar s2" style="--sz:40px"><div class="ring"><div class="face">🦊</div></div></div>
+          <div class="grow" style="text-align:left"><b>You</b></div><span class="rw">+1,800 🪙</span></div>
+        <hr class="stitch dark">
+        <div class="place"><span class="rank">2</span>
+          <div class="avatar s0" style="--sz:40px"><div class="ring"><div class="face">🐯</div></div></div>
+          <div class="grow" style="text-align:left"><b>Aarav</b></div><span class="rw" style="color:var(--ink-faint)">+200 🪙</span></div>
+        <hr class="stitch dark">
+        <div class="place"><span class="rank">3</span>
+          <div class="avatar s1" style="--sz:40px"><div class="ring"><div class="face">🐼</div></div></div>
+          <div class="grow" style="text-align:left"><b>Mika</b></div><span class="rw" style="color:var(--ink-faint)">—</span></div>
+        <hr class="stitch dark">
+        <div class="place"><span class="rank">4</span>
+          <div class="avatar s3" style="--sz:40px"><div class="ring"><div class="face">🐸</div></div></div>
+          <div class="grow" style="text-align:left"><b>Leo</b></div><span class="rw" style="color:var(--ink-faint)">—</span></div>
+      </div>
+    </div>
+
+    <div class="row reveal" style="--d:.5s;width:100%">
+      <div class="pill" style="flex:1;justify-content:center"><span class="ic" style="background:var(--turmeric)">⭐</span> +45 XP</div>
+      <div class="pill" style="flex:1;justify-content:center"><span class="ic" style="background:var(--indigo);color:#fff">💎</span> +2</div>
+    </div>
+
+    <div class="col reveal" style="--d:.6s;width:100%">
+      <a class="bare" href="matchmaking.html"><button class="btn btn-primary lg block"><span class="ic">🔄</span> Rematch</button></a>
+      <a class="bare" href="home.html"><button class="btn btn-ghost block">Back to Home</button></a>
+    </div>
+  </div>
+</div>
+<script>
+  const cf=document.getElementById('cf'), em=['🐚','🎲','⭐','🟡','🔴'];
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+    for(let i=0;i<28;i++){const b=document.createElement('b');b.textContent=em[i%em.length];
+      b.style.left=Math.random()*100+'%';b.style.animationDuration=(2+Math.random()*2)+'s';
+      b.style.animationDelay=(Math.random()*1.5)+'s';cf.appendChild(b);}
+  }
+</script>
+</body>
+</html>

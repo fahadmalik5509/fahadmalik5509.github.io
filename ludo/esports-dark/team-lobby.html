@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ludo · Team Up</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  .team{position:relative;padding:18px}
+  .team .lbl{font-family:'Fraunces',serif;font-style:italic;color:var(--turmeric);font-size:15px;margin-bottom:10px}
+  .team .members{display:flex;gap:14px}
+  .member{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px}
+  .member b{font-weight:800;font-size:13px}
+  .member .r{font-size:11px;color:var(--ink-muted);font-weight:700}
+  .vs{display:grid;place-items:center;margin:-6px 0}
+  .vs span{font-family:'Fraunces',serif;font-weight:800;font-style:italic;color:rgba(234,241,248,.8);font-size:20px;
+    background:var(--cloth-d);width:46px;height:46px;border-radius:50%;display:grid;place-items:center;border:2px solid rgba(234,241,248,.4)}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="appbar">
+    <a class="bare" href="home.html"><button class="iconbtn">←</button></a>
+    <div class="title">Team Up · 2v2</div><div class="spacer"></div>
+  </div>
+
+  <div class="content">
+    <p class="body light reveal">Partners sit diagonally. Bring <b>both</b> your armies home to win together.</p>
+
+    <div class="patch team reveal" style="--d:.05s">
+      <div class="lbl">Your team · A</div>
+      <div class="members">
+        <div class="member"><div class="avatar s2" style="--sz:60px"><div class="ring"><div class="face">🦊</div></div><div class="status"></div></div><b>You</b><span class="r">ready</span></div>
+        <div class="member"><div class="avatar s3" style="--sz:60px"><div class="ring"><div class="face">🐸</div></div><div class="status"></div></div><b>Leo</b><span class="r">ready</span></div>
+      </div>
+    </div>
+
+    <div class="vs"><span>VS</span></div>
+
+    <div class="patch team reveal" style="--d:.1s">
+      <div class="lbl" style="color:var(--ink-faint)">Opponents · B</div>
+      <div class="members">
+        <div class="member"><div class="avatar s0" style="--sz:60px"><div class="ring"><div class="face">🐯</div></div><div class="status off"></div></div><b>Searching…</b><span class="r">—</span></div>
+        <div class="member"><div class="avatar s1" style="--sz:60px"><div class="ring"><div class="face">⏳</div></div><div class="status off"></div></div><b>Searching…</b><span class="r">—</span></div>
+      </div>
+    </div>
+
+    <div class="patch reveal" style="--d:.2s">
+      <div class="row between"><div><div class="h">Wager</div><div class="body" style="font-size:13px">Per player · pooled prize</div></div>
+        <div class="seg" style="width:170px"><button>Free</button><button class="on">500</button><button>1K</button></div></div>
+    </div>
+
+    <a class="bare" href="game.html"><button class="btn btn-primary lg block reveal" style="--d:.3s"><span class="ic">🤝</span> Queue with team</button></a>
+    <a class="bare" href="friends.html"><button class="btn btn-ghost block reveal" style="--d:.35s">Invite a friend to your team</button></a>
+  </div>
+</div>
+</body>
+</html>

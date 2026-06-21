@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Esports Dark · Screen Flow</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  body{display:block;background:#06080C;background-image:linear-gradient(135deg,rgba(198,255,61,.04) 25%,transparent 25%,transparent 50%,rgba(198,255,61,.04) 50%,rgba(198,255,61,.04) 75%,transparent 75%);background-size:9px 9px}
+  .hub{max-width:1100px;margin:0 auto;padding:40px 22px 80px;color:var(--patch)}
+  .hub h1{font-family:'Oxanium';font-weight:800;font-size:48px;line-height:1;text-transform:uppercase;letter-spacing:1px;text-shadow:0 0 22px rgba(0,229,255,.5)}
+  .hub h1 em{font-style:normal;color:var(--madder)}
+  .hub .lede{color:rgba(234,241,248,.75);max-width:640px;line-height:1.55;margin-top:10px;font-weight:500}
+  .sec{margin-top:36px}
+  .sec h2{font-family:'Oxanium';font-weight:800;font-size:22px;text-transform:uppercase;margin-bottom:4px;letter-spacing:.5px}
+  .sec p{color:rgba(234,241,248,.5);font-size:14px;margin-bottom:16px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+  .scard{display:block;text-decoration:none;background:var(--patch);clip-path:var(--clip);border-radius:var(--r-lg);overflow:hidden;box-shadow:0 0 22px rgba(0,229,255,.18);color:var(--ink);transition:transform .12s}
+  .scard:hover{transform:translateY(-4px)}
+  .scard .thumb{height:96px;display:grid;place-items:center;font-size:34px;position:relative;background:#10141C;color:var(--madder);border-bottom:1px solid var(--line)}
+  .scard .lab{padding:10px 12px}
+  .scard .lab b{font-family:'Oxanium';font-weight:800;font-size:15px;display:block;text-transform:uppercase}
+  .scard .lab span{font-size:12px;color:var(--ink-muted);font-weight:600}
+  .num{position:absolute;top:8px;left:10px;font-size:11px;font-weight:800;color:var(--turmeric)}
+</style>
+</head>
+<body>
+<div class="hub">
+  <h1>Esports <em>Dark</em></h1>
+  <p class="lede">The full Ludo flow in the Esports Dark pack — near-black canvas, neon cyan/lime accents, clipped corners and condensed display type. Built for ranked play and leaderboards.</p>
+  <a class="bare" href="splash.html" style="display:inline-flex;margin-top:18px"><button class="btn btn-primary lg"><span class="ic">▶</span> Start the flow</button></a>
+
+  <div class="sec"><h2>Onboarding</h2><p>splash → login</p>
+    <div class="grid">
+      <a class="scard" href="splash.html"><div class="thumb"><span class="num">01</span>🎲</div><div class="lab"><b>Splash</b><span>dice ladder</span></div></a>
+      <a class="scard" href="splash-2.html"><div class="thumb"><span class="num">01b</span>🐚</div><div class="lab"><b>Splash · var</b><span>toss</span></div></a>
+      <a class="scard" href="splash-3.html"><div class="thumb"><span class="num">01c</span>⚡</div><div class="lab"><b>Splash · var</b><span>board boot</span></div></a>
+      <a class="scard" href="login.html"><div class="thumb"><span class="num">02</span>🔑</div><div class="lab"><b>Login</b><span>guest · oauth</span></div></a>
+    </div>
+  </div>
+  <div class="sec"><h2>Hub &amp; setup</h2>
+    <div class="grid">
+      <a class="scard" href="home.html"><div class="thumb"><span class="num">03</span>🏠</div><div class="lab"><b>Home</b><span>modes · HUD</span></div></a>
+      <a class="scard" href="matchmaking.html"><div class="thumb"><span class="num">04</span>📡</div><div class="lab"><b>Matchmaking</b><span>seats fill</span></div></a>
+      <a class="scard" href="team-lobby.html"><div class="thumb"><span class="num">05</span>🤝</div><div class="lab"><b>Team Up</b><span>2v2</span></div></a>
+      <a class="scard" href="private-room.html"><div class="thumb"><span class="num">06</span>🔒</div><div class="lab"><b>Private Room</b><span>code</span></div></a>
+      <a class="scard" href="join.html"><div class="thumb"><span class="num">07</span>⌨️</div><div class="lab"><b>Join</b><span>keypad</span></div></a>
+      <a class="scard" href="local-setup.html"><div class="thumb"><span class="num">08</span>📵</div><div class="lab"><b>Pass &amp; Play</b><span>bots</span></div></a>
+    </div>
+  </div>
+  <div class="sec"><h2>Play</h2>
+    <div class="grid">
+      <a class="scard" href="game.html"><div class="thumb"><span class="num">09</span>🎯</div><div class="lab"><b>Game Board</b><span>HUD · dice</span></div></a>
+      <a class="scard" href="results.html"><div class="thumb"><span class="num">10</span>👑</div><div class="lab"><b>Results</b><span>podium</span></div></a>
+    </div>
+  </div>
+  <div class="sec"><h2>Social &amp; account</h2>
+    <div class="grid">
+      <a class="scard" href="friends.html"><div class="thumb"><span class="num">11</span>👥</div><div class="lab"><b>Friends</b><span>list</span></div></a>
+      <a class="scard" href="profile.html"><div class="thumb"><span class="num">12</span>🪪</div><div class="lab"><b>Profile</b><span>stats</span></div></a>
+      <a class="scard" href="customize.html"><div class="thumb"><span class="num">13</span>🎨</div><div class="lab"><b>Customize</b><span>cosmetics</span></div></a>
+      <a class="scard" href="settings.html"><div class="thumb"><span class="num">14</span>⚙️</div><div class="lab"><b>Settings</b><span>packs</span></div></a>
+      <a class="scard" href="no-internet.html"><div class="thumb"><span class="num">15</span>🔌</div><div class="lab"><b>Offline</b><span>retry</span></div></a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

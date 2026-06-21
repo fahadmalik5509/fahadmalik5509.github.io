@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ludo · Offline</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  .off{justify-content:center;align-items:center;text-align:center;gap:14px}
+  .unplug{font-size:72px;animation:floaty 4s ease-in-out infinite}
+  .threads span{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--turmeric);margin:0 3px;animation:pulse 1.2s ease-in-out infinite}
+  .threads span:nth-child(2){animation-delay:.2s}.threads span:nth-child(3){animation-delay:.4s}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="content off">
+    <div class="unplug">🧶</div>
+    <div class="title on-cloth">A thread came loose</div>
+    <p class="body light" style="max-width:280px">We can't reach the table right now. Check your connection and try again.</p>
+    <div class="threads"><span></span><span></span><span></span></div>
+    <a class="bare" href="home.html"><button class="btn btn-primary lg" style="min-width:220px"><span class="ic">↻</span> Retry</button></a>
+    <a class="bare" href="local-setup.html"><button class="btn btn-ghost">Play offline instead</button></a>
+  </div>
+</div>
+</body>
+</html>

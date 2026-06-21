@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ludo · Splash (board weave)</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  .splash{justify-content:center;align-items:center;text-align:center}
+  .boardwrap{width:260px;height:260px;position:relative;margin-bottom:28px;
+    animation:assemble 1.1s cubic-bezier(.2,.8,.3,1.1) both}
+  .boardwrap img{width:100%;height:100%;display:block;filter:drop-shadow(0 16px 30px rgba(0,0,0,.5))}
+  .boardwrap::after{content:"";position:absolute;inset:-6px;border:3px solid var(--turmeric);border-radius:30px;
+    opacity:0;animation:framein .6s ease .9s forwards}
+  @keyframes assemble{0%{opacity:0;transform:scale(.4) rotate(-12deg)}100%{opacity:1;transform:none}}
+  @keyframes framein{to{opacity:.8}}
+  .brand{font-family:'Fraunces',serif;font-weight:800;font-size:44px;line-height:.95;color:var(--patch)}
+  .brand em{font-style:italic;color:var(--turmeric)}
+  .tag{margin-top:10px;font-family:'Fraunces',serif;font-style:italic;font-size:16px;color:rgba(255,255,255,.75)}
+  .march{display:flex;gap:8px;justify-content:center;margin-top:18px}
+  .march b{width:14px;height:14px;border-radius:50%;display:block;animation:hop 1s ease-in-out infinite}
+  .march b:nth-child(1){background:var(--seat0)}.march b:nth-child(2){background:var(--seat1);animation-delay:.15s}
+  .march b:nth-child(3){background:var(--seat2);animation-delay:.3s}.march b:nth-child(4){background:var(--seat3);animation-delay:.45s}
+  @keyframes hop{0%,100%{transform:translateY(0)}40%{transform:translateY(-10px)}}
+  .variants{position:absolute;bottom:24px;left:0;right:0;display:flex;gap:8px;justify-content:center}
+  .variants a{font-size:11px;color:rgba(255,255,255,.5);text-decoration:none;border:1px solid rgba(255,255,255,.3);padding:5px 11px;border-radius:999px;font-weight:700}
+</style>
+</head>
+<body>
+<a class="bare" href="login.html"><div class="app splash content">
+  <div class="boardwrap"><img src="board.svg" alt="Ludo board"></div>
+  <h1 class="brand reveal" style="--d:.8s">Ludo <em>Royale</em></h1>
+  <p class="tag reveal" style="--d:1s">four armies, one board, home wins</p>
+  <div class="march"><b></b><b></b><b></b><b></b></div>
+  <div class="variants" onclick="event.preventDefault();event.stopPropagation();">
+    <a href="splash.html">◂ dice ladder</a>
+    <a href="splash-2.html">◂ cowrie toss</a>
+  </div>
+  <div class="tapnote">tap anywhere to continue</div>
+</div></a>
+<script>
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches){ setTimeout(()=>location.href='login.html',3600); }
+</script>
+</body>
+</html>

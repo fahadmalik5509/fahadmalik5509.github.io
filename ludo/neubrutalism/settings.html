@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ludo · Settings</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  .set{display:flex;align-items:center;gap:12px}
+  .set .ic{width:40px;height:40px;border-radius:12px;background:var(--patch-2);display:grid;place-items:center;font-size:18px;flex:none}
+  .set .grow b{font-weight:800;font-size:15px;display:block}
+  .set .grow span{font-size:12px;color:var(--ink-muted);font-weight:600}
+  .packs{display:flex;gap:10px;overflow-x:auto;padding-bottom:2px}
+  .pack{flex:none;width:90px;text-align:center}
+  .pack .sw{height:64px;border-radius:var(--r-md);border:2px solid var(--cloth);display:grid;place-items:center;font-size:24px;margin-bottom:5px}
+  .pack.on .sw{border-style:solid;box-shadow:0 0 0 3px var(--turmeric)}
+  .pack small{font-size:11px;font-weight:700;color:var(--ink-muted)}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="appbar">
+    <a class="bare" href="home.html"><button class="iconbtn">←</button></a>
+    <div class="title">Settings</div><div class="spacer"></div>
+  </div>
+
+  <div class="content">
+    <div class="cap light" style="margin:2px 2px -6px">Design pack</div>
+    <div class="patch reveal">
+      <p class="body" style="font-size:13px;margin-bottom:10px">Switch the whole look — same game, different pack.</p>
+      <div class="packs">
+        <div class="pack on"><div class="sw" style="background:#7C2B3E;color:#FBE7D2">🧵</div><small>Cloth</small></div>
+        <div class="pack"><div class="sw" style="background:#5a3a20;color:#E6C77E">🪵</div><small>Wood</small></div>
+        <div class="pack"><div class="sw" style="background:#0B0E13;color:#C6FF3D">⚡</div><small>Arena</small></div>
+        <div class="pack"><div class="sw" style="background:#070A14;color:#E9C879">🪐</div><small>Astral</small></div>
+      </div>
+    </div>
+
+    <div class="cap light" style="margin:6px 2px -6px">Sound</div>
+    <div class="patch col reveal" style="--d:.1s">
+      <div class="set"><div class="ic">🔊</div><div class="grow"><b>Sound effects</b><span>Dice, captures, wins</span></div>
+        <label class="toggle"><input type="checkbox" checked><span class="track"></span><span class="knob"></span></label></div>
+      <hr class="stitch dark">
+      <div class="set"><div class="ic">🎵</div><div class="grow"><b>Music</b></div>
+        <label class="toggle"><input type="checkbox"><span class="track"></span><span class="knob"></span></label></div>
+      <hr class="stitch dark">
+      <div class="set"><div class="ic">📳</div><div class="grow"><b>Vibration</b></div>
+        <label class="toggle"><input type="checkbox" checked><span class="track"></span><span class="knob"></span></label></div>
+    </div>
+
+    <div class="cap light" style="margin:6px 2px -6px">Account</div>
+    <div class="patch col reveal" style="--d:.15s">
+      <div class="set"><div class="ic">🟢</div><div class="grow"><b>Google</b><span>linked · you@gmail.com</span></div><span class="chip">Linked</span></div>
+      <hr class="stitch dark">
+      <div class="set"><div class="ic">🔔</div><div class="grow"><b>Notifications</b></div>
+        <label class="toggle"><input type="checkbox" checked><span class="track"></span><span class="knob"></span></label></div>
+    </div>
+
+    <a class="bare" href="login.html"><button class="btn btn-primary block reveal" style="--d:.2s">Sign out</button></a>
+    <p class="cap light" style="text-align:center">Ludo Royale · v2.0 · made loud</p>
+  </div>
+</div>
+</body>
+</html>
